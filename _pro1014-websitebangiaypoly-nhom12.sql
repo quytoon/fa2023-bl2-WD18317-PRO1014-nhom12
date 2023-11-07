@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 05, 2023 lúc 12:26 PM
+-- Thời gian đã tạo: Th10 06, 2023 lúc 06:59 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `	pro1014-websitebangiaypoly-nhom12`
+-- Cơ sở dữ liệu: `1`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,8 @@ CREATE TABLE `binhluan` (
   `IdSanPham` int(11) DEFAULT NULL,
   `IdTaiKhoan` int(11) DEFAULT NULL,
   `NoiDung` varchar(255) NOT NULL,
-  `NgayBinhLuan` date NOT NULL
+  `NgayBinhLuan` date NOT NULL,
+  `DiemDanhGia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -47,21 +48,6 @@ CREATE TABLE `chitietdonhang` (
   `IdSanPham` int(11) DEFAULT NULL,
   `SoLuong` int(11) NOT NULL,
   `Gia` double(10,2) DEFAULT 0.00
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `danhgia`
---
-
-CREATE TABLE `danhgia` (
-  `IdDanhGia` int(11) NOT NULL,
-  `IdSanPham` int(11) DEFAULT NULL,
-  `IdTaiKhoan` int(11) DEFAULT NULL,
-  `DiemDanhGia` int(11) NOT NULL,
-  `NoiDung` varchar(255) NOT NULL,
-  `NgayDanhGia` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,51 +70,22 @@ CREATE TABLE `danhmuc` (
 CREATE TABLE `donhang` (
   `IdDonHang` int(11) NOT NULL,
   `NgayDatHang` date NOT NULL,
-  `TongTien` float NOT NULL
+  `TongTien` float NOT NULL,
+  `TrangThai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giay_danhmuc`
+-- Cấu trúc bảng cho bảng `giay_bienthe`
 --
 
-CREATE TABLE `giay_danhmuc` (
+CREATE TABLE `giay_bienthe` (
+  `IdGiayBienThe` int(11) NOT NULL,
+  `IdMauSac` int(11) NOT NULL,
+  `IdSizeGiay` int(11) NOT NULL,
   `IdSanPham` int(11) NOT NULL,
-  `idDanhMuc` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `giay_mausac`
---
-
-CREATE TABLE `giay_mausac` (
-  `IdSanPham` int(11) NOT NULL,
-  `IdMauSac` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `giay_size`
---
-
-CREATE TABLE `giay_size` (
-  `IdSanPham` int(11) NOT NULL,
-  `IdSizeGiay` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `giay_thuonghieu`
---
-
-CREATE TABLE `giay_thuonghieu` (
-  `IdSanPham` int(11) NOT NULL,
-  `IdThuongHieu` int(11) NOT NULL
+  `SoLuong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -139,7 +96,8 @@ CREATE TABLE `giay_thuonghieu` (
 
 CREATE TABLE `mausac` (
   `IdMauSac` int(11) NOT NULL,
-  `TenMauSac` varchar(255) NOT NULL
+  `TenMauSac` varchar(255) NOT NULL,
+  `IdSanPham` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -168,7 +126,8 @@ CREATE TABLE `sanpham` (
 
 CREATE TABLE `sizegiay` (
   `IdSizeGiay` int(11) NOT NULL,
-  `Size` float NOT NULL
+  `Size` float NOT NULL,
+  `IdSanPham` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -186,17 +145,6 @@ CREATE TABLE `taikhoan` (
   `Email` varchar(255) NOT NULL,
   `SoDienThoai` varchar(20) NOT NULL,
   `role` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `thuonghieu`
---
-
-CREATE TABLE `thuonghieu` (
-  `IdThuongHieu` int(11) NOT NULL,
-  `TenThuongHieu` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -220,14 +168,6 @@ ALTER TABLE `chitietdonhang`
   ADD KEY `IdSanPham` (`IdSanPham`);
 
 --
--- Chỉ mục cho bảng `danhgia`
---
-ALTER TABLE `danhgia`
-  ADD PRIMARY KEY (`IdDanhGia`),
-  ADD KEY `IdSanPham` (`IdSanPham`),
-  ADD KEY `IdTaiKhoan` (`IdTaiKhoan`);
-
---
 -- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -240,38 +180,20 @@ ALTER TABLE `donhang`
   ADD PRIMARY KEY (`IdDonHang`);
 
 --
--- Chỉ mục cho bảng `giay_danhmuc`
+-- Chỉ mục cho bảng `giay_bienthe`
 --
-ALTER TABLE `giay_danhmuc`
-  ADD PRIMARY KEY (`IdSanPham`,`idDanhMuc`),
-  ADD KEY `idDanhMuc` (`idDanhMuc`);
-
---
--- Chỉ mục cho bảng `giay_mausac`
---
-ALTER TABLE `giay_mausac`
-  ADD PRIMARY KEY (`IdSanPham`,`IdMauSac`),
-  ADD KEY `IdMauSac` (`IdMauSac`);
-
---
--- Chỉ mục cho bảng `giay_size`
---
-ALTER TABLE `giay_size`
-  ADD PRIMARY KEY (`IdSanPham`,`IdSizeGiay`),
-  ADD KEY `IdSizeGiay` (`IdSizeGiay`);
-
---
--- Chỉ mục cho bảng `giay_thuonghieu`
---
-ALTER TABLE `giay_thuonghieu`
-  ADD PRIMARY KEY (`IdSanPham`,`IdThuongHieu`),
-  ADD KEY `IdThuongHieu` (`IdThuongHieu`);
+ALTER TABLE `giay_bienthe`
+  ADD PRIMARY KEY (`IdGiayBienThe`),
+  ADD KEY `fk_gbt_sp` (`IdSanPham`),
+  ADD KEY `fk_gbt_gms` (`IdMauSac`),
+  ADD KEY `fk_gbt_gs` (`IdSizeGiay`);
 
 --
 -- Chỉ mục cho bảng `mausac`
 --
 ALTER TABLE `mausac`
-  ADD PRIMARY KEY (`IdMauSac`);
+  ADD PRIMARY KEY (`IdMauSac`),
+  ADD KEY `giay_mausac_ibfk_1` (`IdSanPham`);
 
 --
 -- Chỉ mục cho bảng `sanpham`
@@ -283,19 +205,14 @@ ALTER TABLE `sanpham`
 -- Chỉ mục cho bảng `sizegiay`
 --
 ALTER TABLE `sizegiay`
-  ADD PRIMARY KEY (`IdSizeGiay`);
+  ADD PRIMARY KEY (`IdSizeGiay`),
+  ADD KEY `giay_size_ibfk_1` (`IdSanPham`);
 
 --
 -- Chỉ mục cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`IdTaiKhoan`);
-
---
--- Chỉ mục cho bảng `thuonghieu`
---
-ALTER TABLE `thuonghieu`
-  ADD PRIMARY KEY (`IdThuongHieu`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -314,12 +231,6 @@ ALTER TABLE `chitietdonhang`
   MODIFY `IdChiTietDonHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `danhgia`
---
-ALTER TABLE `danhgia`
-  MODIFY `IdDanhGia` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -330,6 +241,12 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `donhang`
   MODIFY `IdDonHang` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `giay_bienthe`
+--
+ALTER TABLE `giay_bienthe`
+  MODIFY `IdGiayBienThe` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `mausac`
@@ -350,12 +267,6 @@ ALTER TABLE `sizegiay`
   MODIFY `IdSizeGiay` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `thuonghieu`
---
-ALTER TABLE `thuonghieu`
-  MODIFY `IdThuongHieu` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Các ràng buộc cho các bảng đã đổ
 --
 
@@ -374,39 +285,30 @@ ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`);
 
 --
--- Các ràng buộc cho bảng `danhgia`
+-- Các ràng buộc cho bảng `danhmuc`
 --
-ALTER TABLE `danhgia`
-  ADD CONSTRAINT `danhgia_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `danhgia_ibfk_2` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
+ALTER TABLE `danhmuc`
+  ADD CONSTRAINT `fk_dm_sp` FOREIGN KEY (`idDanhMuc`) REFERENCES `sanpham` (`IdSanPham`);
 
 --
--- Các ràng buộc cho bảng `giay_danhmuc`
+-- Các ràng buộc cho bảng `giay_bienthe`
 --
-ALTER TABLE `giay_danhmuc`
-  ADD CONSTRAINT `giay_danhmuc_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `giay_danhmuc_ibfk_2` FOREIGN KEY (`idDanhMuc`) REFERENCES `danhmuc` (`idDanhMuc`);
+ALTER TABLE `giay_bienthe`
+  ADD CONSTRAINT `fk_gbt_gms` FOREIGN KEY (`IdMauSac`) REFERENCES `mausac` (`IdMauSac`),
+  ADD CONSTRAINT `fk_gbt_gs` FOREIGN KEY (`IdSizeGiay`) REFERENCES `sizegiay` (`IdSizeGiay`),
+  ADD CONSTRAINT `fk_gbt_sp` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`);
 
 --
--- Các ràng buộc cho bảng `giay_mausac`
+-- Các ràng buộc cho bảng `mausac`
 --
-ALTER TABLE `giay_mausac`
-  ADD CONSTRAINT `giay_mausac_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `giay_mausac_ibfk_2` FOREIGN KEY (`IdMauSac`) REFERENCES `mausac` (`IdMauSac`);
+ALTER TABLE `mausac`
+  ADD CONSTRAINT `giay_mausac_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`);
 
 --
--- Các ràng buộc cho bảng `giay_size`
+-- Các ràng buộc cho bảng `sizegiay`
 --
-ALTER TABLE `giay_size`
-  ADD CONSTRAINT `giay_size_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `giay_size_ibfk_2` FOREIGN KEY (`IdSizeGiay`) REFERENCES `sizegiay` (`IdSizeGiay`);
-
---
--- Các ràng buộc cho bảng `giay_thuonghieu`
---
-ALTER TABLE `giay_thuonghieu`
-  ADD CONSTRAINT `giay_thuonghieu_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `giay_thuonghieu_ibfk_2` FOREIGN KEY (`IdThuongHieu`) REFERENCES `thuonghieu` (`IdThuongHieu`);
+ALTER TABLE `sizegiay`
+  ADD CONSTRAINT `giay_size_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
