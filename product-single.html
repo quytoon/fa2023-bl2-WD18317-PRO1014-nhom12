@@ -29,6 +29,37 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.rating {
+			unicode-bidi: bidi-override;
+			direction: rtl;
+			text-align: center;
+		}
+
+		.rating span.star {
+			font-size: 25px;
+			display: inline-block;
+			position: relative;
+			width: 1.1em;
+			cursor: pointer;
+			color: yellow;
+		}
+
+		.rating span.star:before {
+			content: '\2605';
+			position: absolute;
+			opacity: 0;
+			color: black;
+		}
+
+		.rating span.star.selected:before {
+			opacity: 1;
+		}
+
+		.star.selected {
+			color: black;
+		}
+	</style>
 </head>
 
 <body class="goto-here">
@@ -156,7 +187,19 @@
 									<button class="color-btn" style="background-color: #00FFFF"></button>
 								</div>
 							</div>
-							<div id="colorPreview" class="mt-3"></div>
+						</div>
+					</div>
+					<div class="row mt-4">
+						<div class="col-md-6">
+							<h5>Size</h5>
+							<div class="row">
+								<select class="form-select form-control mb-4" style="text-align: left;">
+									<option disabled selected>Chọn size giày</option>
+									<option value="36">36</option>
+									<option value="37">37</option>
+									<option value="38">38</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
@@ -183,6 +226,64 @@
 				</div>
 			</div>
 		</div>
+		</div>
+	</section>
+	<section class="ftco-section">
+		<div class="container">
+			<h2>Đánh giá của bạn về sản phẩm</h2>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-body">
+							<form>
+								<div class="form-group">
+									<label for="name">Tên tài khoản:</label>
+									<input type="text" class="form-control" id="name" placeholder="Tên của bạn" disabled>
+								</div>
+								<div class="form-group">
+									<label for="comment">Nội dung đánh giá:</label>
+									<textarea class="form-control" id="comment" rows="5"
+										placeholder="Nhập bình luận của bạn"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="rating">Điểm đánh giá:</label>
+									<div class="rating">
+										<span class="star " onclick="selectStar(1)">&#9733;</span>
+										<span class="star " onclick="selectStar(2)">&#9733;</span>
+										<span class="star " onclick="selectStar(3)">&#9733;</span>
+										<span class="star " onclick="selectStar(4)">&#9733;</span>
+										<span class="star " onclick="selectStar(5)">&#9733;</span>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-body row">
+							<div class="col-md-3" style="text-align: center;">
+								<img src="images/Frame 166.png" alt="Avatar" class="avatar"
+									style="width: 100px;border-radius: 50%;">
+								<h5 class="card-title">em quy</h5>
+							</div>
+							<div class="col-md-9">
+								<p class="card-text">Sản phẩm vừa xấu vừa đắt, không đáng tiền.</p>
+								<div class="rating">
+									<span class="star">&#9733;</span>
+									<span class="star">&#9733;</span>
+									<span class="star">&#9733;</span>
+									<span class="star">&#9733;</span>
+									<span class="star">&#9733;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -449,7 +550,24 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script>
+
+		function selectStar(rating) {
+			// Lấy tất cả các sao
+			var stars = document.getElementsByClassName('star');
+
+			// Đặt lớp CSS 'selected' cho các sao được chọn và xóa lớp CSS 'selected' cho các sao không được chọn
+			for (var i = 0; i < stars.length; i++) {
+				if (i < rating) {
+					stars[i].classList.add('selected');
+				} else {
+					stars[i].classList.remove('selected');
+				}
+			}
+		}
 		$('.color-btn').click(function () {
 			// Xóa lớp CSS "selected" khỏi tất cả các nút màu
 			$('.color-btn').removeClass('selected');
@@ -494,5 +612,3 @@
 	</script>
 
 </body>
-
-</html>
