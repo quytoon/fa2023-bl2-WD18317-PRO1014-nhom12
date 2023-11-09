@@ -292,7 +292,7 @@ CREATE TABLE `taikhoan` (
   `HoTen` varchar(255) NOT NULL,
   `DiaChi` varchar(255) DEFAULT NULL,
   `Email` varchar(255) NOT NULL,
-  `SoDienThoai` varchar(20) NOT NULL,
+  `SoDienThoai` int(10) NOT NULL,
   `role` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
