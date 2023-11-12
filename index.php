@@ -23,6 +23,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $dsdm = loadall_danhmuc();
             include "view/sanpham.php";
             break;
+        case "chitietsanpham":
+            if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                $sanpham = load_chitietsanpham($_GET['idsp']);
+                // $sanphamcl = load_sanpham_cungloai($_GET['idsp'], $sanpham['iddm']);
+                // $binhluan = loadall_binhluan($_GET['idsp']);
+                include "view/chitietsanpham.php";
+            } else {
+                include "view/home.php";
+            }
+            break;
     }
 } else {
     include "view/home.php";

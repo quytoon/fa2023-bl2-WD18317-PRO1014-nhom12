@@ -15,11 +15,6 @@
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
-                    <!-- <li><a href="#" class="active">All</a></li>
-                    <li><a href="#">Cao cổ</a></li>
-                    <li><a href="#">Thấp cổ</a></li>
-                    <li><a href="#">Slip-on</a></li>
-                    <li><a href="#">Platform</a></li> -->
                     <li><a href="#" class="active">All</a></li>
                     <?php
                     foreach ($dsdm as $key) {
@@ -36,7 +31,7 @@
             foreach ($dssp as $sp) {
                 extract($sp);
                 $hinh = $img_path . $img;
-                $linksp = "index.php?act=chitietsp&idsp=" . $IdSanPham;
+                $linksp = "index.php?act=chitietsanpham&idsp=" . $IdSanPham;
                 echo '<div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
                     <a href="' . $linksp . '" class="img-prod"><img class="img-fluid" src="' . $hinh . '"
