@@ -1,7 +1,7 @@
 <?php
 function loadall_danhmuc()
 {
-    $sql = "select * from danhmuc order by id desc";
+    $sql = "select * from danhmuc order by idDanhMuc desc";
     $listdanhmuc = pdo_query($sql);
     return $listdanhmuc;
 }
@@ -9,7 +9,7 @@ function loadall_danhmuc()
 function load_ten_dm($iddm)
 {
     if ($iddm > 0) {
-        $sql = "select * from sanpham where id=" . $iddm;
+        $sql = "select * from sanpham where idDanhMuc=" . $iddm;
         $dm = pdo_query_one($sql);
         extract($dm);
         return $name;

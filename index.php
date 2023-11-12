@@ -20,7 +20,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $iddm = 0;
             }
             $dssp = loadall_sanpham($kyw, $iddm);
-            $tendm = load_ten_dm($iddm);
+            $dsdm = loadall_danhmuc();
             include "view/sanpham.php";
             break;
     }
