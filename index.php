@@ -33,6 +33,15 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "thongtin":
+            include "view/thongtin.php";
+            break;
+        case "lienhe":
+            include "view/lienhe.php";
+            break;
+        case "thanhtoan":
+            include "view/thanhtoan.php";
+            break;
     }
 } else {
     include "view/home.php";
