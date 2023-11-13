@@ -1,4 +1,4 @@
-<div class="hero-wrap hero-bread" style="background-image: url('img/ms_banner_img1.png');">
+    <div class="hero-wrap hero-bread" style="background-image: url('images/banner1.png');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -12,7 +12,7 @@
     <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(img/chup-hinh-quang-cao-2.jpg);">
+					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/bg4.png);">
 						<a href="https://vimeo.com/17396908" class="icon popup-vimeo d-flex justify-content-center align-items-center">
 							<span class="icon-play"></span>
 						</a>
@@ -52,7 +52,7 @@
       </div>
     </section>
 		
-		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(img/ms_banner_img2.png);">
+		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/banner4.png);">
     	<div class="container">
     		<div class="row justify-content-center py-5">
     			<div class="col-md-10">

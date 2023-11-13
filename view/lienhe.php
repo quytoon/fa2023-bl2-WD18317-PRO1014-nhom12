@@ -1,4 +1,4 @@
-<div class="hero-wrap hero-bread" style="background-image: url('img/ms_banner_img1.png');">
+    <div class="hero-wrap hero-bread" style="background-image: url('images/banner1.png');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
