@@ -13416,6 +13416,7 @@ textarea.form-control {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  margin-bottom: 50px;
 }
 
 .ftco-services .services {
