@@ -4,6 +4,7 @@ include "view/home.php";
 include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
+include "model/binhluan.php";
 include "global.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
@@ -26,8 +27,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "chitietsanpham":
             if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                 $sanpham = load_chitietsanpham($_GET['idsp']);
-                // $sanphamcl = load_sanpham_cungloai($_GET['idsp'], $sanpham['iddm']);
-                // $binhluan = loadall_binhluan($_GET['idsp']);
+                $mausac = loadall_mausac();
+                $sizegiay = loadall_size();
+                $sanphamcl = load_sanpham_cungloai($_GET['idsp'], $sanpham['iddm']);
+                $binhluan = loadall_binhluan($_GET['idsp']);
                 include "view/chitietsanpham.php";
             } else {
                 include "view/home.php";

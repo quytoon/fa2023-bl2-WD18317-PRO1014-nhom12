@@ -23,4 +23,23 @@ function load_chitietsanpham($id)
     $result = pdo_query_one($sql);
     return $result;
 }
+function loadall_mausac()
+{
+    $sql = "select * from mausac";
+    $result = pdo_query($sql);
+    return $result;
+}
+function loadall_size()
+{
+    $sql = "select * from sizegiay";
+    $result = pdo_query($sql);
+    return $result;
+}
+function load_sanpham_cungloai($id, $iddm)
+{
+    $sql = "select * from sanpham where iddm = $iddm and IdSanPham <> $id";
+    $result = pdo_query($sql);
+    return $result;
+}
+
 ?>
