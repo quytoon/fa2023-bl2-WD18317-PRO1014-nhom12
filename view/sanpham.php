@@ -19,7 +19,7 @@
                     <?php
                     foreach ($dsdm as $key) {
                         extract($key);
-                        $linkdm = "index.php?act=chitietdm&idsp=" . $idDanhMuc;
+                        $linkdm = "index.php?act=chitietdm&iddm=" . $idDanhMuc;
                         echo '<li><a href="' . $linkdm . '">' . $tenDanhMuc . '</a></li>';
                     }
                     ?>

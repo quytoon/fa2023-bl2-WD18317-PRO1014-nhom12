@@ -36,6 +36,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "giohang":
+            include "view/giohang.php";
+            break;
+        case "thongtintaikhoan":
+            include "view/taikhoan/thongtintaikhoan.php";
+            break;
         case "thongtin":
             include "view/thongtin.php";
             break;
