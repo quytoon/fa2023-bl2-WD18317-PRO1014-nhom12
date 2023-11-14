@@ -14411,9 +14411,6 @@ textarea.form-control {
   }
 }
 .color-btn {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
   border: none;
   margin: 5px;
   cursor: pointer;
