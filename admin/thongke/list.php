@@ -18,20 +18,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            foreach ($listthongke as $tk) {
-                                extract($tk);
-                                echo '<tr>
-                                    <td>' . $madm . '</td>
-                                    <td>' . $tendm . '</td>
-                                    <td>' . $sluongsp . '</td>
-                                    <td>' . $maxgia . '</td>
-                                    <td>' . $mingia . '</td>
-                                    <td>' . $avggia . '</td>
-                                </tr>';
-                            }
-                            ?>
-                        </tbody>
                     </table>
                 </div>
                 <div class="row mb-3">

@@ -1,28 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
 <div class="container">
   <div class="row">
     <div class="col-12">
       <div class="mb-4 font_title mb">
         <h1>DANH SÁCH LOẠI HÀNG HÓA</h1>
       </div>
-      <form action="index.php?act=lissp" method="POST">
+      <form action="" method="POST">
         <div class="mb-3 formds_loai">
           <div class="row">
             <div class="col-md-4 mb-2">
-              <input type="text" class="form-control" name="kyw" placeholder="Từ khóa" >
+              <input type="text" class="form-control" name="" placeholder="Từ khóa" >
             </div>
             <div class="col-md-4 mb-2">
               <select class="form-select" name="iddm" >
                 <option value="0" selected>Tất cả</option>
-                <?php
-                foreach ($listdanhmuc as $danhmuc) {
-                  extract($danhmuc);
-                  echo '<option value="' . $id . '">' . $name . '</option>';
-                }
-                ?>
+                <option value="1" selected>1</option>
+                <option value="0" selected>2</option>
               </select>
             </div>
             <div class="col-md-2 mb-2">
-              <input type="submit" name="listok" value="Go" class="btn btn-primary" style="padding: 5px;">
+              <input type="submit" name="" value="Go" class="btn btn-primary" style="padding: 5px;">
             </div>
           </div>
         </div>
@@ -42,31 +48,6 @@
             </tr>
           </thead>
           <tbody>
-            <?php
-            foreach ($listsanpham as $lissp) {
-              extract($lissp);
-              $suasp = "index.php?act=suasp&id=" . $id;
-              $xoasp = "index.php?act=xoasp&id=" . $id;
-              $hinh = '../upload/' . $img;
-              if (is_file($hinh)) {
-                $hinh = "<img src='" . $hinh . "' height='80'>";
-              } else {
-                $hinh = 'no photo';
-              }
-              echo '<tr>
-                  <td><input type="checkbox" name="" id=""></td>
-                  <td>' . $id . '</td>
-                  <td>' . $name . '</td>
-                  <td>' . $hinh . '</td>
-                  <td>' . $price . '</td>
-                  <td>' . $luotxem . '</td>
-                  <td>
-                    <a href="' . $suasp . '" class="btn btn-primary btn-sm">Sửa</a>
-                    <a href="' . $xoasp . '" class="btn btn-danger btn-sm">Xóa</a>
-                  </td>
-              </tr>';
-            }
-            ?>
           </tbody>
         </table>
       </div>
@@ -81,3 +62,7 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

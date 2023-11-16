@@ -21,24 +21,6 @@
                 </tr>
               </thead>
               <tbody>
-                <?php
-                foreach ($listtaikhoan as $tk) {
-                  extract($tk);
-                  $suatk = "index.php?act=suatk&id=" . $id;
-                  $xoatk = "index.php?act=xoatk&id=" . $id;
-                  echo '<tr>
-                    <td><input type="checkbox" name="" id=""></td>
-                    <td>' . $id . '</td>
-                    <td>' . $user . '</td>
-                    <td>' . $pass . '</td>
-                    <td>' . $email . '</td>
-                    <td>' . $address . '</td>
-                    <td>' . $rel . '</td>
-                    <td>' . $role . '</td>
-                    <td><a href="' . $suatk . '"><input type="button" class="btn btn-primary btn-sm" value="Sửa"></a>   <a href="' . $xoatk . '"><input type="button" class="btn btn-danger btn-sm" value="Xóa"></a></td>
-                </tr>';
-                }
-                ?>
               </tbody>
             </table>
           </div>

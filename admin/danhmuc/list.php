@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -17,22 +27,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                foreach ($listdanhmuc as $lisdm) {
-                                    extract($lisdm);
-                                    $suadm = "index.php?act=suadm&id=" . $id;
-                                    $xoadm = "index.php?act=xoadm&id=" . $id;
-                                    echo '<tr>
-                                        <td><input type="checkbox" name="" id=""></td>
-                                        <td>' . $id . '</td>
-                                        <td>' . $name . '</td>
-                                        <td>
-                                            <a href="' . $suadm . '" class="btn btn-primary btn-sm">Sửa</a>
-                                            <a href="' . $xoadm . '" class="btn btn-danger btn-sm">Xóa</a>
-                                        </td>
-                                    </tr>';
-                                }
-                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -40,7 +34,7 @@
                         <div class="col-12">
                             <input class="btn btn-primary mr-2" type="button" value="CHỌN TẤT CẢ">
                             <input class="btn btn-secondary mr-2" type="button" value="BỎ CHỌN TẤT CẢ">
-                            <a href="index.php?act=adddm" class="btn btn-success">NHẬP THÊM</a>
+                            <a href="" class="btn btn-success">NHẬP THÊM</a>
                         </div>
                     </div>
                 </form>
@@ -48,3 +42,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
