@@ -41,7 +41,6 @@ if (isset($_GET['act'])) {
             $listdanhmuc = loadall_danhmuc_admin();
             include "danhmuc/listdanhmuc.php";
             break;
-            break;
     }
 } else {
     include 'home.php';
