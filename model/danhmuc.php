@@ -1,4 +1,5 @@
 <?php
+// load toàn bộ danh mục 
 function loadall_danhmuc()
 {
     $sql = "select * from danhmuc order by idDanhMuc desc";
@@ -6,15 +7,39 @@ function loadall_danhmuc()
     return $listdanhmuc;
 }
 
-function load_ten_dm($iddm)
+//load toàn bộ danh mục kèm số lượng sản phẩm trong danh mục
+function loadall_danhmuc_admin()
 {
-    if ($iddm > 0) {
-        $sql = "select * from sanpham where idDanhMuc=" . $iddm;
-        $dm = pdo_query_one($sql);
-        extract($dm);
-        return $name;
-    } else {
-        return "";
-    }
+    $sql = "SELECT a.*, COUNT(b.iddm) as SoLuong
+    FROM danhmuc as a
+    LEFT JOIN sanpham as b ON a.idDanhMuc = b.iddm
+    GROUP BY a.idDanhMuc;";
+    $listdanhmuc = pdo_query($sql);
+    return ($listdanhmuc);
+}
+//thêm mới danh mục
+function insert_danhmuc($name)
+{
+    $sql = "insert into `danhmuc` (`tenDanhMuc`) values  ('$name')";
+    pdo_execute($sql);
+}
+//load thông tin của danh mục được chọn
+function loadone_danhmuc($idDanhMuc)
+{
+    $sql = "select * from danhmuc where idDanhMuc = " . $idDanhMuc;
+    $dm = pdo_query_one($sql);
+    return $dm;
+}
+//update thông tin danh mục
+function update_danhmuc($name, $id)
+{
+    $sql = "UPDATE `danhmuc` SET `tenDanhMuc` = '{$name}' WHERE `idDanhMuc` = $id;";
+    pdo_execute($sql);
+}
+
+//xóa danh mục
+function delete_dm($id){
+    $sql = "delete from danhmuc where idDanhMuc = " . $id;
+    pdo_execute($sql);
 }
 ?>
