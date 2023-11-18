@@ -27,19 +27,27 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center">
-								<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+
+							<?php
+							foreach ($load_giohang as $key) {
+								extract($key);
+								$img = $img_path . $img;
+								$toltal = $Gia * $SoLuongSp;
+								global $bill;
+								$bill += $toltal;
+								echo '
+								<tr class="text-center">
+								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
 
 								<td class="image-prod">
-									<div class="img" style="background-image:url(images/product-4.jpg);"></div>
+									<div class="img" style="background-image:url(' . $img . ');"></div>
 								</td>
 
 								<td class="product-name">
-									<h3>Bell Pepper</h3>
-									<p>Far far away, behind the word mountains, far from the countries</p>
+									<h3>' . $TenSanPham . '</h3>
 								</td>
 
-								<td class="price">$15.70</td>
+								<td class="price">' . number_format($Gia, 0, '.', ',') . ' vnđ</td>
 
 								<td class="quantity">
 									<div class="row">
@@ -50,7 +58,7 @@
 
 										</div>
 										<div class="col"><input type="text" id="quantity" name="quantity"
-												class="form-control input-number" value="1" min="1" max="100"></div>
+												class="form-control input-number" value="' . $SoLuongSp . '" min="1" max="100"></div>
 										<div class="col"><button type="button" class="quantity-right-plus btn"
 												data-type="plus" data-field="">
 												<i class="ion-ios-add"></i>
@@ -58,8 +66,11 @@
 									</div>
 								</td>
 
-								<td class="total">$15.70</td>
+								<td class="total">' . number_format($toltal, 0, '.', ',') . ' vnđ</td>
 							</tr><!-- END TR-->
+								';
+							}
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -108,7 +119,9 @@
 					<h3>Tổng tiền</h3>
 					<p class="d-flex">
 						<span>Tổng phụ</span>
-						<span>$20.60</span>
+						<span>
+							<?= number_format($bill, 0, '.', ',') ?> vnđ
+						</span>
 					</p>
 					<p class="d-flex">
 						<span>Phí vận chuyển</span>
@@ -121,7 +134,9 @@
 					<hr>
 					<p class="d-flex total-price">
 						<span>Tổng</span>
-						<span>$17.60</span>
+						<span>
+							<?= number_format($bill, 0, '.', ',') ?> vnđ
+						</span>
 					</p>
 				</div>
 				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Thanh toán</a></p>
