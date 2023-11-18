@@ -11,7 +11,7 @@
         </div>
     </div>
 </div>
-<section class="ftco-section">
+<section class="ftco-section1">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-5 ftco-animate">

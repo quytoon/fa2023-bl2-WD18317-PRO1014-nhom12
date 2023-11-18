@@ -13,6 +13,31 @@ function loadall_sanpham($keyw = "", $iddm = 0)
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
+<<<<<<< Updated upstream
+=======
+function loadall_sanpham_home()
+{
+    $sql = "SELECT A.*, B.urlAnh AS first_image
+    FROM sanpham AS A
+    JOIN (
+        SELECT IdSanPham, MIN(IdAnh) AS minImageId
+        FROM anh_sp
+        GROUP BY IdSanPham
+    ) AS C ON A.IdSanPham = C.IdSanPham
+    JOIN anh_sp AS B ON C.IdSanPham = B.IdSanPham AND C.minImageId = B.IdAnh
+    ORDER BY A.IdSanPham DESC
+    LIMIT 0, 9;
+    ";
+    
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
+
+
+
+
+
+>>>>>>> Stashed changes
 function load_chitietsanpham($id)
 {
     $sql = "SELECT * FROM sanpham as A JOIN anh_sp as B ON A.IdSanPham = B.IdSanPham 
