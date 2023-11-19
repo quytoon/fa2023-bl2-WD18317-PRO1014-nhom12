@@ -9,7 +9,7 @@ function loadthongke_danhmuc()
 }
 function loadthongke_giohang()
 {
-    $sql = "SELECT c.TenTaiKhoan,COUNT(*) as soLuong, SUM(b.Gia) as tongTien 
+    $sql = "SELECT c.*,c.TenTaiKhoan,COUNT(*) as soLuong, SUM(b.Gia) as tongTien 
     from giohang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
     join taikhoan as c on c.IdTaiKhoan = a.IdTaiKhoan";
     return pdo_query($sql);

@@ -53,7 +53,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "xoagiohang":
             if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
-                $delete_giohang = delete_giohang($_GET['idsp'], 1);
+                $delete_giohang = delete_sp_giohang($_GET['idsp'], 1);
                 $load_giohang = loadall_giohang(1);
                 include "view/giohang.php";
             } else {

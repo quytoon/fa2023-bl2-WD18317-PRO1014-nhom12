@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 10, 2023 lúc 04:38 AM
+-- Thời gian đã tạo: Th10 19, 2023 lúc 11:45 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `4`
+-- Cơ sở dữ liệu: `pro1014-websitebangiaypoly-nhom12`
 --
 
 -- --------------------------------------------------------
@@ -79,24 +79,25 @@ CREATE TABLE `binhluan` (
   `IdTaiKhoan` int(11) NOT NULL,
   `NoiDung` varchar(255) DEFAULT NULL,
   `NgayBinhLuan` date NOT NULL,
-  `DiemDanhGia` int(11) NOT NULL
+  `DiemDanhGia` int(11) NOT NULL,
+  `TrangThai` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `binhluan`
 --
 
-INSERT INTO `binhluan` (`IdBinhLuan`, `IdSanPham`, `IdTaiKhoan`, `NoiDung`, `NgayBinhLuan`, `DiemDanhGia`) VALUES
-(1, 1, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-11', 5),
-(2, 2, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-10', 4),
-(3, 3, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-09', 3),
-(4, 4, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-08', 2),
-(5, 5, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-07', 1),
-(6, 1, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-06', 2),
-(7, 2, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-05', 3),
-(8, 3, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-04', 4),
-(9, 4, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-03', 5),
-(10, 5, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-02', 5);
+INSERT INTO `binhluan` (`IdBinhLuan`, `IdSanPham`, `IdTaiKhoan`, `NoiDung`, `NgayBinhLuan`, `DiemDanhGia`, `TrangThai`) VALUES
+(1, 1, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-11', 5, 0),
+(2, 2, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-10', 4, 0),
+(3, 3, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-09', 3, 0),
+(4, 4, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-08', 2, 0),
+(5, 5, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-07', 1, 0),
+(6, 1, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-06', 2, 0),
+(7, 2, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-05', 3, 0),
+(8, 3, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-04', 4, 0),
+(9, 4, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-03', 5, 0),
+(10, 5, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-02', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,7 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`idDanhMuc`, `tenDanhMuc`) VALUES
-(1, 'Cao cổ'),
+(1, 'Cao cổ 2'),
 (2, 'Thấp cổ'),
 (3, 'Slip-on'),
 (4, 'Platform');
@@ -221,8 +222,19 @@ CREATE TABLE `giohang` (
   `IdGioHang` int(11) NOT NULL,
   `IdSanPham` int(11) NOT NULL,
   `IdTaiKhoan` int(11) NOT NULL,
-  `SoLuongSp` int(11) NOT NULL
+  `SoLuongSp` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`IdGioHang`, `IdSanPham`, `IdTaiKhoan`, `SoLuongSp`) VALUES
+(9, 4, 1, 1),
+(10, 3, 1, 1),
+(11, 5, 1, 1),
+(12, 2, 1, 1),
+(13, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -254,6 +266,7 @@ CREATE TABLE `sanpham` (
   `IdSanPham` int(11) NOT NULL,
   `TenSanPham` varchar(255) NOT NULL,
   `Gia` double(10,2) NOT NULL DEFAULT 0.00,
+  `img` varchar(255) NOT NULL,
   `MoTa` text DEFAULT NULL,
   `SoLuong` int(11) NOT NULL,
   `luotxem` int(11) DEFAULT 0,
@@ -265,12 +278,12 @@ CREATE TABLE `sanpham` (
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`IdSanPham`, `TenSanPham`, `Gia`, `MoTa`, `SoLuong`, `luotxem`, `iddm`, `trangThai`) VALUES
-(1, 'Giày Converse One Star Pro Herringbone', 2200000.00, 'Giày One Star Pro của Converse là một phiên bản nâng cấp của mẫu giày kinh điển One Star, với sự tập trung vào sự tiện ích cho việc trượt ván. Thiết kế của giày kết hợp giữa phong cách đường phố và tính năng chuyên nghiệp, tạo nên một cảm giác vừa thời trang và thể thao. \r\nMặt trên của giày được làm từ chất liệu vải canvas chất lượng cao, mang lại độ bền và sự êm ái. Một điểm nhấn đặc biệt trên mặt trên của giày là logo ngôi sao One Star, tạo nên sự nhận diện thương hiệu và thêm phần phong cách. Bên cạnh đó, đế giày được làm từ cao su chất lượng cao, với độ bám tốt và khả năng chống trượt cao. Thiết kế đế cũng có các khe cắt sâu để tăng độ linh hoạt và kiểm soát tốt hơn trên bề mặt ván trượt. Điều này giúp cho người sử dụng có thể thực hiện các động tác và trick một cách dễ dàng và ổn định.', 100, 0, 1, 1),
-(2, 'Giày Converse Chuck Taylor All Star Move Summer Utility', 1900000.00, 'Với thiết kế trẻ trung và hiện đại, Chuck Taylor All Star Move có một đế giày cao su dày hơn và có rãnh chống trượt, giúp mang lại sự thoải mái và bám dính tốt hơn trên mọi bề mặt, tạo ra một phong cách hiện đại và đầy cá tính. Điểm đặt biệt của sản phẩm là các chi tiết \r\nChuck Taylor All Star Move có nhiều phiên bản với nhiều màu sắc khác nhau, từ những màu trung tính như đen và trắng, đến những màu sắc sặc sỡ và đầy cá tính. Phong cách streetwear thường ưa chuộng các màu sắc táo bạo và sáng tạo, vì vậy giày Chuck Taylor All Star Move là một lựa chọn tuyệt vời để hoàn thiện phong cách của bạn.\r\nCác chi tiết khác trên giày bao gồm dây giày màu sắc đa dạng và bảng hiệu Converse ở mặt bên của giày, tạo nên một phong cách thời trang và đầy cá tính. Giày Chuck Taylor All Star Move là một sự lựa chọn tuyệt vời cho những ai yêu thích phong cách streetwear, với thiết kế độc đáo và tính năng tối ưu cho sự thoải mái và linh hoạt.', 50, 0, 1, 1),
-(3, 'Giày Converse Aeon Active Cx Future Comfort', 2500000.00, 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1),
-(4, 'Giày Converse Run Star Motion Canvas Platform Foundational', 2600000.00, 'Giày Converse Run Star Motion Canvas Platform- một sản phẩm mang tính đột phá đến từ thương hiệu Converse. Nếu dòng classic là “gà cưng” của ông hoàng Converse. Thì “chiến thần” Run Star Motion Canvas Platform là màu áo mới được Converse tung ra để thách thức cho các thương hiệu khác trên đường đua thời trang. Với thiết kế tuyệt đẹp nhờ dải lượn sóng răng cưa ở phần quanh đế giày,  được ví như biển cả rộng lớn nhằm mục đích mang đến sự trẻ trung và hiện đại cho sản phẩm. Bên cạnh đó, đế giày của sản phẩm được làm bằng chất liệu cao su, đảm bảo độ bền và độ bám tốt trên mọi địa hình. \r\nVới Converse Run Star Motion Canvas Platform, vùng lưỡi gà được thiết kế cao, tạo nên điểm nhấn ấn tượng và ôm sát chân người mang. Phần thân giày vẫn giữ nguyên sự đơn giản và cổ điển, tạo nên sự nổi bật cho phần đế và mang lại vẻ trẻ trung và năng động cho người sử dụng. Đặc biệt, phần đế được thiết kế theo kiểu chunky bản to và chia làm hai phần thể hiện phong cách trẻ trung và đầy táo bạo. Các bộ phận có đường răng cưa lớn giúp giữ form và thăng bằng tốt hơn khi di chuyển, tạo nên sự thoải mái và tiện ích cho người sử dụng, đồng thời giúp tăng chiều cao một cách tự nhiên. ', 50, 0, 1, 1),
-(5, 'Giày Converse CHUCK TAYLOR ALL STAR', 1160000.00, 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1);
+INSERT INTO `sanpham` (`IdSanPham`, `TenSanPham`, `Gia`, `img`, `MoTa`, `SoLuong`, `luotxem`, `iddm`, `trangThai`) VALUES
+(1, 'Giày Converse One Star Pro Herringbone', 2200000.00, 'giay1.jpg', 'Giày One Star Pro của Converse là một phiên bản nâng cấp của mẫu giày kinh điển One Star, với sự tập trung vào sự tiện ích cho việc trượt ván. Thiết kế của giày kết hợp giữa phong cách đường phố và tính năng chuyên nghiệp, tạo nên một cảm giác vừa thời trang và thể thao. \r\nMặt trên của giày được làm từ chất liệu vải canvas chất lượng cao, mang lại độ bền và sự êm ái. Một điểm nhấn đặc biệt trên mặt trên của giày là logo ngôi sao One Star, tạo nên sự nhận diện thương hiệu và thêm phần phong cách. Bên cạnh đó, đế giày được làm từ cao su chất lượng cao, với độ bám tốt và khả năng chống trượt cao. Thiết kế đế cũng có các khe cắt sâu để tăng độ linh hoạt và kiểm soát tốt hơn trên bề mặt ván trượt. Điều này giúp cho người sử dụng có thể thực hiện các động tác và trick một cách dễ dàng và ổn định.', 100, 0, 1, 1),
+(2, 'Giày Converse Chuck Taylor All Star Move Summer Utility', 1900000.00, 'giay2.jpg', 'Với thiết kế trẻ trung và hiện đại, Chuck Taylor All Star Move có một đế giày cao su dày hơn và có rãnh chống trượt, giúp mang lại sự thoải mái và bám dính tốt hơn trên mọi bề mặt, tạo ra một phong cách hiện đại và đầy cá tính. Điểm đặt biệt của sản phẩm là các chi tiết \r\nChuck Taylor All Star Move có nhiều phiên bản với nhiều màu sắc khác nhau, từ những màu trung tính như đen và trắng, đến những màu sắc sặc sỡ và đầy cá tính. Phong cách streetwear thường ưa chuộng các màu sắc táo bạo và sáng tạo, vì vậy giày Chuck Taylor All Star Move là một lựa chọn tuyệt vời để hoàn thiện phong cách của bạn.\r\nCác chi tiết khác trên giày bao gồm dây giày màu sắc đa dạng và bảng hiệu Converse ở mặt bên của giày, tạo nên một phong cách thời trang và đầy cá tính. Giày Chuck Taylor All Star Move là một sự lựa chọn tuyệt vời cho những ai yêu thích phong cách streetwear, với thiết kế độc đáo và tính năng tối ưu cho sự thoải mái và linh hoạt.', 50, 0, 1, 1),
+(3, 'Giày Converse Aeon Active Cx Future Comfort', 2500000.00, 'giay3.jpg', 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1),
+(4, 'Giày Converse Run Star Motion Canvas Platform Foundational', 2600000.00, 'giay4.jpg', 'Giày Converse Run Star Motion Canvas Platform- một sản phẩm mang tính đột phá đến từ thương hiệu Converse. Nếu dòng classic là “gà cưng” của ông hoàng Converse. Thì “chiến thần” Run Star Motion Canvas Platform là màu áo mới được Converse tung ra để thách thức cho các thương hiệu khác trên đường đua thời trang. Với thiết kế tuyệt đẹp nhờ dải lượn sóng răng cưa ở phần quanh đế giày,  được ví như biển cả rộng lớn nhằm mục đích mang đến sự trẻ trung và hiện đại cho sản phẩm. Bên cạnh đó, đế giày của sản phẩm được làm bằng chất liệu cao su, đảm bảo độ bền và độ bám tốt trên mọi địa hình. \r\nVới Converse Run Star Motion Canvas Platform, vùng lưỡi gà được thiết kế cao, tạo nên điểm nhấn ấn tượng và ôm sát chân người mang. Phần thân giày vẫn giữ nguyên sự đơn giản và cổ điển, tạo nên sự nổi bật cho phần đế và mang lại vẻ trẻ trung và năng động cho người sử dụng. Đặc biệt, phần đế được thiết kế theo kiểu chunky bản to và chia làm hai phần thể hiện phong cách trẻ trung và đầy táo bạo. Các bộ phận có đường răng cưa lớn giúp giữ form và thăng bằng tốt hơn khi di chuyển, tạo nên sự thoải mái và tiện ích cho người sử dụng, đồng thời giúp tăng chiều cao một cách tự nhiên. ', 50, 0, 1, 1),
+(5, 'Giày Converse CHUCK TAYLOR ALL STAR', 1160000.00, 'giay5.jpg', 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -306,6 +319,7 @@ CREATE TABLE `taikhoan` (
   `DiaChi` varchar(255) DEFAULT NULL,
   `Email` varchar(255) NOT NULL,
   `SoDienThoai` int(10) NOT NULL,
+  `avatarUser` varchar(255) NOT NULL,
   `role` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -313,9 +327,9 @@ CREATE TABLE `taikhoan` (
 -- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`IdTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi`, `Email`, `SoDienThoai`, `role`) VALUES
-(1, 'quytoon', 'quytoonA1@', 'Nguyễn Tôn Quý', 'Việt Nam', 'quyton69@gmail.com', 964236835, 1),
-(2, 'duan1nhom12', 'Duan1nhom12@', 'Dự Án 1 Nhóm 12', 'Trái đất', 'quyntph31502@fpt.edu.vn', 1234567890, 1);
+INSERT INTO `taikhoan` (`IdTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi`, `Email`, `SoDienThoai`, `avatarUser`, `role`) VALUES
+(1, 'quytoon', 'quytoonA1@', 'Nguyễn Tôn Quý', 'Việt Nam', 'quyton69@gmail.com', 964236835, 'avata.png', 1),
+(2, 'duan1nhom12', 'Duan1nhom12@', 'Dự Án 1 Nhóm 12', 'Trái đất', 'quyntph31502@fpt.edu.vn', 1234567890, 'avata.png', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -383,7 +397,8 @@ ALTER TABLE `mausac`
 -- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD PRIMARY KEY (`IdSanPham`);
+  ADD PRIMARY KEY (`IdSanPham`),
+  ADD KEY `fk_sp_dm` (`iddm`);
 
 --
 -- Chỉ mục cho bảng `sizegiay`
@@ -423,7 +438,7 @@ ALTER TABLE `chitietdonhang`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
@@ -441,7 +456,7 @@ ALTER TABLE `giay_bienthe`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `mausac`
@@ -492,12 +507,6 @@ ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`);
 
 --
--- Các ràng buộc cho bảng `danhmuc`
---
-ALTER TABLE `danhmuc`
-  ADD CONSTRAINT `fk_dm_sp` FOREIGN KEY (`idDanhMuc`) REFERENCES `sanpham` (`IdSanPham`);
-
---
 -- Các ràng buộc cho bảng `giay_bienthe`
 --
 ALTER TABLE `giay_bienthe`
@@ -511,6 +520,12 @@ ALTER TABLE `giay_bienthe`
 ALTER TABLE `giohang`
   ADD CONSTRAINT `fk_gh_sp` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
   ADD CONSTRAINT `fk_gh_tk` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
+
+--
+-- Các ràng buộc cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD CONSTRAINT `fk_sp_dm` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`idDanhMuc`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

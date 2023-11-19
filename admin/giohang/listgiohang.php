@@ -8,39 +8,40 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Danh sách danh mục
+                    Danh sách giỏ hàng
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Tên Danh Mục</th>
-                                <th>Số lượng sản phẩm trong danh mục</th>
+                                <th>Tên User</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th>Tổng giá trị giỏ hàng(VNĐ)</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tên Danh Mục</th>
-                                <th>Số lượng sản phẩm trong danh mục</th>
+                                <th>Tên User</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th>Tổng giá trị giỏ hàng(VNĐ)</th>
                                 <th>Hành động</th>
-
                             </tr>
                         </tfoot>
                         <tbody>
                             <?php
-                            foreach ($listdanhmuc as $key) {
+                            foreach ($listgiohang as $key) {
                                 extract($key);
-                                $suadm = "index.php?act=updatedanhmuc&idDanhMuc=" . $idDanhMuc;
-                                $xoadm = "index.php?act=xoadm&idDanhMuc=" . $idDanhMuc;
+                                $suagh = "index.php?act=chitietgiohang&IdTaiKhoan=" . $IdTaiKhoan;
+                                $xoagh = "index.php?act=xoagiohang&IdTaiKhoan=" . $IdTaiKhoan;
+                                
                                 echo '<tr>
-                                        <td>' . $tenDanhMuc . '</td>
-                                        <td>' . $SoLuong . '</td>
+                                        <td>' . $TenTaiKhoan . '</td>
+                                        <td>' . $soLuong . '</td>
+                                        <td>' . number_format($tongTien, 2, '.', ',') . '</td>
                                         <td>
-                                        <a href=""><input type="button" value="Xem chi tiết" class="btn btn-primary"></a> 
-                                        <a href="' . $suadm . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
-                                        <a href="' . $xoadm . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
-                                        </td>
+                                        <a href="' . $suagh . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
+                                        <a href="' . $xoagh . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
                                     </tr>';
                             }
                             ?>
@@ -48,7 +49,6 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a href="index.php?act=adddanhmuc"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
                 </div>
             </div>
     </main>

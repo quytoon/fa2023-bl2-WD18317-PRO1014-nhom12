@@ -55,18 +55,18 @@
                             Trang chủ
                         </a>
                         <div class="sb-sidenav-menu-heading">Quản lý</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?act=listdanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Danh mục
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?act=listgiohang">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>Giỏ hàng
                         </a>
                         <div class="sb-sidenav-menu-heading">Thống kê</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?act=thongkedanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Danh mục
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?act=thongkegiohang">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
                             Giỏ hàng
                         </a>

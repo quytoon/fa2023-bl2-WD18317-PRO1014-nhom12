@@ -1,5 +1,5 @@
 <?php
-//load all giỏ hàng
+//load all giỏ hàng theo id user
 function loadall_giohang($IdTaiKhoan)
 {
     $sql = "SELECT * FROM giohang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
@@ -18,10 +18,16 @@ function insert_giohang($IdSanPham, $IdTaiKhoan)
     return $result;
 }
 //xóa sản phẩm từ giỏ hàng
-function delete_giohang($IdSanPham,$IdTaiKhoan)
+function delete_sp_giohang($IdSanPham, $IdTaiKhoan)
 {
     $sql = "DELETE FROM `giohang` 
     WHERE `IdSanPham` = '$IdSanPham' and `IdTaiKhoan` = '$IdTaiKhoan';";
+    $result = pdo_query($sql);
+    return $result;
+}
+function delete_giohang($IdTaiKhoan){
+    $sql = "DELETE FROM `giohang` 
+    WHERE `IdTaiKhoan` = '$IdTaiKhoan';";
     $result = pdo_query($sql);
     return $result;
 }
