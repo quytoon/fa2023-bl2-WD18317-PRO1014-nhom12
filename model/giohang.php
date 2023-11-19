@@ -17,6 +17,7 @@ function insert_giohang($IdSanPham, $IdTaiKhoan)
     $result = pdo_query($sql);
     return $result;
 }
+//xóa sản phẩm từ giỏ hàng
 function delete_giohang($IdSanPham,$IdTaiKhoan)
 {
     $sql = "DELETE FROM `giohang` 

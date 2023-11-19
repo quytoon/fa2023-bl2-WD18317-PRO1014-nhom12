@@ -2,6 +2,7 @@
 include 'header.php';
 include '../model/pdo.php';
 include '../model/danhmuc.php';
+include '../model/thongke.php';
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -40,6 +41,22 @@ if (isset($_GET['act'])) {
             }
             $listdanhmuc = loadall_danhmuc_admin();
             include "danhmuc/listdanhmuc.php";
+            break;
+        case 'thongkedanhmuc':
+            $thongkedm = loadthongke_danhmuc();
+            include 'thongke/thongkedanhmuc.php';
+            break;
+        case 'bieudodanhmuc':
+            $thongkedm = loadthongke_danhmuc();
+            include 'thongke/bieudodanhmuc.php';
+            break;
+        case 'thongkegiohang':
+            $thongkegiohang = loadthongke_giohang();
+            include 'thongke/thongkegiohang.php';
+            break;
+        case 'bieudogiohang';
+            $thongkegiohang = loadthongke_giohang();
+            include 'thongke/bieudogiohang.php';
             break;
     }
 } else {
