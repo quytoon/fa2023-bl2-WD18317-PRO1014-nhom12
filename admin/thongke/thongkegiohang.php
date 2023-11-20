@@ -1,9 +1,4 @@
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Trang chủ Admin</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Admin</li>
+/<a href="index.php?act=thongkegiohang">Thống kê giỏ hàng</a></li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">

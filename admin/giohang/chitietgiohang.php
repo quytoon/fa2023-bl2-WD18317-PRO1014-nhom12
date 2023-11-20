@@ -1,34 +1,29 @@
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Trang chủ Admin</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Admin</li>
-            </ol>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Chi tiết giỏ hàng
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Ảnh Sản Phẩm</th>
-                                <th>Tên Sản Phẩm</th>
-                                <th>Giá</th>
-                                <th>Số Lượng</th>
-                                <th>Tổng Tiền</th>
-                                <th>Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($chitietgiohang as $key) {
-                                extract($key);
-                                $img = $img_path . $img;
-                                $toltal = $Gia * $SoLuongSp;
-                                echo '
+ /<a href="index.php?act=listgiohang">Quản Lý giỏ Hàng</a>/ <a href="index.php?act=chitietgiohang&IdTaiKhoan=<?=$_GET["IdTaiKhoan"]?>">Chi tiết giỏ hàng</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Chi tiết giỏ hàng
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Ảnh Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Tổng Tiền</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($chitietgiohang as $key) {
+                    extract($key);
+                    $img = $img_path . $img;
+                    $toltal = $Gia * $SoLuongSp;
+                    echo '
 								<tr >
 								<td class="image-prod">
                                     <img src="../' . $img . '" alt="" width="70px">
@@ -58,20 +53,20 @@
 								</td>
 
 								<td class="total">' . number_format($toltal, 0, '.', ',') . ' vnđ</td>
-                                <td><a href="index.php?act=xoaspgiohang&idsp='.$IdSanPham.'&IdTaiKhoan='.$_GET["IdTaiKhoan"].'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><input class="btn btn-primary my-1" type="button"
+                                <td><a href="index.php?act=xoaspgiohang&idsp=' . $IdSanPham . '&IdTaiKhoan=' . $_GET["IdTaiKhoan"] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><input class="btn btn-primary my-1" type="button"
                                 value="Xóa"><span class="ion-ios-close"></span></a></td>
 							</tr><!-- END TR-->
 								';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer">
-                </div>
-            </div>
-    </main> 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+    </div>
+</div>
+</main>
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function () {
             // Xử lý sự kiện khi nút giảm số lượng được click
