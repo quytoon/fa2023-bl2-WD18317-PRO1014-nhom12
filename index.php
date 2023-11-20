@@ -5,6 +5,7 @@ include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
 include "model/binhluan.php";
+include "model/taikhoan.php";
 include "global.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
@@ -51,6 +52,24 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "thanhtoan":
             include "view/thanhtoan.php";
             break;
+        case "dangnhap":
+            if (isset($_POST['dangnhap'])) {
+                $loginMess = dangnhap($_POST['TenTaiKhoan'], $_POST['MatKhau']);
+            }
+            include "view/taikhoan/dangnhap.php";
+            break;
+        case "dangky":
+            
+            if(isset($_POST['dangky']) && ($_POST['dangky']!="")){
+                $TenTaiKhoan = $_POST['TenTaiKhoan'];
+                $Email = $_POST['Email'];
+                $MatKhau = $_POST['MatKhau'];
+                dangky($TenTaiKhoan,$Email,$MatKhau);
+                $thongbao="Đăng ký thành công";
+            }
+            include "view/taikhoan/dangky.php";
+            break;     
+            
     }
 } else {
     include "view/home.php";

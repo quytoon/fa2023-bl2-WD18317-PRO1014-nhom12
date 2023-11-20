@@ -1,4 +1,26 @@
 <?php 
+//Đăng nhập
+function dangnhap($TenTaiKhoan,$MatKhau) {
+    $sql="SELECT * FROM taikhoan WHERE TenTaiKhoan='$TenTaiKhoan' and MatKhau='$MatKhau'";
+    $taikhoan = pdo_query_one($sql);
+
+    if ($taikhoan != false) {
+        $_SESSION['TenTaiKhoan'] = $TenTaiKhoan;
+    } else {
+        return "Thông tin tài khoản sai";
+    }
+}
+//Đăng Ký
+function dangky($TenTaiKhoan,$Email,$MatKhau){
+    $sql="INSERT INTO `taikhoan` ( `TenTaiKhoan`, `Email`, `MatKhau`) VALUES ( '$TenTaiKhoan', '$Email','$MatKhau') ";
+    pdo_execute($sql);
+}
+//Đăng xuất
+function dangxuat() {
+    if (isset($_SESSION['TenTaiKhoan'])) {
+        unset($_SESSION['TenTaiKhoan']);
+    }
+}
 // Load toàn bộ tài khoản
 function loadall_taikhoan()
 {
