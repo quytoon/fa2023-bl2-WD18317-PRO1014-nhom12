@@ -74,7 +74,8 @@
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-
+			  <li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
+			  <li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
 	        </ul>
 	      </div>
 	    </div>
