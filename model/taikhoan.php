@@ -17,4 +17,16 @@ function insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoa
     VALUES ('$TenTaiKhoan', '$MatKhau', '$HoTen', '$DiaChi', '$Email', '$SoDienThoai', '$avatarUser', '$role')";
     pdo_execute($sql);
 }
+function loadone_taikhoan($IdTaiKhoan)
+{
+    $sql = "select * from taikhoan where IdTaiKhoan = " . $IdTaiKhoan;
+    $taikhoan = pdo_query_one($sql);
+    return $taikhoan;
+}
+//update thông tin tài khoản
+function update_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role,$IdTaiKhoan)
+{
+    $sql = "UPDATE `taikhoan` SET `TenTaiKhoan` = '{$TenTaiKhoan}', `MatKhau` = '{$MatKhau}', `HoTen` = '{$HoTen}', `DiaChi` = '{$DiaChi}', `Email` = '{$Email}', `SoDienThoai` = '{$SoDienThoai}', `avatarUser` = '{$avatarUser}', `role` = '{$role}' WHERE `taikhoan`.`IdTaiKhoan` = $IdTaiKhoan";
+    pdo_execute($sql);
+}
 ?>

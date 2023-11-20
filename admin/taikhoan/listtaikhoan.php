@@ -46,11 +46,11 @@
                                     <td>'.$DiaChi.'</td>
                                     <td>'.$Email.'</td>
                                     <td>'.$SoDienThoai.'</td>
-                                    <td><img src ' .$hinhpart. 'width='100px' height='100px'></td>
+                                    <td><img src ="' .$hinhpart. '"width="100px" height="100px"></td>
                                     <td>'.$role.'</td>
                                     <td>
                                         <a href=""><input type="button" value="Xem chi tiết"></a> 
-                                        <a href="' . $suatk . '"><input type="button" value="Sửa"></a> 
+                                        <a href="' . $suatk . '"><input type="button" value="Sửa"></a>
                                         <a href="' . $xoatk . '"><input type="button" value="Xóa" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
                                     </td>
                                 </tr>';

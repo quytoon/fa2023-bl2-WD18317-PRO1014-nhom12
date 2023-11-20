@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+// include 'header.php';
 include '../model/pdo.php';
 include '../model/danhmuc.php';
 include '../model/taikhoan.php';
@@ -72,12 +72,43 @@ if (isset($_GET['act'])) {
                     // Upload không thành công
                     // echo "Upload ảnh không thành công";
                 }
-                insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role);
+                insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role,$IdTaiKhoan);
                 $thongbao = "Thêm thành công";
             }     
             include 'taikhoan/addtaikhoan.php';
             break;
-
+        case 'updatetaikhoan':
+            if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) > 0) {
+                $chitiettaikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
+            }
+            include 'taikhoan/updatetaikhoan.php';
+            break;
+        case 'suataikhoan':
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                $TenTaiKhoan = $_POST['TenTaiKhoan'];
+                $IdTaiKhoan=$_POST['IdTaiKhoan'];
+                $MatKhau = $_POST['MatKhau'];
+                $HoTen = $_POST['HoTen'];
+                $DiaChi = $_POST['DiaChi'];
+                $Email = $_POST['Email'];
+                $SoDienThoai = $_POST['SoDienThoai'];
+                $role = $_POST['role'];
+                $avatarUser = $_FILES['avatarUser']['name'];
+                $target_dir = "../upload/";
+                $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
+                if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
+                    // Upload thành công
+                    // echo "Bạn đã upload ảnh thành công";
+                } else {
+                    // Upload không thành công
+                    // echo "Upload ảnh không thành công";
+                }
+                update_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role,$IdTaiKhoan);
+                $thongbao = "Cập nhật thành công ";
+            }
+            $listtaikhoan = loadall_taikhoan();
+            include "taikhoan/listtaikhoan.php";
+            break;    
     }
 } else {
     include 'home.php';

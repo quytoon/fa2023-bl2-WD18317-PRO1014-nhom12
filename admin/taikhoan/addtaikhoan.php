@@ -42,7 +42,7 @@
                         <!-- Nút lưu -->
                         <input type="submit" name="themtaikhoan" class="btn btn-primary my-1" value="Thêm tài khoản">
                         <input type="reset" class="btn btn-primary my-1" value="Nhập lại">
-                        <input type="submit" name="listtaikhoan" class="btn btn-primary my-1" value="Danh Sách">
+                        <a href="index.php?act=listtaikhoan"><input type="button" class="btn btn-primary my-1" value="Danh Sách"></a>
                         <?php
                         if (isset($thongbao) && ($thongbao != ""))
                             echo "<br>" . $thongbao;
