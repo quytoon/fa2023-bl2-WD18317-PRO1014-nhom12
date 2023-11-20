@@ -6,6 +6,7 @@ include "model/sanpham.php";
 include "model/danhmuc.php";
 include "model/binhluan.php";
 include "model/taikhoan.php";
+include "model/giohang.php";
 include "global.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
@@ -38,7 +39,27 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "giohang":
+            $load_giohang = loadall_giohang(1);
             include "view/giohang.php";
+            break;
+        case "themgiohang":
+            if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                $insert_giohang = insert_giohang($_GET['idsp'], 1);
+                $load_giohang = loadall_giohang(1);
+
+                include "view/giohang.php";
+            } else {
+                include "view/home.php";
+            }
+            break;
+        case "xoagiohang":
+            if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                $delete_giohang = delete_sp_giohang($_GET['idsp'], 1);
+                $load_giohang = loadall_giohang(1);
+                include "view/giohang.php";
+            } else {
+                include "view/home.php";
+            }
             break;
         case "thongtintaikhoan":
             include "view/taikhoan/thongtintaikhoan.php";

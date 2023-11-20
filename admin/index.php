@@ -3,6 +3,9 @@ include 'header.php';
 include '../model/pdo.php';
 include '../model/danhmuc.php';
 include '../model/taikhoan.php';
+include '../model/thongke.php';
+include '../model/giohang.php';
+include '../global.php';
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -109,6 +112,46 @@ if (isset($_GET['act'])) {
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/listtaikhoan.php";
             break;    
+        case 'thongkedanhmuc':
+            $thongkedm = loadthongke_danhmuc();
+            include 'thongke/thongkedanhmuc.php';
+            break;
+        case 'bieudodanhmuc':
+            $thongkedm = loadthongke_danhmuc();
+            include 'thongke/bieudodanhmuc.php';
+            break;
+        case 'thongkegiohang':
+            $thongkegiohang = loadthongke_giohang();
+            include 'thongke/thongkegiohang.php';
+            break;
+        case 'bieudogiohang';
+            $thongkegiohang = loadthongke_giohang();
+            include 'thongke/bieudogiohang.php';
+            break;
+        case 'listgiohang':
+            $listgiohang = loadthongke_giohang();
+            include 'giohang/listgiohang.php';
+            break;
+        case 'chitietgiohang':
+            if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) != "") {
+                $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
+            }
+            include 'giohang/chitietgiohang.php';
+            break;
+        case 'xoaspgiohang':
+            if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                $delete_giohang = delete_sp_giohang($_GET['idsp'], $_GET["IdTaiKhoan"]);
+                $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
+                include 'giohang/chitietgiohang.php';
+            }
+            break;
+        case 'xoagiohang':
+            if (isset($_GET['IdTaiKhoan']) && $_GET['IdTaiKhoan'] > 0) {
+                $delete_giohang = delete_giohang($_GET["IdTaiKhoan"]);
+                $listgiohang = loadthongke_giohang();
+                include 'giohang/listgiohang.php';
+            }
+            break;
     }
 } else {
     include 'home.php';
