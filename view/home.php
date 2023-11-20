@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
         <div class="slider-item" style="background-image: url(images/banner1.png);">
@@ -346,4 +344,3 @@
         </div>
     </div>
 </section>
->>>>>>> Stashed changes

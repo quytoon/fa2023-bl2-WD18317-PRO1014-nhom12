@@ -8,6 +8,7 @@ include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
 include "global.php";
+$spnew =loadall_sanpham_home();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
