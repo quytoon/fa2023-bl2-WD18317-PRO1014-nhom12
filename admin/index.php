@@ -75,7 +75,7 @@ if (isset($_GET['act'])) {
                     // Upload không thành công
                     // echo "Upload ảnh không thành công";
                 }
-                insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role,$IdTaiKhoan);
+                insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role);
                 $thongbao = "Thêm thành công";
             }     
             include 'taikhoan/addtaikhoan.php';

@@ -1,10 +1,10 @@
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
+<!-- <div id="layoutSidenav_content"> -->
+    <!-- <main> -->
+        <!-- <div class="container-fluid px-4">
             <h1 class="mt-4">Trang chủ Admin</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Admin</li>
-            </ol>
+            </ol> -->
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
@@ -63,4 +63,4 @@
                     <a href="index.php?act=addtaikhoan"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
                 </div>
             </div>
-    </main>
+    <!-- </main> -->
