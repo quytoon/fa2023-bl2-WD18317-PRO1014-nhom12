@@ -13,6 +13,12 @@ function loadall_sanpham($keyw = "", $iddm = 0)
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
+function loadall_sanpham_view()
+{
+    $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,9";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
 function xoa_sanpham($IdSanPham)
 {
     $sql = 'delete from sanpham where IdSanPham=' . $IdSanPham;
@@ -26,17 +32,8 @@ function loadone_sanpham($IdSanPham)
 }
 function loadall_sanpham_home()
 {
-    $sql = "SELECT A.*, B.urlAnh AS first_image
-    FROM sanpham AS A
-    JOIN (
-        SELECT IdSanPham, MIN(IdAnh) AS minImageId
-        FROM anh_sp
-        GROUP BY IdSanPham
-    ) AS C ON A.IdSanPham = C.IdSanPham
-    JOIN anh_sp AS B ON C.IdSanPham = B.IdSanPham AND C.minImageId = B.IdAnh
-    ORDER BY A.IdSanPham DESC
-    LIMIT 0, 9;
-    ";
+    $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,9";
+
 
     $listsanpham = pdo_query($sql);
     return $listsanpham;
@@ -49,9 +46,7 @@ function them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai
             VALUES ('$tensp', $giasp, '$anhsp', '$mota', '$iddm', '$soluong', '$trangthai')";
 
     pdo_execute($sql);
-    if (!$result) {
-        echo "Error: " . pdo_error(); // Hiển thị lỗi SQL
-    }
+
 }
 
 

@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include 'header.php';
 include '../model/pdo.php';
 include '../model/danhmuc.php';
@@ -154,7 +157,7 @@ if (isset($_GET['act'])) {
             }
         //het danh mục
         case 'addsp':
-            if (isset($_POST['themmoi']) && $_POST['themmoi']) {
+            if (isset($_REQUEST['themmoi']) && $_REQUEST['themmoi']) {
                 $iddm = $_POST['iddm'];
                 $tensp = $_POST['tensp'];
                 $giasp = $_POST['giasp'];
@@ -189,7 +192,7 @@ if (isset($_GET['act'])) {
                 xoa_sanpham($_GET['IdSanPham']);
             }
             $listsanpham = loadall_sanpham("", 0);
-            include '/sanpham/list.php';
+            include 'sanpham/list.php';
             break;
         case 'suasp':
             if (isset($_GET['IdSanPham']) && ($_GET['IdSanPham'] > 0)) {
@@ -211,7 +214,8 @@ if (isset($_GET['act'])) {
                 $target_dir = '../upload/';
                 $target_file = $target_dir . basename($_FILES['anhsp']['name']);
                 move_uploaded_file($_FILES['anhsp']['tmp_name'], $target_file);
-                update_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $id, $soluong, $trangthai);
+                update_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai, $id);
+
                 $thongbao = 'cap nhap thanh cong';
             }
             $listdanhmuc = loadall_danhmuc();

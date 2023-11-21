@@ -72,14 +72,18 @@
                 <form action="index.php?act=updatesp" method="post" enctype="multipart/form-data">
                     <div class="mb-3 form_content_container">
                         <label for="iddm" class="form-label">Danh mục <i class="bi bi-box"></i></label> <br>
-                        <select name="" id="" class="form-select">
+                        <select name="iddm" id="iddm" class="form-select">
                             <?php
                             foreach ($listdanhmuc as $danhmuc) {
-                                extract($danhmuc);
-                                echo '<option value="' . $idDanhMuc . '">' . $tenDanhMuc . '</option>';
+                                if ($iddm == $danhmuc['idDanhMuc']) {
+                                    echo '<option value="' . $danhmuc['idDanhMuc'] . '" selected>' . $danhmuc['tenDanhMuc'] . '</option>';
+                                } else {
+                                    echo '<option value="' . $danhmuc['idDanhMuc'] . '">' . $danhmuc['tenDanhMuc'] . '</option>';
+                                }
                             }
                             ?>
                         </select>
+
                     </div>
                     <div class="mb-3">
                         <label for="tensp" class="form-label">Tên sản phẩm <i class="bi bi-person"></i></label> <br>
@@ -107,10 +111,10 @@
                         <input type="text" class="form-control" id="" name="trangthai" placeholder="Nhập vào trạng thái" value="<?= $trangThai ?>">
                     </div>
           <div class="mb-3">
-              <input type="hidden" name="id" value="<?= $id ?>">
+              <input type="hidden" name="id" value="<?= $IdSanPham ?>">
+
             <input type="submit" class="btn btn-primary mr-2" name="capnhat" value="CẬP NHẬT">
-            <input type="reset" class="btn btn-secondary mr-2" value="NHẬP LẠI">
-            <a href="" class="btn btn-info">DANH SÁCH</a>
+            <a href="index.php?act=lissp" class="btn btn-info">DANH SÁCH</a>
           </div>
         </form>
       </div>

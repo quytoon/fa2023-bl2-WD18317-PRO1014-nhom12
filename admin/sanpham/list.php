@@ -33,7 +33,6 @@
                 <table class="table test">
                     <thead>
                     <tr>
-                        <th>MÃ LOẠI</th>
                         <th>ID SP</th>
                         <th>TÊN SẢN PHẨM</th>
                         <th>ẢNH SẢN PHẨM</th>
@@ -55,7 +54,6 @@
                             $hinh = 'no photo';
                         }
                         echo '<tr>
-                    <td>' . $idDanhMuc . '</td>
                     <td>' . $IdSanPham . '</td>
                     <td>' . $TenSanPham . '</td>
                     <td>' . $hinh . '</td>
