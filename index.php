@@ -1,6 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include "view/header.php";
-include "view/home.php";
 include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
@@ -8,7 +10,9 @@ include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
 include "global.php";
-if (isset($_GET['act']) && ($_GET['act'] != "")) {
+
+$spnew =loadall_sanpham_home();
+if (isset($_GET['act']) && ($_GET['act'] != "")) {;
     $act = $_GET['act'];
     switch ($act) {
         case "sanpham":
