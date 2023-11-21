@@ -187,7 +187,7 @@
                     <h3><a href="' . $linksp . '">' . $TenSanPham . '</a></h3>
                     <div class="d-flex">
                         <div class="pricing">
-                            <p class="price"><span>' . $Gia . '</span></p>
+                            <p class="price"><span>' . $Gia . ' vnđ </span></p>
                         </div>
                     </div>
                     <div class="bottom-area d-flex px-3">

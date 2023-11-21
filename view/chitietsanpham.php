@@ -5,7 +5,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ</a></span>/ <span
-                        class="mr-2"><a href="index.html">Cửa hàng</a></span>/ <span>Chi tiết sản phẩm</span></p>
+                            class="mr-2"><a href="index.html">Cửa hàng</a></span>/ <span>Chi tiết sản phẩm</span></p>
                 <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
             </div>
         </div>
@@ -88,7 +88,7 @@
                         </button>
                     </span>
                     <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1"
-                        max="100">
+                           max="100">
                     <span class="input-group-btn ml-2">
                         <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
                             <i class="ion-ios-add"></i>
@@ -116,62 +116,75 @@
                 <div class="card">
                     <div class="card-body">
                         <form>
-                            <div class="form-group">
-                                <label for="name">Tên tài khoản:</label>
-                                <input type="text" class="form-control" id="name" placeholder="Tên của bạn" disabled>
+                            <div class="box_title">Binh luan</div>
+                            <div class="box_content">
+                                <table>
+                                    <?php
+                                    foreach ($binhluan as $bl) {
+                                        extract($bl);
+                                         '
+                <tr>
+                    <td>' . $NoiDung . '</td>
+                    <td>' . $TenTaiKhoan . '</td>
+                    <td>' . date("d/m/Y", strtotime($NgayBinhLuan)) . '</td>
+                </tr>';
+                                    }
+                                    ?>
+                                </table>
                             </div>
-                            <div class="form-group">
-                                <label for="comment">Nội dung đánh giá:</label>
-                                <textarea class="form-control" id="comment" rows="5"
-                                    placeholder="Nhập bình luận của bạn"></textarea>
+                            <div>
+                                <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
+                                    <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
+                                    <input type="text" name="noidung">
+                                    <input type="submit" name="guibl" value="gui binh luan">
+
+                                    <div class="form-group">
+                                        <label for="rating">Điểm đánh giá:</label>
+                                        <div class="rating">
+                                            <span class="star ">&#9733;</span>
+                                            <span class="star ">&#9733;</span>
+                                            <span class="star ">&#9733;</span>
+                                            <span class="star ">&#9733;</span>
+                                            <span class="star ">&#9733;</span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="rating">Điểm đánh giá:</label>
-                                <div class="rating">
-                                    <span class="star ">&#9733;</span>
-                                    <span class="star ">&#9733;</span>
-                                    <span class="star ">&#9733;</span>
-                                    <span class="star ">&#9733;</span>
-                                    <span class="star ">&#9733;</span>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
-                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <h2>Đánh giá của những người dùng khác</h2>
-            <div class="col-md-8">
-                <?php foreach ($binhluan as $key) { ?>
-                    <div class="card">
-                        <div class="card-body row">
-                            <div class="col-md-3" style="text-align: center;">
-                                <img src="images/Frame 166.png" alt="Avatar" class="avatar"
-                                    style="width: 100px;border-radius: 50%;">
-                                <h5 class="card-title">
-                                    <?= $key['TenTaiKhoan']; ?>
-                                </h5>
-                            </div>
-                            <div class="col-md-9">
-                                <p class="card-text">
-                                    <?= $key['NoiDung']; ?>
-                                </p>
-                                <div class="rating">
-                                    <span class="star">&#9733;</span>
-                                    <span class="star">&#9733;</span>
-                                    <span class="star">&#9733;</span>
-                                    <span class="star">&#9733;</span>
-                                    <span class="star">&#9733;</span>
+            <div class="row mt-4">
+                <h2>Đánh giá của những người dùng khác</h2>
+                <div class="col-md-8">
+                    <?php foreach ($binhluan as $key) { ?>
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-md-3" style="text-align: center;">
+                                    <img src="images/Frame 166.png" alt="Avatar" class="avatar"
+                                         style="width: 100px;border-radius: 50%;">
+                                    <h5 class="card-title">
+                                        <?= $key['TenTaiKhoan']; ?>
+                                    </h5>
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="card-text">
+                                        <?= $key['NoiDung']; ?>
+                                    </p>
+                                    <div class="rating">
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="ftco-section">
@@ -231,8 +244,8 @@
                         <h3><a href="index.php?act=chitietsanpham&idsp='.$key['IdSanPham'].'">'.$key['TenSanPham'].'</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span class="mr-2 price-dc">'.$Gia.'</span><span
-                                        class="price-sale">'.$Gia.'đ</span></p>
+                                <p class="price"><span class="mr-2 price-dc">' . $Gia . '</span><span
+                                        class="price-sale">' . $Gia . 'đ</span></p>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">
@@ -253,7 +266,7 @@
                 </div>
             </div>';
             }
-            
+
             ?>
         </div>
     </div>
