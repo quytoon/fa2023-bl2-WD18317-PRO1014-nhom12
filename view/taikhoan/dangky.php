@@ -1,3 +1,13 @@
+<div class="hero-wrap hero-bread" style="background-image: url('images/ms_banner_img1.png');">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ</a></span>/ <span>Tài khoản</span></p>
+					<h1 class="mb-0 bread">Đăng Ký</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 <div class="row justify-content-center">
         <div class="col-lg-9">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -16,7 +26,10 @@
                         <label for="matKhau" class="form-label">Mật Khẩu</label>
                         <input type="password" name="MatKhau" class="form-control" id="MatKhau" placeholder="Nhập mật khẩu của bạn">
                     </div>
-                    
+                    <div class="mb-3">
+                        <label for="matKhau" class="form-label">Xác nhận mật khẩu</label>
+                        <input type="password" name="MatKhau2" class="form-control" id="MatKhau" placeholder="Nhập mật khẩu của bạn">
+                    </div>
                     <input type="submit" name="dangky" value="Đăng Ký" class="btn btn-primary"></input>
            
                 </form>

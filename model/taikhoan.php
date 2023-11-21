@@ -3,7 +3,6 @@
 function dangnhap($TenTaiKhoan,$MatKhau) {
     $sql="SELECT * FROM taikhoan WHERE TenTaiKhoan='$TenTaiKhoan' and MatKhau='$MatKhau'";
     $taikhoan = pdo_query_one($sql);
-
     if ($taikhoan != false) {
         $_SESSION['TenTaiKhoan'] = $TenTaiKhoan;
     } else {
@@ -21,6 +20,59 @@ function dangxuat() {
         unset($_SESSION['TenTaiKhoan']);
     }
 }
+//gửi mail
+function sendMail($Email) {
+    // if (isset($Email) && !empty($Email)) {
+        $sql = "SELECT * FROM `taikhoan` WHERE Email='$Email'";
+        $taikhoan = pdo_query_one($sql);
+  
+        if ($taikhoan != false) {
+            sendMailPass($Email, $taikhoan['TenTaiKhoan'], $taikhoan['MatKhau']);
+            return "Gửi email thành công";
+        } else {
+            return "Email của bạn không có trong hệ thống";
+        }
+    // } else {
+    //     return "Email không hợp lệ";
+    //  }
+}
+function sendMailPass($Email,$TenTaiKhoan,$MatKhau){
+    //lay tren github
+    require 'PHPMailer-master/src/Exception.php';
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'sandbox.smtp.mailtrap.io';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'e68e881a4b4ac9';                     //SMTP username
+        $mail->Password   = '22e015fb49ebc0';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('baovvph36087@fpt.edu.vn', 'Test Mail');
+        $mail->addAddress($Email,$TenTaiKhoan);     //Add a recipient
+        
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Nguoi dung quen mat khau';
+        $mail->Body    = 'Mat khau cua ban la '.$MatKhau;
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+
+
 // Load toàn bộ tài khoản
 function loadall_taikhoan()
 {

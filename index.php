@@ -75,22 +75,45 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "dangnhap":
             if (isset($_POST['dangnhap'])) {
-                $loginMess = dangnhap($_POST['TenTaiKhoan'], $_POST['MatKhau']);
+                $loginMess = dangnhap($_POST['TenTaiKhoan'],$_POST['MatKhau']);
+                include "view/home.php";
+                // header("Location:view/home.php");
             }
             include "view/taikhoan/dangnhap.php";
             break;
-        case "dangky":
-            
+        case "dangky":            
             if(isset($_POST['dangky']) && ($_POST['dangky']!="")){
                 $TenTaiKhoan = $_POST['TenTaiKhoan'];
                 $Email = $_POST['Email'];
                 $MatKhau = $_POST['MatKhau'];
-                dangky($TenTaiKhoan,$Email,$MatKhau);
+                $MatKhau2 = $_POST['MatKhau2'];
+                if( $_POST['MatKhau'] ==  $_POST['MatKhau2']){
+                    dangky($TenTaiKhoan,$Email,$MatKhau);
+                }else {
+                    echo "dang ky that bai";
+                }
                 $thongbao="Đăng ký thành công";
             }
             include "view/taikhoan/dangky.php";
             break;     
-            
+            case "dangxuat":
+                dangxuat();
+                include "view/home.php";
+                break;
+            case "quenmk":
+                if(isset($_POST['guimail'])){
+                    $Email = $_POST['Email'];
+                    $sendMailMess = sendMail($Email);
+                    // $checkemail = checkemail($Email);
+                    // if (is_array($sendMailMess)) {
+                    //     $thongbao = "mat khau cua ban la: " . $sendMailMess['MatKhau'];
+                    // } else {
+                    //     $thongbao = "email khong ton tai";
+                    // }
+                }
+                include "view/taikhoan/quenmatkhau.php";
+                break;
+
     }
 } else {
     include "view/home.php";
