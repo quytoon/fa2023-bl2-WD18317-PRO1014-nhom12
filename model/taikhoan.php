@@ -1,4 +1,5 @@
 <?php 
+// session_start();
 //Đăng nhập
 function dangnhap($TenTaiKhoan,$MatKhau) {
     $sql="SELECT * FROM taikhoan WHERE TenTaiKhoan='$TenTaiKhoan' and MatKhau='$MatKhau'";
@@ -19,6 +20,12 @@ function dangxuat() {
     if (isset($_SESSION['TenTaiKhoan'])) {
         unset($_SESSION['TenTaiKhoan']);
     }
+}
+function checkuser($TenTaiKhoan, $MatKhau)
+{
+    $sql = "select * from taikhoan where TenTaiKhoan='".$TenTaiKhoan."' and MatKhau='".$MatKhau."'";
+    $sp = pdo_query_one($sql);
+    return $sp;
 }
 //gửi mail
 function sendMail($Email) {
@@ -91,6 +98,7 @@ function insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoa
     VALUES ('$TenTaiKhoan', '$MatKhau', '$HoTen', '$DiaChi', '$Email', '$SoDienThoai', '$avatarUser', '$role')";
     pdo_execute($sql);
 }
+//load 1 tài khoản
 function loadone_taikhoan($IdTaiKhoan)
 {
     $sql = "select * from taikhoan where IdTaiKhoan = " . $IdTaiKhoan;
