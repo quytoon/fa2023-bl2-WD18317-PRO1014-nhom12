@@ -73,12 +73,12 @@
 							<a class="dropdown-item" href="wishlist.html">Wishlist</a>
 							<a class="dropdown-item" href="product-single.html">Single Product</a>
 							<a class="dropdown-item" href="index.php?act=giohang">Cart</a>
-							<a class="dropdown-item" href="checkout.html">Checkout</a>
+							<a class="dropdown-item" href="index.php?act=thanhtoan">Thanh toán</a>
 						</div>
 					</li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="index.php?act=thongtin" class="nav-link">Thông tin</a></li>
+				
+					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>
 
 					<li class="nav-item cta cta-colored"><a href="index.php?act=giohang" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
