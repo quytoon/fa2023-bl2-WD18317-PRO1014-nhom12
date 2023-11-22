@@ -11,7 +11,7 @@
 <div class="row justify-content-center">
         <div class="col-lg-9">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                <?php if(!isset($_SESSION)) { ?>
+                <?php if(!isset($_SESSION['TenTaiKhoan'])) { ?>
                 <div class="card-body">
                   <h2 class="text-center">Đăng Nhập</h2>
                   <form method="POST" action="index.php?act=dangnhap">
@@ -31,7 +31,8 @@
                 </div>
                 <?php
                     }else { ?>
-                    <p style="margin-left:10px">Hello <?=$_SESSION['TenTaiKhoan'] ?><button style="margin-left :10px"><a href="index.php?act=dangxuat">Đăng Xuất</a></button></p>
+                    <?php extract($_SESSION['TenTaiKhoan'])?>
+                    <p style="margin-left:10px">Hello <?=$TenTaiKhoan ?><button style="margin-left :10px"><a href="index.php?act=dangxuat">Đăng Xuất</a></button></p>
                 <?php
                     }
                 ?>

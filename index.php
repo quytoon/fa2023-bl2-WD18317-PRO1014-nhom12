@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -78,12 +79,31 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {;
             include "view/thanhtoan.php";
             break;
         case "dangnhap":
-            if (isset($_POST['dangnhap'])) {
-                $loginMess = dangnhap($_POST['TenTaiKhoan'],$_POST['MatKhau']);
-                include "view/home.php";
-                // header("Location:view/home.php");
-            }
-            include "view/taikhoan/dangnhap.php";
+            // include "view/taikhoan/dangnhap.php"; 
+                if (isset($_POST['dangnhap'])) {
+                    // $loginMess = dangnhap($_POST['TenTaiKhoan'],$_POST['MatKhau']);
+                    $TenTaiKhoan = $_POST['TenTaiKhoan'];
+                    $MatKhau = $_POST['MatKhau'];
+                    $checkuser=checkuser($TenTaiKhoan,$MatKhau);
+                    if(is_array($checkuser)){
+                        $_SESSION['TenTaiKhoan'] = $checkuser;
+                    // header("Location:view/home.php"); 
+                        include "view/home.php";
+                    }else{
+                        $loginMess = "dang nhap khong thanh cong";
+                    }
+                    // header("Location:view/home.php"); 
+                    // include "view/taikhoan/dangnhap.php";     
+                    
+                    // include "view/home.php";header("Location:index.php");     
+                }
+                include "view/taikhoan/dangnhap.php"; 
+                // if(!isset($_POST['dangnhap']) && isset($_POST['TenTaiKhoan'])) {
+                //     $loginMess = dangnhap($_POST['TenTaiKhoan'],$_POST['MatKhau']);
+                //      include "view/home.php";
+                // }
+                // include "view/taikhoan/dangnhap.php"; 
+            
             break;
         case "dangky":            
             if(isset($_POST['dangky']) && ($_POST['dangky']!="")){

@@ -115,7 +115,16 @@ if (isset($_GET['act'])) {
             }
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/listtaikhoan.php";
-            break;    
+            break;   
+        case 'thongketaikhoan':
+            $thongketk = loadthongke_taikhoan();
+            include "thongke/thongketaikhoan.php";
+            break;
+        case 'bieudotaikhoan':
+            $thongketk = loadthongke_taikhoan();
+            include "thongke/bieudotaikhoan.php";  
+            break;
+        //het taikhoan    
         case 'thongkedanhmuc':
             $thongkedm = loadthongke_danhmuc();
             include 'thongke/thongkedanhmuc.php';

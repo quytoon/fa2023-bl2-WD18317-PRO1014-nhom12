@@ -73,13 +73,18 @@
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+			
 			<?php
-				if(isset($_SESSION['TenTaiKhoan'])){?>
-					<h4>Hello <?=$_SESSION['TenTaiKhoan']; ?></h4>
+				if(isset($_SESSION['TenTaiKhoan'])){
+					extract($_SESSION['TenTaiKhoan']);
+					?>
+					<li><p style="height:50px; padding-top:18px">Hello <?=$TenTaiKhoan; ?></p></li>
+					<button style="margin-left :10px; height:50px "><a href="index.php?act=dangxuat">Đăng Xuất</a></button>
 				<?php }else if(!isset($_SESSION['TenTaiKhoan'])){ ?>
 					<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
 					<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
 				<?php } ?>
+			
 	        </ul>
 	      </div>
 	    </div>

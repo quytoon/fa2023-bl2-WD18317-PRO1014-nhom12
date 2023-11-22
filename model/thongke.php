@@ -14,4 +14,9 @@ function loadthongke_giohang()
     join taikhoan as c on c.IdTaiKhoan = a.IdTaiKhoan";
     return pdo_query($sql);
 }
+function loadthongke_taikhoan()
+{
+    $sql = "SELECT taikhoan.IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,SoDienThoai,role,COUNT(*) as soluong from taikhoan";
+    return pdo_query($sql);
+}
 ?>

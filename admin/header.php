@@ -67,6 +67,9 @@
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Bình luận 
                         </a>
+                        <a class="nav-link" href="index.php?act=listtaikhoan">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Tài khoản 
+                        </a>
                         <div class="sb-sidenav-menu-heading">Thống kê</div>
                         <a class="nav-link" href="index.php?act=thongkedanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -75,6 +78,10 @@
                         <a class="nav-link" href="index.php?act=thongkegiohang">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
                             Giỏ hàng
+                        </a>
+                        <a class="nav-link" href="index.php?act=thongketaikhoan">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
+                            Tài khoản
                         </a>
                     </div>
                 </div>
