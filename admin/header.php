@@ -61,10 +61,10 @@
                         <a class="nav-link" href="index.php?act=listgiohang">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>Giỏ hàng
                         </a>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="index.php?act=lissp">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Sản Phẩm
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?act=dsbl">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Bình luận
                         </a>
                         <a class="nav-link" href="index.php?act=listtaikhoan">
