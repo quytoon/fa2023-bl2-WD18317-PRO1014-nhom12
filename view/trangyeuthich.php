@@ -26,140 +26,36 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                            <tr class="text-center">
+                            <?php
+                            ini_set('display_errors', 1);
+                            ini_set('display_startup_errors', 1);
+                            error_reporting(E_ALL);
+                            foreach ($dstop10 as $top) {
+                            extract($top);
+                            $linksp = "index.php?act=chitietsanpham&idsp=" . $IdSanPham;
+                            $anh = $img_path . $img;
+                            echo'<td class="product-remove"><a href=""><span class="ion-ios-close"></span></a></td>
 						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh0.png);"></div></td>
+						        <td class="image-prod"><div class="img" style="background-image:url('.$anh.');"></div></td>
 						        
 						        <td class="product-name">
-						        	<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
+						        	<h3>'.$TenSanPham.' </h3>
+						        	<p>'.$MoTa.'</p>
 						        </td>
 						        
-						        <td class="price">1.200.000 vnđ</td>
+						        <td class="price">'.$Gia.'</td>
 						        
 						        <td class="quantity">
 						        	<div class="input-group mb-3">
 					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
 					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
+					          </td>';
+                            }
+                            ?>
 
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh1.png);"></div></td>
-						        
-						        <td class="product-name">
-						        	<<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
-						        </td>
-						        
-						        <td class="price">1.200.000 vnđ</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh2.png);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
-						        </td>
-						        
-						        <td class="price">1.200.000 vnđ</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh3.png);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
-						        </td>
-						        
-						        <td class="price">1.200.000 vnđ</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh4.png);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
-						        </td>
-						        
-						        <td class="price">1.200.000 vnđ</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/anh5.png);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>CHUCK TAYLOR ALL STAR LIFT HI BLACK </h3>
-						        	<p>Chuck Taylor All Star Lift Hi Black thiết kế đế Platform lạ mắt cùng phối màu Lavender cực xinh và bắt mắt ,dự là 1 Item mới được giới trẻ săn đón .</p>
-						        </td>
-						        
-						        <td class="price">1.200.000 vnđ</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">1.200.000 vnđ</td>
-						      </tr><!-- END TR-->
-						    </tbody>
-						  </table>
-					  </div>
-    			</div>
-    		</div>
-			</div>
 		</section>
-
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
         <div class="row d-flex justify-content-center py-5">
           <div class="col-md-6">

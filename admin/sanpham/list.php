@@ -1,36 +1,34 @@
 
-<div class="container d-flex align-items-center justify-content-center vh-100">
-        <div class="col-8">
-            <div class="mb-4 font_title mb">
+        <div class="card mb-4">
+            <div class="card-header">
                 <h1>DANH SÁCH LOẠI HÀNG HÓA</h1>
             </div>
-            <form action="index.php?act=lissp" method="POST">
-                <div class="mb-3 formds_loai">
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <input type="text" class="form-control" name="" placeholder="Từ khóa">
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <select name="iddm" id="" class="form-select">
-                                <option value="1" selected>Tất cả</option>
-                                <?php
-                                foreach ($listdanhmuc as $danhmuc) {
-                                    extract($danhmuc);
-                                    echo '<option value="' . $idDanhMuc . '">' . $tenDanhMuc . '</option>';
-                                }
-                                ?>
-
-                            </select>
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <input type="submit" name="" value="Go" class="btn btn-primary" style="padding: 5px;">
-                        </div>
-                    </div>
-                </div>
+                <div class="card-body">
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-4 mb-2">-->
+<!--                            <input type="text" class="form-control" name="kyw" placeholder="Từ khóa">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-4 mb-2">-->
+<!--                            <select name="iddm" id="" class="form-select">-->
+<!--                                <option value="1" selected>Tất cả</option>-->
+<!--                                --><?php
+//                                foreach ($listdanhmuc as $danhmuc) {
+//                                    extract($danhmuc);
+//                                    echo '<option value="' . $idDanhMuc . '">' . $tenDanhMuc . '</option>';
+//                                }
+//                                ?>
+<!---->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-2 mb-2">-->
+<!--                            <input type="submit" name="" value="Go" class="btn btn-primary" style="padding: 5px;">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
             <div class="row form_content" style="margin-top: 20px;">
 
-                <table class="table test">
+                <table id="datatablesSimple">
                     <thead>
                     <tr>
                         <th>ID SP</th>
@@ -70,7 +68,6 @@
                     </tbody>
                 </table>
             </div>
-            </form>
 
             <div class="row mb-3">
                 <div class="col-12">
@@ -78,8 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 <script>
     function confirmDelete(deleteUrl) {
         if (confirm("Bạn có chắc muốn xóa không?")) {

@@ -1,66 +1,11 @@
-<style>
-    body {
-        background-image: url('https://scm-dam.oss-cn-shanghai.aliyuncs.com/scm-dam/2023-09-27/%E5%B7%A6_144b8768-4ff3-4e4a-ad99-b9547728b897.jpg?x-oss-process=image/format,webp/quality,q_80'); /* Đường dẫn đến hình nền của bạn */
-        background-size: cover;
-        background-position: center;
-    }
 
-    .form_content_container {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .font_title {
-        color: #fff;
-    }
-
-    .btn-container {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .btn-container button {
-        margin: 5px;
-    }
-
-
-    input:hover,
-    select:hover,
-    textarea:hover {
-        background-color: #333;
-        color: #fff;
-    }
-
-    .btn-container button:hover {
-        background-color: #ffc107;
-        color: #333;
-    }
-
-    input,
-    select,
-    textarea {
-        border-radius: 8px;
-        background-color: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .btn-container button {
-        border-radius: 8px;
-        background-color: rgba(255, 193, 7, 0.8);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    }
-</style>
-<div class="container d-flex align-items-center justify-content-center vh-100">
-    <div class="row">
-        <div class="col-12">
-            <div class="mb-4">
-                <h1 class="font_title">THÊM MỚI SẢN PHẨM</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1">THÊM MỚI SẢN PHẨM</i>
             </div>
+            <div class="card-body">
             <form action="index.php?act=addsp" method="post" enctype="multipart/form-data">
-                <div class="mb-3 form_content_container">
+                <div class="form-group">
                     <label for="iddm" class="form-label">Danh mục <i class="bi bi-box"></i></label> <br>
                     <select name="iddm" id="" class="form-select">
                         <?php
@@ -105,6 +50,5 @@
                     ?>
                 </div>
             </form>
+                </div>
         </div>
-    </div>
-</div>
