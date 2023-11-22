@@ -13,7 +13,7 @@
                     <th>HỌ TÊN KHÁCH HÀNG</th>
                     <th>ĐỊA CHỈ</th>
                     <th>SỐ ĐIỆN THOẠI</th>
-           
+                    <th>VAI TRÒ</th>   
                 </tr>
             </thead>
             <!-- <tfoot>
@@ -29,15 +29,20 @@
                 <?php
                 foreach ($thongketk as $key) {
                     extract($key);
-                    // $hinhpart = "../upload/" . $avatarUser;
-                    if($role == 0){
+                    // $hinhpart = "../upload/" . $avatarUser;       
+                           
                         echo '<tr>
                         <td>' . $TenTaiKhoan . '</td>
                         <td>' . $HoTen . '</td>
                         <td>' . $DiaChi . '</td>
-                        <td>' . $SoDienThoai . '</td>
-                        </tr>';
-                    }
+                        <td>' . $SoDienThoai . '</td>';
+                        if ($role==1) {
+                            echo "<td>Admin</td>
+                            </tr>'";
+                        }else{
+                            echo "<td>User</td>
+                            </tr>'";
+                        }
                 }
                 ?>
             </tbody>
