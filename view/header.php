@@ -81,6 +81,7 @@
 					?>
 					<li><p style="height:50px; padding-top:18px">Hello <?=$TenTaiKhoan; ?></p></li>
 					<button style="margin-left :10px; height:50px "><a href="index.php?act=dangxuat">Đăng Xuất</a></button>
+					<button style="margin-left :10px; height:50px "><a href="admin/index.php">Đến trang admin</a></button>
 				<?php }else if(!isset($_SESSION['TenTaiKhoan'])){ ?>
 					<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
 					<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
