@@ -1,11 +1,11 @@
-<div class="container d-flex align-items-center justify-content-center vh-100">
-    <div class="row-cols-md-12 ">
-        <div class="mb-8 font_title text-center">
-            <h1>DANH SÁCH BÌNH LUẬN</h1>
-        </div>
-        <form action="#" method="POST">
-            <div class="mb-3 formds_loai">
-                <table class="table">
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách bình luận
+
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -20,7 +20,6 @@
                     <?php
                     foreach ($listbinhluan as $bl) {
                         extract($bl);
-                        $suabl = "index.php?act=suabl&IdBinhLuan=" . $IdBinhLuan;
                         $xoabl = "index.php?act=xoabl&IdBinhLuan=" . $IdBinhLuan;
                         echo '<tr>
                                 <td>' . $IdBinhLuan . '</td>
@@ -30,7 +29,6 @@
                                 <td>' . $NgayBinhLuan . '</td>
                                 <td>' . $DiemDanhGia . '</td>
                                 <td>
-                                    <a href="' . $suabl . '"><button type="button" class="btn btn-primary">Sửa</button></a>
                                     <a href="' . $xoabl . '"><button type="button" class="btn btn-danger">Xóa</button></a>
                                 </td>
                             </tr>';
@@ -39,6 +37,4 @@
                     </tbody>
                 </table>
             </div>
-        </form>
     </div>
-</div>
