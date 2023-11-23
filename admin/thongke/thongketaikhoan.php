@@ -3,7 +3,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Thống kê tài khoản khách hàng
+        Thống kê tài khoản
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -27,22 +27,21 @@
             </tfoot> -->
             <tbody>
                 <?php
-                foreach ($thongketk as $key) {
+                foreach ($listthongketaikhoan as $key) {
                     extract($key);
                     // $hinhpart = "../upload/" . $avatarUser;       
-                           
-                        echo '<tr>
-                        <td>' . $TenTaiKhoan . '</td>
-                        <td>' . $HoTen . '</td>
-                        <td>' . $DiaChi . '</td>
-                        <td>' . $SoDienThoai . '</td>';
-                        if ($role==1) {
-                            echo "<td>Admin</td>
-                            </tr>'";
-                        }else{
-                            echo "<td>User</td>
-                            </tr>'";
-                        }
+                    echo '<tr>
+                    <td>' . $TenTaiKhoan . '</td>
+                    <td>' . $HoTen . '</td>
+                    <td>' . $DiaChi . '</td>
+                    <td>' . $SoDienThoai . '</td>';
+                    if ($role == 1) {
+                        echo "<td>Admin</td>
+                        </tr>'";
+                    }else{
+                        echo "<td>User</td>
+                        </tr>'";
+                    }
                 }
                 ?>
             </tbody>

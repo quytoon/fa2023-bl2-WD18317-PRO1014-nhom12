@@ -117,11 +117,11 @@ if (isset($_GET['act'])) {
             include "taikhoan/listtaikhoan.php";
             break;   
         case 'thongketaikhoan':
-            $thongketk = loadthongke_taikhoan();
+            $listthongketaikhoan = loadthongke_taikhoan();
             include "thongke/thongketaikhoan.php";
             break;
         case 'bieudotaikhoan':
-            $thongketk = loadthongke_taikhoan();
+            $listthongketaikhoan = loadthongke_taikhoan();
             include "thongke/bieudotaikhoan.php";  
             break;
         //het taikhoan    

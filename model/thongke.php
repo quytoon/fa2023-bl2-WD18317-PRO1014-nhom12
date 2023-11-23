@@ -16,7 +16,9 @@ function loadthongke_giohang()
 }
 function loadthongke_taikhoan()
 {
-    $sql = "SELECT taikhoan.IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,SoDienThoai,role,COUNT(*) as soluong from taikhoan";
-    return pdo_query($sql);
+    //taikhoan.IdTaiKhoan, TenTaiKhoan,HoTen,DiaChi,SoDienThoai,role,COUNT(*) as soluong
+    $sql = "SELECT * from taikhoan";
+    $listthongketaikhoan = pdo_query($sql);
+    return $listthongketaikhoan;
 }
 ?>
