@@ -6,6 +6,11 @@ function loadall_danhmuc()
     $listdanhmuc = pdo_query($sql);
     return $listdanhmuc;
 }
+function load_dm_home(){
+    $sql = "SELECT * FROM danhmuc ORDER BY idDanhMuc LIMIT 4;";
+    $listdanhmuc = pdo_query($sql);
+    return $listdanhmuc;
+}
 
 //load toàn bộ danh mục kèm số lượng sản phẩm trong danh mục
 function loadall_danhmuc_admin()

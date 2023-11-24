@@ -1,33 +1,12 @@
 
+        /<a href="index.php?act=lissp">Quản Lý sản phẩm</a>
+        </ol>
         <div class="card mb-4">
             <div class="card-header">
-                <h1>DANH SÁCH LOẠI HÀNG HÓA</h1>
+                <i class="fas fa-table me-1"></i>
+                Danh sách sản phẩm
             </div>
-                <div class="card-body">
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-4 mb-2">-->
-<!--                            <input type="text" class="form-control" name="kyw" placeholder="Từ khóa">-->
-<!--                        </div>-->
-<!--                        <div class="col-md-4 mb-2">-->
-<!--                            <select name="iddm" id="" class="form-select">-->
-<!--                                <option value="1" selected>Tất cả</option>-->
-<!--                                --><?php
-//                                foreach ($listdanhmuc as $danhmuc) {
-//                                    extract($danhmuc);
-//                                    echo '<option value="' . $idDanhMuc . '">' . $tenDanhMuc . '</option>';
-//                                }
-//                                ?>
-<!---->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2 mb-2">-->
-<!--                            <input type="submit" name="" value="Go" class="btn btn-primary" style="padding: 5px;">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-            <div class="row form_content" style="margin-top: 20px;">
-
+            <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                     <tr>
@@ -68,18 +47,14 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-12">
-                    <a href="index.php?act=addsp" class="btn btn-success">NHẬP THÊM</a>
-                </div>
+            <div class="card-footer">
+                <a href="index.php?act=addsp"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
             </div>
         </div>
-<script>
-    function confirmDelete(deleteUrl) {
-        if (confirm("Bạn có chắc muốn xóa không?")) {
-            window.location.href = deleteUrl;
-        }
-    }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function confirmDelete(deleteUrl) {
+                if (confirm("Bạn có chắc muốn xóa không?")) {
+                    window.location.href = deleteUrl;
+                }
+            }
+        </script>
