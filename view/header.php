@@ -69,7 +69,7 @@
 							aria-haspopup="true" aria-expanded="false">Shop</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="index.php?act=sanpham">Shop</a>
-							<a class="dropdown-item" href="wishlist.html">Wishlist</a>
+							<a class="dropdown-item" href="index.php?act=trangyeuthich">Wishlist</a>
 							<a class="dropdown-item" href="product-single.html">Single Product</a>
 							<a class="dropdown-item" href="index.php?act=giohang">Cart</a>
 							<a class="dropdown-item" href="index.php?act=thanhtoan">Thanh toán</a>

@@ -11,7 +11,6 @@ include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
 include "global.php";
-
 $spnew = loadall_sanpham_home();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     ;
@@ -68,7 +67,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "trangyeuthich":
-                $dstop10 = loadall_sanpham_view();
+            $dstop10 = loadall_sanpham_view();
             include "view/trangyeuthich.php";
             break;
         case "thongtintaikhoan":
