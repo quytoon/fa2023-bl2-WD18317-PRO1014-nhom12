@@ -129,6 +129,7 @@ if (isset($_GET['act'])) {
             include "thongke/thongketaikhoan.php";
             break;
         case 'bieudotaikhoan':
+            $listbieudotaikhoan = loadbieudo_taikhoan();
             $listthongketaikhoan = loadthongke_taikhoan();
             include "thongke/bieudotaikhoan.php";  
             break;
