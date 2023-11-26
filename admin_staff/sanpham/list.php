@@ -44,7 +44,7 @@
                     foreach ($listsanpham as $lissp) {
                         extract($lissp);
                         $suasp = "index.php?act=suasp&IdSanPham=" . $IdSanPham;
-                        $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
+                        // $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
                         $xoamemsp = "index.php?act=xoamemsp&IdSanPham=" . $IdSanPham;
                         $hinh = '../upload/' . $img;
                         if (is_file($hinh)) {
@@ -60,8 +60,8 @@
                     <td>' . $luotxem . '</td>
                     <td>
                      <a href="' . $suasp . '"><button type="button" class="btn btn-primary">Sửa</button></a>
-                     <a href="' . $xoasp . '" onclick="return confirmDelete(\'' . $xoasp . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
-                     <a href="' . $xoamemsp . '" onclick="return confirmDelete(\'' . $xoamemsp . '\')"><button type="button" class="btn btn-danger">Xóa mềm</button></a>
+
+                     <a href="' . $xoamemsp . '" onclick="return confirmDelete(\'' . $xoamemsp . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
                     </td>
 
                 </tr>';

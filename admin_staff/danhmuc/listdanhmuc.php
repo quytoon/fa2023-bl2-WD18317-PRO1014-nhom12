@@ -27,17 +27,19 @@
                 foreach ($listdanhmuc as $key) {
                     extract($key);
                     $suadm = "index.php?act=updatedanhmuc&idDanhMuc=" . $idDanhMuc;
-                    $xoadm = "index.php?act=xoadm&idDanhMuc=" . $idDanhMuc;
+                    // $xoadm = "index.php?act=xoadm&idDanhMuc=" . $idDanhMuc;
                     $xoamemdm = "index.php?act=xoamemdm&idDanhMuc=" . $idDanhMuc;
-                    echo '<tr>
+                    if($TrangThai == 0){
+                        echo '<tr>
                                         <td>' . $tenDanhMuc . '</td>
                                         <td>' . $SoLuong . '</td>
-                                        <td>                                       
+                                        <td>
+                                        <a href=""><input type="button" value="Xem chi tiết" class="btn btn-primary"></a> 
                                         <a href="' . $suadm . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
-                                        <a href="' . $xoadm . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
-                        
+                                        <a href="' . $xoamemdm . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
                                         </td>
                                     </tr>';
+                    }
                 }
                 ?>
             </tbody>

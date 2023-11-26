@@ -40,6 +40,8 @@
                                     // }else{
                                     //     $hinhpart ="No file img!";
                                     // }
+                                    
+                                       
                                     echo '<tr>
                                     <td>'.$IdTaiKhoan.'</td>
                                     <td>'.$TenTaiKhoan.'</td>
@@ -51,11 +53,9 @@
                                     <td><img src ="' .$hinhpart. '"width="100px" height="100px"></td>
                                     <td>'.$role.'</td>
                                     <td>
-                                  
                                         <a href="' . $suatk . '"><input type="button" value="Sửa" class="btn btn-primary my-1"></a>
                                         <a href="' . $xoatk . '"><input type="button" value="Xóa" class="btn btn-primary my-1" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
-                                    </td>
-                                </tr>';
+                                    </td>';               
                                 }
                             ?>
                         </tbody>

@@ -12,7 +12,6 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
-include '../model/donhang.php';
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -57,7 +56,7 @@ if (isset($_GET['act'])) {
             }    
             $listdanhmuc = loadall_danhmuc_admin();
             include "danhmuc/listdanhmuc.php";
-            break;   
+            break;    
         case 'listtaikhoan':
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/listtaikhoan.php";
@@ -134,10 +133,6 @@ if (isset($_GET['act'])) {
             include "thongke/bieudotaikhoan.php";  
             break;
         //het taikhoan    
-        case 'listdonhang':
-            $listdonhang = loadall_donhang();
-            include "donhang/listdonhang.php";
-            break;   
         case 'thongkedanhmuc':
             $thongkedm = loadthongke_danhmuc();
             include 'thongke/thongkedanhmuc.php';
@@ -218,11 +213,11 @@ if (isset($_GET['act'])) {
             break;
         case 'xoamemsp':
             if(isset($_GET['IdSanPham'])){
-            xoamem_sanpham($_GET['IdSanPham']);
+                xoamem_sanpham($_GET['IdSanPham']);
             }    
             $listsanpham = loadall_sanpham("", 0);
             include 'sanpham/list.php';
-            break;        
+            break;
         case 'suasp':
             if (isset($_GET['IdSanPham']) && ($_GET['IdSanPham'] > 0)) {
                 $sanpham = loadone_sanpham($_GET['IdSanPham']);
@@ -268,7 +263,7 @@ if (isset($_GET['act'])) {
             }    
             $listbinhluan = loadall_binhluan_admin(0);
             include 'binhluan/list.php';
-            break;         
+            break;        
     }
 
 } else {

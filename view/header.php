@@ -90,8 +90,22 @@
 						<li class="nav-item"><a href="index.php?act=thongtintaikhoan" class="nav-link">Hello
 								<?= $TenTaiKhoan; ?>
 							</a></li>
-						<li class="nav-item"><a href="index.php?act=dangxuat" class="nav-link">Đăng Xuất</a></li>
-						<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
+						
+						<?php if($role == 1 ){ ?>
+							<li class="nav-item"><a href="<?php session_destroy(); ?>"class="nav-link">Đăng Xuất</a></li>
+							<li class="nav-item"><a href="admin/index.php&IdTaiKhoan = <?php $IdTaiKhoan ?>" class="nav-link">Đăng nhập admin</a></li>
+							<?php
+								}else if($role == 0){
+							?>	
+							<li class="nav-item"><a href="<?php session_destroy(); ?>" class="nav-link">Đăng Xuất</a></li>
+							<?php		
+								}else {
+							?>	
+								<li class="nav-item"><a href="<?php session_destroy(); ?>"class="nav-link">Đăng Xuất</a></li>
+								<li class="nav-item"><a href="admin_staff/index.php" class="nav-link">Đăng nhập nhân viên</a></li>
+							<?php	
+								}
+							?>
 					<?php } else if (!isset($_SESSION['TenTaiKhoan'])) { ?>
 							<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
 							<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>

@@ -39,7 +39,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="../index.php">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
                 </ul>
             </li>
         </ul>
@@ -58,35 +58,13 @@
                         <a class="nav-link" href="index.php?act=listdanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Danh mục
                         </a>
-                        <a class="nav-link" href="index.php?act=listgiohang">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>Giỏ hàng
-                        </a>
-                        
-                        <a class="nav-link" href="index.php?act=listtaikhoan">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Tài khoản
-                            </a>
                         <a class="nav-link" href="index.php?act=lissp">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Sản Phẩm 
                         </a>
                         <a class="nav-link" href="index.php?act=dsbl">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Bình luận
                         </a>
-                        <a class="nav-link" href="index.php?act=listdonhang">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Đơn hàng
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Thống kê</div>
-                        <a class="nav-link" href="index.php?act=thongkedanhmuc">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Danh mục
-                        </a>
-                        <a class="nav-link" href="index.php?act=thongkegiohang">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                            Giỏ hàng
-                        </a>
-                        <a class="nav-link" href="index.php?act=thongketaikhoan">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                            Tài khoản
-                        </a>
+                        
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -99,6 +77,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Trang chủ Admin</h1>
+                    <h1 class="mt-4">Trang chủ nhân viên</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active"><a href="index.php">Admin</a>
+                        <li class="breadcrumb-item active"><a href="index.php">Staff</a>
