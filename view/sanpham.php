@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ</a></span>/ <span>Cửa
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Trang chủ</a></span>/ <span>Cửa
                         hàng</span></p>
                 <h1 class="mb-0 bread">Cửa hàng</h1>
             </div>
@@ -43,8 +43,8 @@
                         <h3><a href="' . $linksp . '">' . $TenSanPham . '</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span class="mr-2 price-dc">' . $Gia . '</span><span
-                                        class="price-sale">$80.00</span></p>
+                                <p class="price"><span class="mr-2 price-dc">' . number_format($Gia, 0, '.', ',') . ' vnđ</span><span
+                                        class="price-sale">' . number_format($Gia, 0, '.', ',') . ' vnđ</span></p>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">

@@ -67,7 +67,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "trangyeuthich":
-            $dstop10 = loadall_sanpham_view();
+            $listyeuthich = loadall_sanpham_yeuthich();
             include "view/trangyeuthich.php";
             break;
         case "thongtintaikhoan":

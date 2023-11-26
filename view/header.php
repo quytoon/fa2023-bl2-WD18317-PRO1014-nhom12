@@ -63,18 +63,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Shop</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="index.php?act=sanpham">Shop</a>
-							<a class="dropdown-item" href="index.php?act=trangyeuthich">Wishlist</a>
-							<a class="dropdown-item" href="product-single.html">Single Product</a>
-							<a class="dropdown-item" href="index.php?act=giohang">Cart</a>
-							<a class="dropdown-item" href="index.php?act=thanhtoan">Thanh toán</a>
-						</div>
-					</li>
+					<li class="nav-item active"><a href="index.php" class="nav-link">Trang chủ</a></li>
+					<li class="nav-item active"><a href="index.php?act=sanpham" class="nav-link">Cửa hàng</a></li>
+					<li class="nav-item active"><a href="index.php?act=trangyeuthich" class="nav-link">yêu thích</a></li>
 					<li class="nav-item"><a href="index.php?act=thongtin" class="nav-link">Thông tin</a></li>
 				
 					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>

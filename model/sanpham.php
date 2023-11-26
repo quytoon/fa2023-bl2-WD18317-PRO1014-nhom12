@@ -19,9 +19,9 @@ function loadall_sanpham_top10()
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
-function loadall_sanpham_view()
+function loadall_sanpham_yeuthich()
 {
-    $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,9";
+    $sql = "select * from sanpham where trangthai = 2 order by IdSanPham desc";
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
@@ -39,8 +39,6 @@ function loadone_sanpham($IdSanPham)
 function loadall_sanpham_home()
 {
     $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,9";
-
-
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
