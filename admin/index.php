@@ -45,6 +45,7 @@ if(isset($_GET['act'])) {
             break;
         case 'xoadm':
             if(isset($_GET['idDanhMuc'])) {
+                delete_sp_dm($_GET['idDanhMuc']);
                 delete_dm($_GET['idDanhMuc']);
             }
             $listdanhmuc = loadall_danhmuc_admin();

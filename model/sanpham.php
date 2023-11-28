@@ -84,4 +84,8 @@ function xoa_anhsp($id, $anh) {
     $sql = "delete from anh_sp where IdSanPham = '".$id."' and urlAnh = '".$anh."'";
     pdo_execute($sql);
 }
+function delete_sp_dm($id) {
+    $sql = "DELETE FROM sanpham WHERE `sanpham`.`iddm` = ".$id;
+    pdo_execute($sql);
+}
 ?>
