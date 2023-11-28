@@ -1,8 +1,11 @@
 <?php
-function loadall_donhang()
+//$sql = "select * from `donhang` order by TongTien desc";
+function loadall_donhang($IdTaiKhoan)
 {
-    $sql = "select * from `donhang` order by TongTien desc";
-    $listdonhang = pdo_query($sql);
-    return $listdonhang;
+    $sql = "SELECT * FROM donhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
+    join taikhoan as c on c.IdTaiKhoan = a.IdTaiKhoan 
+    WHERE c.IdTaiKhoan = '$IdTaiKhoan'";
+    $load_donhang = pdo_query($sql);
+    return $load_donhang;   
 }
 ?>

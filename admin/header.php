@@ -40,6 +40,8 @@
                         <hr class="dropdown-divider" />
                     </li>
                     <li><a class="dropdown-item" href="../index.php">Đăng xuất</a></li>
+                    <hr class="dropdown-divider" />
+                    <li><a class="dropdown-item" href="../index.php">Về Trang chủ</a></li>
                 </ul>
             </li>
         </ul>
@@ -87,6 +89,10 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
                             Tài khoản
                         </a>
+                        <a class="nav-link" href="index.php?act=thongkedonhang">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
+                            Đơn hàng
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -101,4 +107,5 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Trang chủ Admin</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active"><a href="index.php">Admin</a>
+                        <li class="breadcrumb-item active"><a href="index.php">Admin</a></li>
+                    </ol>   

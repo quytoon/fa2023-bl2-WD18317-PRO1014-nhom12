@@ -138,6 +138,10 @@ if (isset($_GET['act'])) {
             $listdonhang = loadall_donhang();
             include "donhang/listdonhang.php";
             break;   
+        case 'thongkedonhang':
+            $listthongkedonhang = loadthongke_donhang();
+            include "thongke/thongkedonhang.php";
+            break;        
         case 'thongkedanhmuc':
             $thongkedm = loadthongke_danhmuc();
             include 'thongke/thongkedanhmuc.php';

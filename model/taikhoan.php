@@ -18,7 +18,7 @@ function dangky($TenTaiKhoan,$Email,$MatKhau){
 //Đăng xuất
 function dangxuat() {
     if (isset($_SESSION['TenTaiKhoan'])) {
-        session_destroy();
+        unset($_SESSION['TenTaiKhoan']);
     }
 }
 function checkuser($TenTaiKhoan, $MatKhau)
