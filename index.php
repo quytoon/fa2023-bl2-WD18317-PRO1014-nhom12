@@ -13,6 +13,7 @@ include "model/giohang.php";
 include "model/validate.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
+$dmhome=load_dm_home();
 if(isset($_GET['act']) && ($_GET['act'] != "")) {
     ;
     $act = $_GET['act'];
@@ -109,14 +110,21 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
         case "dangky":
-            if(isset($_POST['dangky']) && ($_POST['dangky'] != "")) {
-                $TenTaiKhoan = $_POST['TenTaiKhoan'];
-                $Email = $_POST['Email'];
-                $MatKhau = $_POST['MatKhau'];
-                $MatKhau2 = $_POST['MatKhau2'];
-                if($_POST['MatKhau'] == $_POST['MatKhau2']) {
-                    dangky($TenTaiKhoan, $Email, $MatKhau);
+            if (isset($_POST['dangky']) && !empty($_POST['dangky'])) {
+                $TenTaiKhoan = trim($_POST['TenTaiKhoan']);
+                $Email = trim($_POST['Email']);
+                $MatKhau = trim($_POST['MatKhau']);
+                $MatKhau2 = trim($_POST['MatKhau2']);
+
+                if (!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2)) {
+                    if ($MatKhau == $MatKhau2) {
+                        dangky($TenTaiKhoan, $Email, $MatKhau);
+                        $thongbao = "Đăng ký thành công";
+                    } else {
+                        $thongbao = "Mật khẩu không khớp";
+                    }
                 } else {
+
                     $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin");
                 }
             }
