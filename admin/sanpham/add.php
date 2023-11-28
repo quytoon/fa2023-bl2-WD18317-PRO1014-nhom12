@@ -4,7 +4,7 @@
                 <i class="fas fa-table me-1">THÊM MỚI SẢN PHẨM</i>
             </div>
             <div class="card-body">
-            <form action="index.php?act=addsp" method="post" enctype="multipart/form-data">
+            <form name="myForm" action="index.php?act=addsp" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="iddm" class="form-label">Danh mục <i class="bi bi-box"></i></label> <br>
                     <select name="iddm" id="" class="form-select">

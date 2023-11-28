@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -10,6 +10,8 @@ include "model/danhmuc.php";
 include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
+include "model/validate.php";
+
 include "global.php";
 $spnew = loadall_sanpham_home();
 $dmhome=load_dm_home();
@@ -33,6 +35,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/sanpham.php";
             break;
         case "chitietsanpham":
+            if (isset($_POST['guibl']) && $_POST['guibl']) {
+                $IdTaiKhoan = $_SESSION['IdTaiKhoan'];
+                $IdSanPham = $_POST["IdSanPham"];
+                $NoiDung = $_POST["noidung"];
+                $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;
+                them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia);
+            }
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
             if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                 $sanpham = load_chitietsanpham($_GET['idsp']);
                 $mausac = loadall_mausac();
@@ -92,39 +104,36 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $checkuser = checkuser($TenTaiKhoan, $MatKhau);
                 if (is_array($checkuser)) {
                     $_SESSION['TenTaiKhoan'] = $checkuser;
-                    // header("Location:view/home.php"); 
-                    // include "view/home.php";
+                   
+                    // include "index.php";
                 } else {
                     $loginMess = "dang nhap khong thanh cong";
                 }
-                // header("Location:view/home.php"); 
-                // include "view/taikhoan/dangnhap.php";     
-
-                // include "view/home.php";header("Location:index.php");     
             }
             include "view/taikhoan/dangnhap.php";
-            // if(!isset($_POST['dangnhap']) && isset($_POST['TenTaiKhoan'])) {
-            //     $loginMess = dangnhap($_POST['TenTaiKhoan'],$_POST['MatKhau']);
-            //      include "view/home.php";
-            // }
-            // include "view/taikhoan/dangnhap.php"; 
 
             break;
         case "dangky":
-            if (isset($_POST['dangky']) && ($_POST['dangky'] != "")) {
-                $TenTaiKhoan = $_POST['TenTaiKhoan'];
-                $Email = $_POST['Email'];
-                $MatKhau = $_POST['MatKhau'];
-                $MatKhau2 = $_POST['MatKhau2'];
-                if ($_POST['MatKhau'] == $_POST['MatKhau2']) {
-                    dangky($TenTaiKhoan, $Email, $MatKhau);
+            if (isset($_POST['dangky']) && !empty($_POST['dangky'])) {
+                $TenTaiKhoan = trim($_POST['TenTaiKhoan']);
+                $Email = trim($_POST['Email']);
+                $MatKhau = trim($_POST['MatKhau']);
+                $MatKhau2 = trim($_POST['MatKhau2']);
+
+                if (!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2)) {
+                    if ($MatKhau == $MatKhau2) {
+                        dangky($TenTaiKhoan, $Email, $MatKhau);
+                        $thongbao = "Đăng ký thành công";
+                    } else {
+                        $thongbao = "Mật khẩu không khớp";
+                    }
                 } else {
-                    echo "dang ky that bai";
+                    $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin");
                 }
-                $thongbao = "Đăng ký thành công";
             }
             include "view/taikhoan/dangky.php";
             break;
+
         case "dangxuat":
             dangxuat();
             include "view/home.php";

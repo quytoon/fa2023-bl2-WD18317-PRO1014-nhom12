@@ -30,7 +30,6 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="goto-here">
 	<div class="py-1 bg-dark">
 		<div class="container">
@@ -82,21 +81,20 @@
 
 					<li class="nav-item cta cta-colored"><a href="index.php?act=giohang" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
-
 					<?php
-					if (isset($_SESSION['TenTaiKhoan'])) {
+					if ( isset($_POST['dangnhap']) && isset($_SESSION['TenTaiKhoan'])) {
 						extract($_SESSION['TenTaiKhoan']);
 						?>
 						<li class="nav-item"><a href="index.php?act=thongtintaikhoan" class="nav-link">Hello
 								<?= $TenTaiKhoan; ?>
 							</a></li>
-						<li class="nav-item"><a href="index.php?act=dangxuat" class="nav-link">Đăng Xuất</a></li>
+						<li class="nav-item"><a href="<?php session_destroy(); ?>" class="nav-link">Đăng Xuất</a></li>
 						<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
-					<?php } else if (!isset($_SESSION['TenTaiKhoan'])) { ?>
+					<?php } else {
+						?>
 							<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
 							<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
 					<?php } ?>
-
 				</ul>
 			</div>
 		</div>

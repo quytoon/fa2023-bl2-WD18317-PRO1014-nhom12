@@ -2,7 +2,7 @@
 function loadall_binhluan($idsp)
 {
     $sql = "
-    SELECT binhluan.IdBinhLuan, binhluan.NoiDung, taikhoan.TenTaiKhoan, binhluan.NgayBinhLuan FROM `binhluan` 
+    SELECT binhluan.IdBinhLuan, binhluan.NoiDung, taikhoan.TenTaiKhoan, binhluan.NgayBinhLuan , binhluan.DiemDanhGia ,taikhoan.avatarUser FROM `binhluan` 
     LEFT JOIN taikhoan ON binhluan.IdTaiKhoan = taikhoan.IdTaiKhoan
     LEFT JOIN sanpham ON binhluan.IdSanPham = sanpham.IdSanPham
     WHERE sanpham.IdSanPham = $idsp and binhluan.TrangThai = 0;
@@ -10,13 +10,12 @@ function loadall_binhluan($idsp)
     $result = pdo_query($sql);
     return $result;
 }
-function them_binhluan($IdSanPham,$IdTaiKhoan,$NoiDung)
-{
+function them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia) {
     $date = date('Y-m-d');
-    $sql = "
-    INSERT INTO binhluan(IdSanPham,IdTaiKhoan,NoiDung,NgayBinhLuan)
-    VALUES('$IdSanPham','$IdTaiKhoan','$NoiDung','$date');
-    ";
+    $sql = "INSERT INTO binhluan(IdSanPham, IdTaiKhoan, NoiDung, NgayBinhLuan, DiemDanhGia)
+            VALUES('$IdSanPham', '$IdTaiKhoan', '$NoiDung', '$date', '$DiemDanhGia');";
+
+
     pdo_execute($sql);
 }
 function loadall_binhluan_admin($IdSanPham)

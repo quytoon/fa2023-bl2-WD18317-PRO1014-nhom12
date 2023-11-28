@@ -9,7 +9,20 @@
         </div>
     </div>
 </div>
-
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-md-4">
+            <form action="index.php?act=sanpham" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="keyword" placeholder="Từ khóa tìm kiếm">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" name="timkiem">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">

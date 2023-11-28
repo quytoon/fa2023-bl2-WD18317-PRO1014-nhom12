@@ -4,7 +4,7 @@ function loadall_sanpham($keyw = "", $iddm = 0)
     $sql = "SELECT * from sanpham where trangThai = 1";
     // where 1 tức là nó đúng
     if ($keyw != "") {
-        $sql .= " and name like '%" . $keyw . "%'";
+        $sql .= " and TenSanPham like '%" . $keyw . "%'";
     }
     if ($iddm > 0) {
         $sql .= " and iddm ='" . $iddm . "'";
@@ -38,7 +38,7 @@ function loadone_sanpham($IdSanPham)
 }
 function loadall_sanpham_home()
 {
-    $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,9";
+    $sql = "select * from sanpham where 1 order by IdSanPham desc limit 0,8";
 
 
     $listsanpham = pdo_query($sql);

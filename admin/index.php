@@ -11,17 +11,27 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
+include '../model/validate.php';
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
         case 'adddanhmuc':
             if (isset($_POST['themDanhMuc']) && ($_POST['themDanhMuc'])) {
                 $name = $_POST['tenDanhMuc'];
-                insert_danhmuc($name);
-                $thongbao = "Thêm thành công";
-            };
+
+                if (empty(trim($name))) {
+                    $thongbao = "Tên danh mục không được để trống";
+                }
+                else if (checkDm($name)) {
+                    $thongbao = check_Validate("Tên danh mục đã tồn tại!");}
+                else {
+                    insert_danhmuc($name);
+                    $thongbao = "Thêm danh mục thành công";
+                }
+            }
             include 'danhmuc/adddanhmuc.php';
             break;
+
         case 'listdanhmuc':
             $listdanhmuc = loadall_danhmuc_admin();
             include 'danhmuc/listdanhmuc.php';
@@ -52,38 +62,51 @@ if (isset($_GET['act'])) {
         case 'listtaikhoan':
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/listtaikhoan.php";
-            break;    
+            break;
         case 'xoataikhoan':
-            if(isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']>0)){
+            if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan'] > 0)) {
                 delete_taikhoan($_GET['IdTaiKhoan']);
             }
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/listtaikhoan.php";
             break;
         case 'addtaikhoan':
-            if(isset($_POST['themtaikhoan']) && ($_POST['themtaikhoan'])){
-                $TenTaiKhoan = $_POST['TenTaiKhoan'];
-                $MatKhau = $_POST['MatKhau'];
-                $HoTen = $_POST['HoTen'];
-                $DiaChi = $_POST['DiaChi'];
-                $Email = $_POST['Email'];
-                $SoDienThoai = $_POST['SoDienThoai'];
-                $role = $_POST['role'];
-                $avatarUser = $_FILES['avatarUser']['name'];
-                $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
-                if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
-                    // Upload thành công
-                    // echo "Bạn đã upload ảnh thành công";
+            if (isset($_POST['themtaikhoan']) && ($_POST['themtaikhoan'])) {
+                $TenTaiKhoan = trim($_POST['TenTaiKhoan']);
+                $MatKhau = trim($_POST['MatKhau']);
+                $HoTen = trim($_POST['HoTen']);
+                $DiaChi = trim($_POST['DiaChi']);
+                $Email = trim($_POST['Email']);
+                $SoDienThoai = trim($_POST['SoDienThoai']);
+                $role = trim($_POST['role']);
+
+                if (empty($TenTaiKhoan) || empty($MatKhau) || empty($HoTen) || empty($DiaChi) || empty($Email) || empty($SoDienThoai) || empty($role)) {
+                    $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin!");
+                } else if (checkTk($TenTaiKhoan)) {
+                    $thongbao = check_Validate("Tên tài khoản đã tồn tại!");
                 } else {
-                    // Upload không thành công
-                    // echo "Upload ảnh không thành công";
+                    if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+                        $thongbao = check_Validate("Định dạng email không hợp lệ!");
+                    } else {
+                        if (!is_numeric($SoDienThoai)) {
+                            $thongbao = check_Validate("Số điện thoại phải là số!");
+                        } else {
+                            $avatarUser = $_FILES['avatarUser']['name'];
+                            $target_dir = "../upload/";
+                            $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
+                            if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
+                                insert_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role);
+                                $thongbao = check_Validate("Thêm thành công");
+                            } else {
+                                $thongbao = check_Validate("Upload ảnh không thành công");
+                            }
+                        }
+                    }
                 }
-                insert_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role);
-                $thongbao = "Thêm thành công";
-            }     
+            }
             include 'taikhoan/addtaikhoan.php';
             break;
+
         case 'updatetaikhoan':
             if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) > 0) {
                 $chitiettaikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
@@ -93,7 +116,7 @@ if (isset($_GET['act'])) {
         case 'suataikhoan':
             if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
                 $TenTaiKhoan = $_POST['TenTaiKhoan'];
-                $IdTaiKhoan=$_POST['IdTaiKhoan'];
+                $IdTaiKhoan = $_POST['IdTaiKhoan'];
                 $MatKhau = $_POST['MatKhau'];
                 $HoTen = $_POST['HoTen'];
                 $DiaChi = $_POST['DiaChi'];
@@ -110,7 +133,7 @@ if (isset($_GET['act'])) {
                     // Upload không thành công
                     // echo "Upload ảnh không thành công";
                 }
-                update_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoai,$avatarUser,$role,$IdTaiKhoan);
+                update_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role, $IdTaiKhoan);
                 $thongbao = "Cập nhật thành công ";
             }
             $listtaikhoan = loadall_taikhoan();
@@ -129,8 +152,9 @@ if (isset($_GET['act'])) {
             include "thongke/thongketaikhoan.php";
             break;
         case 'bieudotaikhoan':
+            $listbieudotaikhoan = loadbieudo_taikhoan();
             $listthongketaikhoan = loadthongke_taikhoan();
-            include "thongke/bieudotaikhoan.php";  
+            include "thongke/bieudotaikhoan.php";
             break;
         //het taikhoan    
         case 'thongkedanhmuc':
@@ -182,16 +206,36 @@ if (isset($_GET['act'])) {
                 $soluong = $_POST['soluong'];
                 $trangthai = $_POST['trangthai'];
                 $anhsp = $_FILES['anhsp']['name'];
-                $target_dir = '../upload/';
-                $target_file = $target_dir . basename($_FILES['anhsp']['name']);
-                move_uploaded_file($_FILES['anhsp']['tmp_name'], $target_file);
-                them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai);
-                $thongbao = 'them thanh cong';
+
+                if (empty($tensp) || empty($giasp) || empty($mota) || empty($soluong) || empty($trangthai)) {
+                    $thongbao = check_Validate('Vui lòng điền đầy đủ thông tin!');
+
+                }
+                else if (checkSp($tensp)) {
+                    $thongbao = check_Validate("Tên sản phẩm đã tồn tại!");}
+                elseif (!is_numeric($giasp) || $giasp < 0) {
+                    $thongbao = check_Validate('Giá sản phẩm không hợp lệ!');
+                } elseif (!is_numeric($soluong) || $soluong < 0) {
+                    $thongbao = check_Validate('Số lượng sản phẩm không hợp lệ!');
+                } else {
+                    $target_dir = '../upload/';
+                    $target_file = $target_dir . basename($_FILES['anhsp']['name']);
+                    if ($_FILES['anhsp']['size'] > 5 * 1024 * 1024) {
+                        $thongbao = check_Validate('Kích thước ảnh quá lớn, vui lòng chọn ảnh khác!');
+                    } elseif (move_uploaded_file($_FILES['anhsp']['tmp_name'], $target_file)) {
+                        // Thêm sản phẩm sau khi kiểm tra hết các điều kiện
+                        them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai);
+                        $thongbao = 'Thêm thành công';
+                    } else {
+                        $thongbao = check_Validate('Upload ảnh không thành công');
+                    }
+                }
             }
 
             $listdanhmuc = loadall_danhmuc_admin();
             include 'sanpham/add.php';
             break;
+
         case 'lissp':
             if (isset($_POST['listok']) && $_POST['listok']) {
                 $kyw = $_POST['kyw'];
