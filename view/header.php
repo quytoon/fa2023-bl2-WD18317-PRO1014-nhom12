@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="goto-here">
 	<div class="py-1 bg-dark">
 		<div class="container">
@@ -63,26 +64,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Shop</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="index.php?act=sanpham">Shop</a>
-							<a class="dropdown-item" href="index.php?act=trangyeuthich">Wishlist</a>
-							<a class="dropdown-item" href="product-single.html">Single Product</a>
-							<a class="dropdown-item" href="index.php?act=giohang">Cart</a>
-							<a class="dropdown-item" href="index.php?act=thanhtoan">Thanh toán</a>
-						</div>
-					</li>
+					<li class="nav-item active"><a href="index.php" class="nav-link">Trang chủ</a></li>
+					<li class="nav-item active"><a href="index.php?act=sanpham" class="nav-link">Cửa hàng</a></li>
 					<li class="nav-item"><a href="index.php?act=thongtin" class="nav-link">Thông tin</a></li>
-				
 					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>
 
 					<li class="nav-item cta cta-colored"><a href="index.php?act=giohang" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 					<?php
-					if ( isset($_POST['dangnhap']) && isset($_SESSION['TenTaiKhoan'])) {
+					if(isset($_POST['dangnhap']) && isset($_SESSION['TenTaiKhoan'])) {
 						extract($_SESSION['TenTaiKhoan']);
 						?>
 						<li class="nav-item"><a href="index.php?act=thongtintaikhoan" class="nav-link">Hello
@@ -92,8 +82,8 @@
 						<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
 					<?php } else {
 						?>
-							<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
-							<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
+						<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
+						<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
 					<?php } ?>
 				</ul>
 			</div>

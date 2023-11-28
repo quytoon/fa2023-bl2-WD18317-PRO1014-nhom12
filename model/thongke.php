@@ -21,6 +21,14 @@ function loadthongke_taikhoan()
     $listthongketaikhoan = pdo_query($sql);
     return $listthongketaikhoan;
 }
+
+
+function loadbieudo_taikhoan()
+{
+    $sql = "SELECT DiaChi ,count(*) as soluong from taikhoan GROUP BY DiaChi";
+    $listbieudotaikhoan = pdo_query($sql);
+    return $listbieudotaikhoan;
+}
 function loadthongke_sanpham()
 {
     $sql = "SELECT sp.IdSanPham, sp.TenSanPham, sp.Gia, sp.img, sp.MoTa, sp.SoLuong, sp.iddm,
