@@ -270,6 +270,13 @@ if(isset($_GET['act'])) {
             $listdanhmuc = loadall_danhmuc();
             include 'sanpham/update.php';
             break;
+        case 'chitietdanhmuc':
+            if(isset($_GET['idDanhMuc']) && ($_GET['idDanhMuc'])) {
+                $loadall_sp_dm = loadall_sp_dm($_GET['idDanhMuc']);
+                include 'danhmuc/chitiet.php';
+            }
+            break;
+
     }
 
 } else {

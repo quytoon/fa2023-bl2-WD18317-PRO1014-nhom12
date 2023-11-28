@@ -12,12 +12,11 @@ function loadall_sanpham($keyw = "", $iddm = 0) {
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
-function loadall_sanpham_top10() {
-    $sql = "select * from sanpham where 1 order by luotxem desc limit 0,10";
-    $listsanpham = pdo_query($sql);
-    return $listsanpham;
+function loadall_sp_dm($iddm) {
+    $sql = "select * from danhmuc as a join sanpham as b on a.idDanhMuc = b.iddm where a.idDanhMuc =".$iddm;
+    $sp = pdo_query($sql);
+    return $sp;
 }
-
 function xoa_sanpham($IdSanPham) {
     $sql = 'delete from sanpham where IdSanPham='.$IdSanPham;
     pdo_execute($sql);
@@ -43,17 +42,6 @@ function them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai
 }
 
 
-//
-//function load_chitietsanpham($id)
-//{
-//    $sql = "SELECT * FROM sanpham as A JOIN anh_sp as B ON A.IdSanPham = B.IdSanPham
-//    JOIN giay_bienthe as C ON c.IdSanPham = a.IdSanPham
-//    JOIN sizegiay as D ON c.IdSizeGiay = d.IdSizeGiay
-//    JOIN mausac as E ON c.IdMauSac = e.IdMauSac
-//    WHERE a.IdSanPham =" . $id;
-//    $result = pdo_query_one($sql);
-//    return $result;
-//}
 function load_chitietsanpham($id) {
     $sql = "SELECT * FROM sanpham 
     WHERE IdSanPham =".$id;
@@ -88,11 +76,11 @@ function update_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangth
         $sql = "update sanpham set TenSanPham ='".$tensp."',Gia ='".$giasp."',MoTa ='".$mota."',iddm ='".$iddm."',SoLuong ='".$soluong."',trangThai ='".$trangthai."' where IdSanPham=".$id;
     pdo_execute($sql);
 }
-function update_thuvienanh($id,$thuvienanh){
+function update_thuvienanh($id, $thuvienanh) {
     $sql = "insert into anh_sp (IdSanPham,urlAnh) values ('".$id."','".$thuvienanh."')";
     pdo_execute($sql);
 }
-function xoa_anhsp($id,$anh) {
+function xoa_anhsp($id, $anh) {
     $sql = "delete from anh_sp where IdSanPham = '".$id."' and urlAnh = '".$anh."'";
     pdo_execute($sql);
 }
