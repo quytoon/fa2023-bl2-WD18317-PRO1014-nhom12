@@ -53,9 +53,20 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "themgiohang":
+            $productExists = false ;
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
-                    $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    foreach($load_giohang as $key) {
+                        if($_GET['idsp'] == $key['IdSanPham']) {
+                            $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                            $productExists = true;
+                            break;
+                        }
+                    }
+                    if(!$productExists){
+                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     include "view/giohang.php";
                 } else {
