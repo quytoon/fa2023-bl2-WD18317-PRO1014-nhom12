@@ -133,6 +133,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 } else {
                     $loginMess = "dang nhap khong thanh cong";
                 }
+                echo"<meta http-equiv='refresh' content='0;url=index.php'>";
             }
             include "view/taikhoan/dangnhap.php";
 
@@ -161,7 +162,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
         case "dangxuat":
             dangxuat();
-            include "view/home.php";
+            echo"<meta http-equiv='refresh' content='0;url=index.php'>";
+     
             break;
         case "quenmk":
             if(isset($_POST['guimail'])) {

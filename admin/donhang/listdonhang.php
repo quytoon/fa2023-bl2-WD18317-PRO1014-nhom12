@@ -32,6 +32,7 @@
             <?php
 foreach ($listdonhang as $key) {
     extract($key);
+    $chitietdonhang = "index.php?act=chitietdonhang&IdDonHang=" . $IdDonHang;
     echo '<tr>
             <td>' . $IdDonHang . '</td>
             <td>' . $TenSanPham . '</td>
@@ -49,8 +50,8 @@ foreach ($listdonhang as $key) {
                 </form>
             </td>
 
-            <td>
-                <button>Xem chi tiết</button>
+            <td>"
+                <a href="'.$chitietdonhang.'"><input type="submit" value="Xem chi tiết">
             </td>
           </tr>';
     }

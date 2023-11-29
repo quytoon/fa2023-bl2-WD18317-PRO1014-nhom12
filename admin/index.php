@@ -325,8 +325,13 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                     include "donhang/listdonhang.php";
                 }
                 break;
+            case 'chitietdonhang':
+                if(isset($_GET['IdDonHang']) && ($_GET['IdDonHang'])){
+                    $load_donhang=loadall_dh_sp_tk($_GET['IdDonHang']);
+                    include 'donhang/chitiet.php';             
+                }
+                break;    
         }
-
     } else {
         include 'home.php';
     }
