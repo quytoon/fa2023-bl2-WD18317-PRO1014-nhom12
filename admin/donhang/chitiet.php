@@ -24,9 +24,8 @@
             </thead>
             <tbody>
                 <?php
-                foreach($load_donhang as $key) {
-                    var_dump($load_donhang);
-                    extract($key);
+                foreach($load_donhang as $key => $value) {
+                    extract($value);
                     $img = '../upload/'.$img;
                     echo '<tr>
                                 <td>'.$IdDonHang.'</td>
