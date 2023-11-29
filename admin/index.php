@@ -323,9 +323,8 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                     $update=update_trangthai($luachon,$id);
                     $listdonhang = loadthongke_donhang();
                     include "donhang/listdonhang.php";
-                    }
-                    break;
-
+                }
+                break;
         }
 
     } else {

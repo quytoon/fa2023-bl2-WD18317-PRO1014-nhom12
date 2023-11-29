@@ -43,7 +43,7 @@ foreach ($listdonhang as $key) {
                         <option value ="1" ' . ($TrangThai == 1 ? 'selected' : '') . '>Đang xác nhận</option>
                         <option value ="2" ' . ($TrangThai == 2 ? 'selected' : '') . '>Đang giao hàng</option>
                         <option value ="3" ' . ($TrangThai == 3 ? 'selected' : '') . '>Giao hàng thành công</option>
-                        <option value ="3" ' . ($TrangThai == 4 ? 'selected' : '') . '>Hủy</option>
+                        <option value ="0" ' . ($TrangThai == 0 ? 'selected' : '') . '>Hủy</option>
                     </select>
                     <button type="submit" name="capnhat">Cập nhật</button>
                 </form>
