@@ -46,7 +46,7 @@ foreach ($listdonhang as $key) {
             </td>
           </tr>';
 }
-?>
+?> 
                 <!-- $suadh = "index.php?act=updatedonhang&IdDonHang=" . $IdDonHang;
                 $xoadh = "index.php?act=xoadh&IdDonHang=" . $IdDonHang; -->
                 <!-- <a href="' . $suadh . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
@@ -55,12 +55,44 @@ foreach ($listdonhang as $key) {
         </table>
     </div>
     <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var selects = document.querySelectorAll('.status-select');
+    selects.forEach(function(select) {
+        // Lấy giá trị đã lưu từ localStorage nếu có
+        var savedOptionsString = localStorage.getItem('selectedOptions');
+        var savedOptions = savedOptionsString ? JSON.parse(savedOptionsString) : {};
+
+        // Lấy rowId của hàng
+        var rowId = select.dataset.rowId;
+
+        // Lấy giá trị đã chọn cho hàng từ mảng savedOptions
+        var selectedOptionsForRow = savedOptions[rowId];
+
+        if (selectedOptionsForRow && selectedOptionsForRow.status) {
+            select.value = selectedOptionsForRow.status; // Sử dụng tên trường 'status'
+            updateOptionsDisplay(select);
+        }
+    });
+});
+
 function toggleOptions(selectElement) {
     var selectedOption = selectElement.value;
 
-    // Lưu giá trị đã chọn vào cookie
+    // Lấy giá trị đã lưu từ localStorage nếu có
+    var savedOptionsString = localStorage.getItem('selectedOptions');
+    var savedOptions = savedOptionsString ? JSON.parse(savedOptionsString) : {};
+
+    // Lấy rowId của hàng
     var rowId = selectElement.dataset.rowId;
-    document.cookie = 'selectedOption_' + rowId + '=' + selectedOption;
+
+    // Lưu giá trị đã chọn cho hàng vào mảng savedOptions
+    if (!savedOptions[rowId]) {
+        savedOptions[rowId] = {};
+    }
+    savedOptions[rowId].status = selectedOption; // Đổi tên trường dữ liệu thành 'status'
+
+    // Lưu mảng savedOptions vào localStorage
+    localStorage.setItem('selectedOptions', JSON.stringify(savedOptions));
 
     // Gọi hàm để ẩn hoặc hiển thị các option tùy thuộc vào giá trị đã chọn
     updateOptionsDisplay(selectElement);
@@ -81,29 +113,12 @@ function updateOptionsDisplay(selectElement) {
         optionB.style.display = 'block';
     }
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    var selects = document.querySelectorAll('.status-select');
-    selects.forEach(function(select) {
-        // Lấy giá trị đã lưu từ cookie nếu có
-        var rowId = select.dataset.rowId;
-        var selectedOption = getCookie('selectedOption_' + rowId);
-
-        if (selectedOption) {
-            select.value = selectedOption;
-            updateOptionsDisplay(select);
-        }
-    });
-});
-
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
 </script>
     <!-- <div class="card-footer">
         <a href="index.php?act=adddanhmuc"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
     </div> -->
 </div>
 </main>
+<?php
+    }
+?>

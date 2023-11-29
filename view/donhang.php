@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-md-12 ftco-animate">
 				<div class="cart-list">
-					<table class="table">
+					<table class="table" style="width: 1100px">
 						<thead class="thead-primary">
 							<tr class="text-center">
 								<th>&nbsp;</th>
@@ -25,6 +25,7 @@
 								<th>Ngày đặt hàng</th>
 								<th>Tổng</th>
 								<th>Tình trạng đơn hàng</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +45,7 @@
 									<div class="img" style="background-image:url(' . $img . ');"></div>
 								</td>
 
-								<td class="product-name">
+								<td class="product-name" style="width:400px">
 									<h3>' . $TenSanPham . '</h3>
 								</td>
 
@@ -60,6 +61,15 @@
 								</td>
 								<td class="date" style="color:black;">' .$NgayDatHang. '</td>
 								<td class="total">' . number_format($toltal, 0, '.', ',') . ' vnđ</td>
+								<td class="role">';
+									if($TrangThai == 1){
+										echo "Đang chuẩn bị";
+									}else if($TrangThai == 2){
+										echo "Đang giao hàng";
+									}else{
+										echo "Giao hàng thành công";
+									}
+								'</td>
 							</tr><!-- END TR-->
 								';
 							}
