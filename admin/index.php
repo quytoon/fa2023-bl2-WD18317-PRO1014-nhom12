@@ -282,9 +282,13 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)){
                 break;         
         }
     
-}
-
-} else {
+}else {
     include 'home.php';
 }
 include 'footer.php';
+} else {
+   echo "bạn không đủ quyền truy cập vào trang này";?>
+    <a href="../index.php">Mời bạn quay về trang chủ</a>
+<?php }
+
+?>
