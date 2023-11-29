@@ -1,3 +1,7 @@
+<?php 
+extract($_SESSION['TenTaiKhoan']);
+$avatarUser = 'upload/' . $avatarUser;
+?>
 <div class="hero-wrap hero-bread" style="background-image: url('images/ms_banner_img1.png');">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -19,15 +23,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="images/Frame 166.png" alt="Ảnh người dùng" class="img-fluid">
+                            <img src="<?=$avatarUser?>" alt="Ảnh người dùng" class="img-fluid" width="500" height="500">
                         </div>
                         <div class="col-md-8">
-                            <p><strong>Họ tên:</strong> John Doe</p>
-                            <p><strong>Email:</strong> johndoe@example.com</p>
-                            <p><strong>Địa chỉ:</strong> 123 ABC Street, XYZ City</p>
-                            <p><strong>Số điện thoại:</strong> 123-456-7890</p>
-                            <p><strong>Giới tính:</strong> Nam</p>
-                            <p><strong>Ngày sinh:</strong> 01/01/1990</p>
+                            <p><strong>Họ tên:</strong><?=$HoTen?></p>
+                            <p><strong>Email:</strong><?=$Email?></p>
+                            <p><strong>Địa chỉ:</strong> <?=$DiaChi?></p>
+                            <p><strong>Số điện thoại:</strong><?=$SoDienThoai?></p>
                         </div>
                     </div>
                 </div>

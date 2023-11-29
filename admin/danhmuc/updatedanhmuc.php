@@ -1,4 +1,4 @@
-/<a href="index.php?act=updatedanhmuc&idDanhMuc=<?= $_GET['idDanhMuc'] ?>">Sửa danh mục</a></li>
+/<a href="index.php?act=listdanhmuc">Quản Lý danh mục</a></li>/<a href="index.php?act=updatedanhmuc&idDanhMuc=<?= $_GET['idDanhMuc'] ?>">Sửa danh mục</a></li>
 </ol>
 <div class="card mb-4">
     <div class="card-header">
