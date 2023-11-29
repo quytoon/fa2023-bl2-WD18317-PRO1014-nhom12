@@ -19,15 +19,16 @@
 						<thead class="thead-primary">
 							<tr class="text-center">
 								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 								<th>Tên sản phẩm</th>
 								<th>Giá</th>
 								<th>Số lượng</th>
+								<th>Ngày đặt hàng</th>
 								<th>Tổng</th>
+								<th>Tình trạng đơn hàng</th>
 							</tr>
 						</thead>
 						<tbody>
-
+						<!-- <td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td> -->
 							<?php
 							foreach ($load_donhang as $key) {
 								extract($key);
@@ -37,7 +38,7 @@
 								$bill += $toltal;
 								echo '
 								<tr class="text-center">
-								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
+								
 
 								<td class="image-prod">
 									<div class="img" style="background-image:url(' . $img . ');"></div>
@@ -53,11 +54,11 @@
 									<div class="row">
 										
 										<div class="col"><input type="text" id="quantity" name="quantity"
-												class="form-control input-number" value="' . $SoLuongSp . '" min="1" max="100"></div>
+												class="form-control input-number" value="' . $SoLuongSp . '" min="1" max="100" readonly></div>
 										
 									</div>
 								</td>
-
+								<td class="date" style="color:black;">' .$NgayDatHang. '</td>
 								<td class="total">' . number_format($toltal, 0, '.', ',') . ' vnđ</td>
 							</tr><!-- END TR-->
 								';

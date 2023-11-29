@@ -19,9 +19,15 @@ if (isset($_GET['act'])) {
         case 'adddanhmuc':
             if (isset($_POST['themDanhMuc']) && ($_POST['themDanhMuc'])) {
                 $name = $_POST['tenDanhMuc'];
-                insert_danhmuc($name);
-                $thongbao = "Thêm thành công";
-            };
+
+
+                if (empty(trim($name))) {
+                    $thongbao = "Tên danh mục không được để trống";
+                } else {
+                    insert_danhmuc($name);
+                    $thongbao = "Thêm danh mục thành công";
+                }
+            }
             include 'danhmuc/adddanhmuc.php';
             break;
         case 'listdanhmuc':
@@ -135,7 +141,7 @@ if (isset($_GET['act'])) {
             break;
         //het taikhoan    
         case 'listdonhang':
-            $listdonhang = loadall_donhang();
+            $listdonhang = loadthongke_donhang();
             include "donhang/listdonhang.php";
             break;   
         case 'thongkedonhang':
