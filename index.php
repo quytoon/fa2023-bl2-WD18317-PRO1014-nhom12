@@ -41,9 +41,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;
                 them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia);
             }
-            ini_set('display_errors', 1);
-            ini_set('display_startup_errors', 1);
-            error_reporting(E_ALL);
             if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                 $sanpham = load_chitietsanpham($_GET['idsp']);
                 $mausac = loadall_mausac();
