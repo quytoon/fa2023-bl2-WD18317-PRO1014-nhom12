@@ -145,19 +145,36 @@
                             <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
                                 <input type="text" name="noidung">
-                                <div class="form-group">
+                                <div class="form-group" id="rating">
                                     <label for="rating">Điểm đánh giá:</label>
-                                    <div class="rating">
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
+                                    <div class="rating" >
+                                        <span class="star" data-rating="1">&#9733;</span>
+                                        <span class="star" data-rating="2">&#9733;</span>
+                                        <span class="star" data-rating="3">&#9733;</span>
+                                        <span class="star" data-rating="4">&#9733;</span>
+                                        <span class="star" data-rating="5">&#9733;</span>
                                     </div>
+                                    <input type="hidden" name="rating" id="selectedRating" value="0">
                                 </div>
                                 <input type="submit" name="guibl" value="Gửi bình luận và đánh giá">
                             </form>
                         </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const stars = document.querySelectorAll('.star');
+                                const ratingInput = document.getElementById('selectedRating');
+
+                                stars.forEach((star) => {
+                                    star.addEventListener('click', function() {
+                                        const ratingValue = this.getAttribute('data-rating');
+                                        ratingInput.value = ratingValue;
+                                        console.log('Selected Rating:', ratingValue);
+                                    });
+                                });
+                            });
+                        </script>
+
                     </div>
                 </div>
             </div>

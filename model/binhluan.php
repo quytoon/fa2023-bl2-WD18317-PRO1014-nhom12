@@ -34,19 +34,6 @@ function xoa_binhluan($IdBinhLuan)
     $sql = 'delete from binhluan where IdBinhLuan=' . $IdBinhLuan;
     pdo_execute($sql);
 }
-
-function load_id_binhluan($TenTaiKhoan)
-{
-    // Ensure $TenTaiKhoan is a string
-    $TenTaiKhoan = is_array($TenTaiKhoan) ? implode(',', $TenTaiKhoan) : $TenTaiKhoan;
-
-    $sql = "SELECT IdTaiKhoan FROM taikhoan WHERE TenTaiKhoan = '$TenTaiKhoan'";
-    $result = pdo_query($sql);
-
-    // Assuming pdo_query returns a single value, you may need to adjust accordingly
-    return $result;
-}
-
 //cau truy van xoa mem
 function xoamem_bl($IdBinhLuan)
 {
