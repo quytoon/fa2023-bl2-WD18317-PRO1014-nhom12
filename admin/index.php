@@ -306,6 +306,15 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                     include 'danhmuc/chitiet.php';
                 }
                 break;
+            case 'updatetrangthai':
+                if (isset($_POST['capnhat'])) {
+                    $luachon = $_POST['luachon'];
+                    $id = $_GET['IdDonHang'];
+                    $update=update_trangthai($luachon,$id);
+                    $listdonhang = loadthongke_donhang();
+                    include "donhang/listdonhang.php";
+                    }
+                    break;
 
         }
 
