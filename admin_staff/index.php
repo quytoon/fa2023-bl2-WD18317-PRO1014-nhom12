@@ -12,6 +12,7 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
+if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)){
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -270,3 +271,9 @@ if (isset($_GET['act'])) {
     include 'home.php';
 }
 include 'footer.php';
+}else {
+    echo "bạn không đủ quyền truy cập vào trang này";?>
+    <a href="../index.php">Mời bạn quay về trang chủ</a>
+<?php }
+
+?>
