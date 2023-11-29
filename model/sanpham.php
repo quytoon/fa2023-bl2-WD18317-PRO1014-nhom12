@@ -22,8 +22,17 @@ function xoa_sanpham($IdSanPham) {
     $sql = 'delete from sanpham where IdSanPham='.$IdSanPham;
     pdo_execute($sql);
 }
-function loadone_sanpham($IdSanPham) {
-    $sql = "select * from sanpham where IdSanPham=".$IdSanPham;
+
+//cau truy van xoa mem
+function xoamem_sanpham($IdSanPham)
+{
+    $sql = "UPDATE `sanpham` set `trangthai` = 0 where `sanpham`.`IdSanPham` = $IdSanPham";
+    pdo_execute($sql);
+}
+function loadone_sanpham($IdSanPham)
+{
+    $sql = "select * from sanpham where IdSanPham=" . $IdSanPham;
+
     $sp = pdo_query_one($sql);
     return $sp;
 }

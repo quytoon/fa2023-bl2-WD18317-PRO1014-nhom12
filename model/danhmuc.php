@@ -47,4 +47,10 @@ function delete_dm($id){
     $sql = "delete from danhmuc where idDanhMuc = " . $id;
     pdo_execute($sql);
 }
+//cau truy van xoa mem
+function xoamem_dm($id)
+{
+    $sql = "UPDATE `danhmuc` SET `TrangThai` = 1 WHERE `danhmuc`.`idDanhMuc` = $id";
+    pdo_execute($sql);
+}
 ?>

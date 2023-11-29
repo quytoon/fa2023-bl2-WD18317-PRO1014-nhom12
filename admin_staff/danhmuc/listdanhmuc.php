@@ -19,26 +19,27 @@
                     <th>Tên Danh Mục</th>
                     <th>Số lượng sản phẩm trong danh mục</th>
                     <th>Hành động</th>
+
                 </tr>
             </tfoot>
             <tbody>
                 <?php
                 foreach ($listdanhmuc as $key) {
                     extract($key);
-                    $chitietdanhmuc = "index.php?act=chitietdanhmuc&idDanhMuc=" . $idDanhMuc;
                     $suadm = "index.php?act=updatedanhmuc&idDanhMuc=" . $idDanhMuc;
-                    $xoadm = "index.php?act=xoadm&idDanhMuc=" . $idDanhMuc;
+                    // $xoadm = "index.php?act=xoadm&idDanhMuc=" . $idDanhMuc;
                     $xoamemdm = "index.php?act=xoamemdm&idDanhMuc=" . $idDanhMuc;
-                    echo '<tr>
+                    if($TrangThai == 0){
+                        echo '<tr>
                                         <td>' . $tenDanhMuc . '</td>
                                         <td>' . $SoLuong . '</td>
                                         <td>
-                                        <a href="' . $chitietdanhmuc . '"><input type="button" value="Xem chi tiết" class="btn btn-primary"></a> 
+                                        <a href=""><input type="button" value="Xem chi tiết" class="btn btn-primary"></a> 
                                         <a href="' . $suadm . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
-                                        <a href="' . $xoadm . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
-                        
+                                        <a href="' . $xoamemdm . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
                                         </td>
                                     </tr>';
+                    }
                 }
                 ?>
             </tbody>

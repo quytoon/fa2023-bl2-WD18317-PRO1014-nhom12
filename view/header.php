@@ -64,29 +64,52 @@
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.php" class="nav-link">Trang chủ</a></li>
+					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item active"><a href="index.php?act=sanpham" class="nav-link">Cửa hàng</a></li>
 					<li class="nav-item"><a href="index.php?act=thongtin" class="nav-link">Thông tin</a></li>
+
 					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>
 
 					<li class="nav-item cta cta-colored"><a href="index.php?act=giohang" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
+
 					<?php
-					if(isset($_POST['dangnhap']) && isset($_SESSION['TenTaiKhoan'])) {
+					if(isset($_SESSION['TenTaiKhoan'])) {
 						extract($_SESSION['TenTaiKhoan']);
 						?>
-						<li class="nav-item"><a href="index.php?act=thongtintaikhoan" class="nav-link">Hello
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">Hello
 								<?= $TenTaiKhoan; ?>
-							</a></li>
-						<li class="nav-item"><a href="<?php session_destroy(); ?>" class="nav-link">Đăng Xuất</a></li>
-						<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
-					<?php } else {
-						?>
-						<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
-						<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown04">
+								<?php if($role == 1) { ?>
+									<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
+									<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
+									<a href="index.php?act=donhang" class="dropdown-item">Lịch sử đơn hàng</a>
+							<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
+							<?php
+								} else if($role == 0) {
+									?>
+								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
+								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
+								<a href="index.php?act=donhang" class="dropdown-item">Lịch sử đơn hàng</a>
+						<?php
+								} else {
+									?>
+								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
+								<li class="nav-item"><a href="admin_staff/index.php" class="nav-link">Đăng nhập nhân viên</a></li>
+						<?php
+								}
+								?>
+					<?php } else if(!isset($_SESSION['TenTaiKhoan'])) { ?>
+							<li class="nav-item"><a href="index.php?act=dangky" class="nav-link">Đăng Ký</a></li>
+							<li class="nav-item"><a href="index.php?act=dangnhap" class="nav-link">Đăng nhập</a></li>
 					<?php } ?>
-				</ul>
 			</div>
+			</li>
+			</ul>
+		</div>
 		</div>
 	</nav>
 	<!-- END nav -->

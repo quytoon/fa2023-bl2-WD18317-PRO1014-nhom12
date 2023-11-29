@@ -47,4 +47,10 @@ function load_id_binhluan($TenTaiKhoan)
     return $result;
 }
 
+//cau truy van xoa mem
+function xoamem_bl($IdBinhLuan)
+{
+    $sql = "UPDATE `binhluan` SET `TrangThai` = 1 WHERE `binhluan`.`IdBinhLuan` = $IdBinhLuan";
+    pdo_execute($sql);
+}
 ?>

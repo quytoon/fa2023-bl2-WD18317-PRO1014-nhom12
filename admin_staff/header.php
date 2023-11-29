@@ -16,7 +16,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.php">QPB SHOES</a>
+        <a class="navbar-brand ps-3" href="../index.html">QPB SHOES</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -39,9 +39,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="../index.php?act=dangxuat">Đăng xuất</a></li>
-                    <hr class="dropdown-divider" />
-                    <li><a class="dropdown-item" href="../index.php">Về Trang chủ</a></li>
+                    <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
                 </ul>
             </li>
         </ul>
@@ -60,48 +58,18 @@
                         <a class="nav-link" href="index.php?act=listdanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Danh mục
                         </a>
-                        <a class="nav-link" href="index.php?act=listgiohang">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>Giỏ hàng
-                        </a>
-                        
-                        <a class="nav-link" href="index.php?act=listtaikhoan">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Tài khoản
-                            </a>
                         <a class="nav-link" href="index.php?act=lissp">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Sản Phẩm 
                         </a>
                         <a class="nav-link" href="index.php?act=dsbl">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Bình luận
                         </a>
-                        <a class="nav-link" href="index.php?act=listdonhang">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Đơn hàng
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Thống kê</div>
-                        <a class="nav-link" href="index.php?act=thongkedanhmuc">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Danh mục
-                        </a>
-                        <a class="nav-link" href="index.php?act=thongkegiohang">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                            Giỏ hàng
-                        </a>
-                        <a class="nav-link" href="index.php?act=thongketaikhoan">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                            Tài khoản
-                        </a>
-                        <a class="nav-link" href="index.php?act=thongkedonhang">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                            Đơn hàng
-                        </a>
-                            <a class="nav-link" href="index.php?act=thongkesanpham">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
-                                Sản Phẩm
-                            </a>
+                        
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    <?=$_SESSION['TenTaiKhoan']['TenTaiKhoan']?>
+                    Start Bootstrap
                 </div>
             </nav>
         </div>
@@ -109,7 +77,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Trang chủ Admin</h1>
+                    <h1 class="mt-4">Trang chủ nhân viên</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active"><a href="index.php">Admin</a></li>
-                    </ol>   
+                        <li class="breadcrumb-item active"><a href="index.php">Staff</a>

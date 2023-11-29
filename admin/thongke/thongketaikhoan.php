@@ -36,10 +36,13 @@
                     <td>' . $DiaChi . '</td>
                     <td>' . $SoDienThoai . '</td>';
                     if ($role == 1) {
-                        echo "<td>Admin</td>
+                        echo "<td>Chủ sở hữu</td>
+                        </tr>'";
+                    }else if($role == 2){
+                        echo "<td>Nhân viên</td> 
                         </tr>'";
                     }else{
-                        echo "<td>User</td>
+                        echo "<td>Khách hàng</td>
                         </tr>'";
                     }
                 }

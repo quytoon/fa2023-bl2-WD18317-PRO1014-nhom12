@@ -10,6 +10,7 @@ include "model/danhmuc.php";
 include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
+include "model/donhang.php";
 include "model/validate.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
@@ -34,12 +35,17 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/sanpham.php";
             break;
         case "chitietsanpham":
+<<<<<<< HEAD
             if (isset($_REQUEST['guibl']) && $_REQUEST['guibl']) {
                 // Assuming $_SESSION['TenTaiKhoan'] contains the username
                 $TenTaiKhoan = $_SESSION['TenTaiKhoan'];
                 $idbl = load_id_binhluan($TenTaiKhoan);
                 // Assuming $idbl is the IdTaiKhoan retrieved from the database
                 $IdTaiKhoan = isset($idbl['IdTaiKhoan']) ? $idbl['IdTaiKhoan'] : null;
+=======
+            if (isset($_POST['guibl']) && $_POST['guibl']) {
+                $IdTaiKhoan = $_SESSION['TenTaiKhoan']["IdTaiKhoan"];
+>>>>>>> 72e016b60238010472502ac9797646be6b15cc1a
                 $IdSanPham = $_POST["IdSanPham"];
                 $NoiDung = $_POST["noidung"];
                 $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;
@@ -57,6 +63,10 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "donhang":
+            $load_donhang = loadall_donhang(1);
+            include "view/donhang.php";
+            break;    
         case "giohang":
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);

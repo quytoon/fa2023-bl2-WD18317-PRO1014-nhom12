@@ -113,7 +113,11 @@
                         <?= $SoLuong ?> sản phẩm
                     </p>
                 </div>
+<<<<<<< HEAD
                 <p><a href="" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+=======
+                <p><a href="index.php?act=themgiohang&idsp=<?=  $IdSanPham  ?>" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+>>>>>>> 72e016b60238010472502ac9797646be6b15cc1a
             </div>
         </div>
     </div>
@@ -126,7 +130,7 @@
                     <div class="card-body">
                         <h2>Đánh giá của bạn về sản phẩm</h2>
                         <div class="box_title">Bình luận</div>
-                        <div class="box_content">
+                        <!-- <div class="box_content">
                             <table>
                                 <?php
                                 foreach ($binhluan as $bl) {
@@ -140,7 +144,7 @@
                                 }
                                 ?>
                             </table>
-                        </div>
+                        </div> -->
                         <div>
                             <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
