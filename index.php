@@ -34,8 +34,12 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/sanpham.php";
             break;
         case "chitietsanpham":
-            if (isset($_POST['guibl']) && $_POST['guibl']) {
-                $IdTaiKhoan = $_SESSION['IdTaiKhoan'];
+            if (isset($_REQUEST['guibl']) && $_REQUEST['guibl']) {
+                // Assuming $_SESSION['TenTaiKhoan'] contains the username
+                $TenTaiKhoan = $_SESSION['TenTaiKhoan'];
+                $idbl = load_id_binhluan($TenTaiKhoan);
+                // Assuming $idbl is the IdTaiKhoan retrieved from the database
+                $IdTaiKhoan = isset($idbl['IdTaiKhoan']) ? $idbl['IdTaiKhoan'] : null;
                 $IdSanPham = $_POST["IdSanPham"];
                 $NoiDung = $_POST["noidung"];
                 $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;

@@ -113,7 +113,7 @@
                         <?= $SoLuong ?> sản phẩm
                     </p>
                 </div>
-                <p><a href="cart.html" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+                <p><a href="" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
                             </table>
                         </div>
                         <div>
-                            <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
+                            <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
                                 <input type="text" name="noidung">
                                 <div class="form-group">
@@ -163,7 +163,7 @@
             </div>
 
             <div class="col-md-8 mt-4">
-                <h2>Đánh giá của những người dùng khác</h2>
+                <h2>Đánh giá của những người dùng </h2>
                 <?php foreach ($binhluan as $key) { ?>
                     <div class="card mb-4">
                         <div class="card-body row">
