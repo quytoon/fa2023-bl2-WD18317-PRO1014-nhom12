@@ -113,11 +113,7 @@
                         <?= $SoLuong ?> sản phẩm
                     </p>
                 </div>
-<<<<<<< HEAD
-                <p><a href="" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
-=======
                 <p><a href="index.php?act=themgiohang&idsp=<?=  $IdSanPham  ?>" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
->>>>>>> 72e016b60238010472502ac9797646be6b15cc1a
             </div>
         </div>
     </div>
