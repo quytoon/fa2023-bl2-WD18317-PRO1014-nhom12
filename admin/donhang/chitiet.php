@@ -1,5 +1,5 @@
-/<a href="index.php?act=listdanhmuc">Quản Lý danh mục</a></li>/<a
-    href="index.php?act=chitietdanhmuc&idDanhMuc=<?= $_GET['idDanhMuc'] ?>">Chi tiết danh mục</a></li>
+/<a href="index.php?act=listdonhang">Quản Lý đơn hàng</a></li>/<a
+    href="index.php?act=chitietdonhang&IdDonHang=<?= $_GET['IdDonHang'] ?>">Chi tiết đơn hàng</a></li>
 </ol>
 <div class="card mb-4">
     <div class="card-header">
@@ -24,21 +24,28 @@
             </thead>
             <tbody>
                 <?php
-                foreach($load_donhang as $key) {
-                    var_dump($load_donhang);
-                    extract($key);
+                foreach($load_donhang as $key => $value) {
+                    extract($value);
                     $img = '../upload/'.$img;
                     echo '<tr>
                                 <td>'.$IdDonHang.'</td>
                                 <td>'.$TenTaiKhoan.'</td>
                                 <td><img src="'.$img.'" height="80" width ="80"></td>
                                 <td>'.$TenSanPham.'</td>
-                                <td>'.$Gia.'</td>
-                                <td>'.$SoLuong.'</td>
+                                <td>'.number_format($Gia, 0, '.', ',').' VND</td>
+                                <td>'.$SoLuongSp.'</td>
                                 <td>'.$NgayDatHang.'</td>
-                                <td>'.$SoLuongSp.'</td>
-                                <td>'.$SoLuongSp.'</td>
-                        </tr>';
+                                <td>'.number_format($TongTien, 0, '.', ',').' VND</td>';                       
+                                if($TrangThai == 1){
+                                    echo "<td>Đang xác nhận</td>";
+                                }if($TrangThai == 2){
+                                    echo "<td>Đang giao hàng</td>";
+                                }if($TrangThai == 3){
+                                    echo "<td>Giao hàng thành công</td>";
+                                }if($TrangThai == 0){
+                                    echo "<td>Hủy</td>";
+                                }                                 
+                        '</tr>';
                 }
                 ?>
             </tbody>

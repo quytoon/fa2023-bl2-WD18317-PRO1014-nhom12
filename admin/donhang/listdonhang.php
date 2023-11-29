@@ -37,7 +37,7 @@ foreach ($listdonhang as $key) {
             <td>' . $IdDonHang . '</td>
             <td>' . $TenSanPham . '</td>
             <td>' . $NgayDatHang . '</td>
-            <td>' . $TongTien . '</td>
+            <td>' . number_format($TongTien, 0, '.', ',') . ' VND</td>
             <td>
                 <form method="post" action="index.php?act=updatetrangthai&IdDonHang='.$IdDonHang.'">
                     <select name="luachon">

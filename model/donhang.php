@@ -14,7 +14,7 @@ function loadall_dh_sp_tk($IdDonHang)
     $sql = "SELECT * from donhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
     join taikhoan as c on c.IdTaiKhoan = a.IdTaiKhoan 
     WHERE c.IdTaiKhoan = a.IdTaiKhoan";
-    $dh = pdo_query_one($sql);
+    $dh = pdo_query($sql);
     return $dh;
 }
 
