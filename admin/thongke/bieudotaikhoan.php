@@ -1,10 +1,10 @@
-/<a href="index.php?act=bieudodanhmuc">Biểu đồ tài khoản</a></li>
+/<a href="index.php?act=bieudotaikhoan">Biểu đồ tài khoản</a></li>
 </ol>
 <div class="row">
   <div class="card mb-4 col mx-2">
     <div class="card-header">
       <i class="fas fa-table me-1"></i>
-      Biểu đồ thống kê tài khoản
+      Biểu đồ thống kê sản phẩm theo địa chỉ khách hàng
       <?php
       ?>
     </div>
@@ -33,18 +33,26 @@
   function drawChart() {
     // Create the data table.
     const data = google.visualization.arrayToDataTable([
-      ['Tài khoản', 'Số lượng'],
+      ['Địa chỉ', 'Tên Khách Hàng'],
       <?php
-      foreach ($listthongketaikhoan as $key) {
+      count($listbieudotaikhoan);
+      foreach ($listbieudotaikhoan as $key) {
         extract($key);
-        echo "['Só tài khoản khách hàng có trong website là : $soluong', '$soluong']";
+        echo "['$DiaChi','$soluong']";
+        // echo "['$DiaChi','$soluong']";
+        // echo "['$DiaChi', '$soluong']";
+        // echo "['$DiaChi', '$soluong']";
+        // echo "['$DiaChi', '$soluong']";
+        // echo "['$DiaChi', '$soluong']";
+        // echo "['$DiaChi', '$soluong']";
+        // echo "['$DiaChi', '$soluong']";
       }
       ?>
     ]);
 
     // Set chart options
     var options = {
-      'title': 'Thống kê tài khoản',
+      'title': 'Thống kê tài khoản theo địa chỉ khách hàng',
       'width': 500,
       'height': 300
     };
@@ -56,34 +64,3 @@
 
 
 </script>
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Thống kê tài khoản',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 1200px; height: 500px;"></div>
-  </body>
-</html>

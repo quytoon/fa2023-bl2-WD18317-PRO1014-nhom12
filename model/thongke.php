@@ -28,5 +28,21 @@ function loadthongke_donhang()
     join sanpham as c on c.IdSanPham = a.IdSanPham";
     $listthongkedonhang = pdo_query($sql);
     return $listthongkedonhang;
+
+function loadbieudo_taikhoan()
+{
+    $sql = "SELECT DiaChi ,count(*) as soluong from taikhoan GROUP BY DiaChi";
+    $listbieudotaikhoan = pdo_query($sql);
+    return $listbieudotaikhoan;
+}
+function loadthongke_sanpham()
+{
+    $sql = "SELECT sp.IdSanPham, sp.TenSanPham, sp.Gia, sp.img, sp.MoTa, sp.SoLuong, sp.iddm,
+            COUNT(bl.IdBinhLuan) AS 'soluong_binhluan'
+        FROM sanpham sp
+        LEFT JOIN binhluan bl ON sp.IdSanPham = bl.IdSanPham
+        GROUP BY sp.IdSanPham, sp.TenSanPham, sp.Gia, sp.img, sp.MoTa, sp.SoLuong, sp.iddm
+        ORDER BY soluong_binhluan DESC;";
+    return pdo_query($sql);
 }
 ?>

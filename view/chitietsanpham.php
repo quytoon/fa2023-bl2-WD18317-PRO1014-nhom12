@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ</a></span>/ <span
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Trang chủ</a></span>/ <span
                             class="mr-2"><a href="index.html">Cửa hàng</a></span>/ <span>Chi tiết sản phẩm</span></p>
                 <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
             </div>
@@ -20,6 +20,18 @@
                 echo '<a href="' . $img . '" class="image-popup"><img src="' . $img . '" class="img-fluid"
                         alt="anhsp"></a>';
                 ?>
+                <div class="row">
+                    <?php
+                    if ($anhsp == NULL) {
+                    } else {
+                        foreach ($anhsp as $key) {
+                            $img1 = $img_path . $key['urlAnh'];
+                            echo '<div class="col"><a href="' . $img1 . '" class="image-popup"><img src="' . $img1 . '" class="img-fluid"
+                            alt="anhsp"></a></div>';
+                        }
+                    }
+                    ?>
+                </div>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                 <h3>
@@ -42,7 +54,7 @@
                     </p>
                 </div>
                 <p class="price"><span>
-                        <?= $Gia ?> vnđ
+                        <?= number_format($Gia, 0, '.', ',') ?> vnđ
                     </span></p>
                 <p>
                     <?= $MoTa ?>
@@ -105,87 +117,74 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
 <section class="ftco-section">
     <div class="container">
-
         <div class="row">
-            <h2>Đánh giá của bạn về sản phẩm</h2>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form>
-                            <div class="box_title">Binh luan</div>
-                            <div class="box_content">
-                                <table>
-                                    <?php
-                                    foreach ($binhluan as $bl) {
-                                        extract($bl);
-                                         '
-                <tr>
-                    <td>' . $NoiDung . '</td>
-                    <td>' . $TenTaiKhoan . '</td>
-                    <td>' . date("d/m/Y", strtotime($NgayBinhLuan)) . '</td>
-                </tr>';
-                                    }
-                                    ?>
-                                </table>
-                            </div>
-                            <div>
-                                <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
-                                    <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
-                                    <input type="text" name="noidung">
-                                    <input type="submit" name="guibl" value="gui binh luan">
-
-                                    <div class="form-group">
-                                        <label for="rating">Điểm đánh giá:</label>
-                                        <div class="rating">
-                                            <span class="star ">&#9733;</span>
-                                            <span class="star ">&#9733;</span>
-                                            <span class="star ">&#9733;</span>
-                                            <span class="star ">&#9733;</span>
-                                            <span class="star ">&#9733;</span>
-                                        </div>
+                        <h2>Đánh giá của bạn về sản phẩm</h2>
+                        <div class="box_title">Bình luận</div>
+                        <div class="box_content">
+                            <table>
+                                <?php
+                                foreach ($binhluan as $bl) {
+                                    extract($bl);
+                                    echo '<tr>
+                                        <td>' . $TenTaiKhoan . ' :</td>
+                                        <td>' . $NoiDung . '</td>
+                                        <td>' . $DiemDanhGia . ' sao</td>
+                                        <td>' . date("d/m/Y", strtotime($NgayBinhLuan)) . '</td>
+                                    </tr>';
+                                }
+                                ?>
+                            </table>
+                        </div>
+                        <div>
+                            <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
+                                <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
+                                <input type="text" name="noidung">
+                                <div class="form-group">
+                                    <label for="rating">Điểm đánh giá:</label>
+                                    <div class="rating">
+                                        <span class="star ">&#9733;</span>
+                                        <span class="star ">&#9733;</span>
+                                        <span class="star ">&#9733;</span>
+                                        <span class="star ">&#9733;</span>
+                                        <span class="star ">&#9733;</span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
-                                </form>
-                            </div>
+                                </div>
+                                <input type="submit" name="guibl" value="Gửi bình luận và đánh giá">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
+
+            <div class="col-md-8 mt-4">
                 <h2>Đánh giá của những người dùng khác</h2>
-                <div class="col-md-8">
-                    <?php foreach ($binhluan as $key) { ?>
-                        <div class="card">
-                            <div class="card-body row">
-                                <div class="col-md-3" style="text-align: center;">
-                                    <img src="images/Frame 166.png" alt="Avatar" class="avatar"
-                                         style="width: 100px;border-radius: 50%;">
-                                    <h5 class="card-title">
-                                        <?= $key['TenTaiKhoan']; ?>
-                                    </h5>
-                                </div>
-                                <div class="col-md-9">
-                                    <p class="card-text">
-                                        <?= $key['NoiDung']; ?>
-                                    </p>
-                                    <div class="rating">
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                    </div>
+                <?php foreach ($binhluan as $key) { ?>
+                    <div class="card mb-4">
+                        <div class="card-body row">
+                            <div class="col-md-3" style="text-align: center;">
+                                <img src="<?= $img_path . $key['avatarUser']; ?>" alt="Avatar" class="avatar" style="width: 100px; border-radius: 50%;">
+                                <h5 class="card-title"><?= $key['TenTaiKhoan']; ?></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="card-text"><?= $key['NoiDung']; ?></p>
+                                <div class="rating">
+                                    Đánh giá: <?= $key['DiemDanhGia']; ?> sao
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
+    </div>
 </section>
+
 
 <section class="ftco-section">
     <div class="container">
@@ -198,50 +197,18 @@
     </div>
     <div class="container">
         <div class="row">
-            <!-- <div class="col-md-6 col-lg-3 ftco-animate">
-                <div class="product">
-                    <a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg"
-                            alt="Colorlib Template">
-                        <span class="status">30%</span>
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="#">Bell Pepper</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span class="mr-2 price-dc">$120.00</span><span
-                                        class="price-sale">$80.00</span></p>
-                            </div>
-                        </div>
-                        <div class="bottom-area d-flex px-3">
-                            <div class="m-auto d-flex">
-                                <a href="#"
-                                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                    <span><i class="ion-ios-menu"></i></span>
-                                </a>
-                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                    <span><i class="ion-ios-cart"></i></span>
-                                </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                    <span><i class="ion-ios-heart"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <?php
             foreach ($sanphamcl as $key) {
                 $img = $img_path . $key['img'];
                 echo '<div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
-                    <a href="index.php?act=chitietsanpham&idsp='.$key['IdSanPham'].'" class="img-prod"><img class="img-fluid" src="'.$img.'"
+                    <a href="index.php?act=chitietsanpham&idsp=' . $key['IdSanPham'] . '" class="img-prod"><img class="img-fluid" src="' . $img . '"
                             alt="Colorlib Template">
                         <span class="status">30%</span>
                         <div class="overlay"></div>
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="index.php?act=chitietsanpham&idsp='.$key['IdSanPham'].'">'.$key['TenSanPham'].'</a></h3>
+                        <h3><a href="index.php?act=chitietsanpham&idsp=' . $key['IdSanPham'] . '">' . $key['TenSanPham'] . '</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
                                 <p class="price"><span class="mr-2 price-dc">' . $Gia . '</span><span
@@ -254,11 +221,8 @@
                                     class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                     <span><i class="ion-ios-menu"></i></span>
                                 </a>
-                                <a href="index.php?act=themgiohang&idsp='.$key['IdSanPham'].'" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                <a href="index.php?act=themgiohang&idsp=' . $key['IdSanPham'] . '" class="buy-now d-flex justify-content-center align-items-center mx-1">
                                     <span><i class="ion-ios-cart"></i></span>
-                                </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                    <span><i class="ion-ios-heart"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -266,30 +230,11 @@
                 </div>
             </div>';
             }
-
             ?>
         </div>
     </div>
 </section>
 
-<!--<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">-->
-<!--    <div class="container py-4">-->
-<!--        <div class="row d-flex justify-content-center py-5">-->
-<!--            <div class="col-md-6">-->
-<!--                <h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>-->
-<!--                <span>Get e-mail updates about our latest shops and special offers</span>-->
-<!--            </div>-->
-<!--            <div class="col-md-6 d-flex align-items-center">-->
-<!--                <form action="#" class="subscribe-form">-->
-<!--                    <div class="form-group d-flex">-->
-<!--                        <input type="text" class="form-control" placeholder="Enter email address">-->
-<!--                        <input type="submit" value="Subscribe" class="submit px-3">-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
 <style>
     .star {
         color: black;
