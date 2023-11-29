@@ -126,7 +126,7 @@
                     <div class="card-body">
                         <h2>Đánh giá của bạn về sản phẩm</h2>
                         <div class="box_title">Bình luận</div>
-                        <div class="box_content">
+                        <!-- <div class="box_content">
                             <table>
                                 <?php
                                 foreach ($binhluan as $bl) {
@@ -140,9 +140,9 @@
                                 }
                                 ?>
                             </table>
-                        </div>
+                        </div> -->
                         <div>
-                            <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
+                            <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
                                 <input type="text" name="noidung">
                                 <div class="form-group">

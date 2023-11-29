@@ -36,7 +36,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "chitietsanpham":
             if (isset($_POST['guibl']) && $_POST['guibl']) {
-                $IdTaiKhoan = $_SESSION['IdTaiKhoan'];
+                $IdTaiKhoan = $_SESSION['TenTaiKhoan']["IdTaiKhoan"];
                 $IdSanPham = $_POST["IdSanPham"];
                 $NoiDung = $_POST["noidung"];
                 $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;
