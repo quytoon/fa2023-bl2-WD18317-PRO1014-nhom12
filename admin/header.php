@@ -39,7 +39,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="../index.php">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="../index.php?act=dangxuat">Đăng xuất</a></li>
                     <hr class="dropdown-divider" />
                     <li><a class="dropdown-item" href="../index.php">Về Trang chủ</a></li>
                 </ul>
