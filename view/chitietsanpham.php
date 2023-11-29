@@ -113,7 +113,7 @@
                         <?= $SoLuong ?> sản phẩm
                     </p>
                 </div>
-                <p><a href="cart.html" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+                <p><a href="index.php?act=themgiohang&idsp=<?=  $IdSanPham  ?>" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
             </div>
         </div>
     </div>
