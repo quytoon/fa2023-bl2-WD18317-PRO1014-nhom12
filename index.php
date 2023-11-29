@@ -10,6 +10,7 @@ include "model/danhmuc.php";
 include "model/binhluan.php";
 include "model/taikhoan.php";
 include "model/giohang.php";
+include "model/donhang.php";
 include "model/validate.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
@@ -53,6 +54,10 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "donhang":
+            $load_donhang = loadall_donhang(1);
+            include "view/donhang.php";
+            break;    
         case "giohang":
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
