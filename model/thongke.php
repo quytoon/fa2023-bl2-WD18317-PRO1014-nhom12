@@ -28,7 +28,7 @@ function loadthongke_donhang()
     join sanpham as c on c.IdSanPham = a.IdSanPham";
     $listthongkedonhang = pdo_query($sql);
     return $listthongkedonhang;
-
+}
 function loadbieudo_taikhoan()
 {
     $sql = "SELECT DiaChi ,count(*) as soluong from taikhoan GROUP BY DiaChi";
