@@ -138,6 +138,16 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                 $listthongketaikhoan = loadthongke_taikhoan();
                 include "thongke/thongketaikhoan.php";
                 break;
+
+            case 'thongkesanpham':
+                $thongkesp = loadthongke_sanpham();
+                include "thongke/thongkesanpham.php";
+                break;
+            case 'bieudosanpham':
+                $thongkesp = loadthongke_sanpham();
+                include "thongke/bieudosanpham.php";
+                break;
+
             case 'bieudotaikhoan':
                 $listthongketaikhoan = loadthongke_taikhoan();
                 include "thongke/bieudotaikhoan.php";

@@ -16,8 +16,8 @@ function checkDm($tenDanhMuc) {
     $sp = pdo_query_one($sql);
     return $sp;
 }
-function checkSp($TenSanPham) {
-    $sql = "SELECT * FROM danhmuc WHERE tenDanhMuc = '$TenSanPham'";
+function checkSp($tensp) {
+    $sql = "SELECT * FROM danhmuc WHERE tenDanhMuc = '$tensp'";
     $sp = pdo_query_one($sql);
     return $sp;
 }

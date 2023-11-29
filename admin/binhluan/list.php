@@ -29,7 +29,7 @@
                             <td>' . $NgayBinhLuan . '</td>
                             <td>' . $DiemDanhGia . '</td>
                             <td>
-                                <a href="' . $xoabl . '"><button type="button" class="btn btn-danger">Xóa</button></a>
+                                <a href="' . $xoabl . '"  onclick="return confirmDelete(\'' . $xoabl . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
                             </td>
                         </tr>';
             }
@@ -47,4 +47,12 @@
     $(document).ready(function() {
         $('#datatablesSimple').DataTable();
     });
+</script>
+
+<script>
+    function confirmDelete(deleteUrl) {
+        if (confirm("Bạn có chắc muốn xóa không?")) {
+            window.location.href = deleteUrl;
+        }
+    }
 </script>

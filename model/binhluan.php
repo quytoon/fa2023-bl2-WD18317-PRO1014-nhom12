@@ -10,14 +10,16 @@ function loadall_binhluan($idsp)
     $result = pdo_query($sql);
     return $result;
 }
-function them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia) {
-    $date = date('Y-m-d');
+
+function them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia)
+{
+    $date = date("Y-m-d H:i:s");
+
     $sql = "INSERT INTO binhluan(IdSanPham, IdTaiKhoan, NoiDung, NgayBinhLuan, DiemDanhGia)
-            VALUES('$IdSanPham', '$IdTaiKhoan', '$NoiDung', '$date', '$DiemDanhGia');";
-
-
+            VALUES('$IdSanPham', '$IdTaiKhoan', '$NoiDung', '$date', '$DiemDanhGia')";
     pdo_execute($sql);
 }
+
 function loadall_binhluan_admin($IdSanPham)
 {
     $sql = "select * from binhluan where 1";
@@ -26,6 +28,7 @@ function loadall_binhluan_admin($IdSanPham)
     $listbl = pdo_query($sql);
     return $listbl;
 }
+
 function xoa_binhluan($IdBinhLuan)
 {
     $sql = 'delete from binhluan where IdBinhLuan=' . $IdBinhLuan;

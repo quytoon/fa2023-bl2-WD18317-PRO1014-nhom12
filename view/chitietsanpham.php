@@ -126,7 +126,7 @@
                     <div class="card-body">
                         <h2>Đánh giá của bạn về sản phẩm</h2>
                         <div class="box_title">Bình luận</div>
-                        <div class="box_content">
+                        <!-- <div class="box_content">
                             <table>
                                 <?php
                                 foreach ($binhluan as $bl) {
@@ -140,30 +140,47 @@
                                 }
                                 ?>
                             </table>
-                        </div>
+                        </div> -->
                         <div>
-                            <form action="index.php?act=sanphamct&idsp=<?= $IdSanPham ?>" method="post">
+                            <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
                                 <input type="text" name="noidung">
-                                <div class="form-group">
+                                <div class="form-group" id="rating">
                                     <label for="rating">Điểm đánh giá:</label>
-                                    <div class="rating">
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
-                                        <span class="star ">&#9733;</span>
+                                    <div class="rating" >
+                                        <span class="star" data-rating="1">&#9733;</span>
+                                        <span class="star" data-rating="2">&#9733;</span>
+                                        <span class="star" data-rating="3">&#9733;</span>
+                                        <span class="star" data-rating="4">&#9733;</span>
+                                        <span class="star" data-rating="5">&#9733;</span>
                                     </div>
+                                    <input type="hidden" name="rating" id="selectedRating" value="0">
                                 </div>
                                 <input type="submit" name="guibl" value="Gửi bình luận và đánh giá">
                             </form>
                         </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const stars = document.querySelectorAll('.star');
+                                const ratingInput = document.getElementById('selectedRating');
+
+                                stars.forEach((star) => {
+                                    star.addEventListener('click', function() {
+                                        const ratingValue = this.getAttribute('data-rating');
+                                        ratingInput.value = ratingValue;
+                                        console.log('Selected Rating:', ratingValue);
+                                    });
+                                });
+                            });
+                        </script>
+
                     </div>
                 </div>
             </div>
 
             <div class="col-md-8 mt-4">
-                <h2>Đánh giá của những người dùng khác</h2>
+                <h2>Đánh giá của những người dùng </h2>
                 <?php foreach ($binhluan as $key) { ?>
                     <div class="card mb-4">
                         <div class="card-body row">

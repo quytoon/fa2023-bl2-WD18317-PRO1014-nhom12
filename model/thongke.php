@@ -45,4 +45,5 @@ function loadthongke_sanpham()
         ORDER BY soluong_binhluan DESC;";
     return pdo_query($sql);
 }
+
 ?>
