@@ -21,14 +21,13 @@ extract($_SESSION['TenTaiKhoan']);
 					<table class="table" style="width: 1100px">
 						<thead class="thead-primary">
 							<tr class="text-center">
-							<th>&nbsp;</th>
-
 								<th>Mã Đơn Hàng</th>
 								<!-- <th>Tên sản phẩm</th> -->
 								<th>Số lượng đơn hàng</th>
 								<th>Nơi nhận</th>
 								<th>Tình trạng</th>
 								<th>Hành động</th>
+								<th>&nbsp;</th>
 								
 							</tr>
 						</thead>
@@ -36,11 +35,11 @@ extract($_SESSION['TenTaiKhoan']);
 						<!-- <td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td> -->
 							<?php
 							foreach ($load_donhang as $key) {
-								extract($key);
+								extract($key);		
 								$linkdh = "index.php?act=chitietdonhang&IdDonHang=" . $IdDonHang;
 								echo '
 								<tr class="text-center">
-								<td> <button style="padding:0px 20px " type="submit" class="btn btn-danger btn-sm"><a href="index.php?act=huydonhang&IdDonHang='.$IdDonHang.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')">Hủy</a></button> </td>
+								
 								<td class="product-name" style="width:200px">
 									<h3>' . $IdDonHang . '</h3>
 								</td>
@@ -67,6 +66,7 @@ extract($_SESSION['TenTaiKhoan']);
 										echo "Hủy";
 									}
 								echo '</td>
+						 <td><button style="padding:0px 20px " type="submit" class="btn btn-danger btn-sm"><a href="index.php?act=huydonhang&IdDonHang='.$IdDonHang.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')">Hủy</a></button> </td>
 								<td><a href="'.$linkdh.'"><input type="submit" value="Xem chi tiết"></td>
 							</tr><!-- END TR-->
 								';

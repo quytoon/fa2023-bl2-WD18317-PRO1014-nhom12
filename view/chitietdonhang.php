@@ -30,57 +30,27 @@ extract($_SESSION['TenTaiKhoan']);
     <div class="card-body">
         <form method="post" action="xoa_san_pham.php">
             <input type="hidden" name="id_san_pham" value="<?=$IdSanPham?>">
-           
-
-            <?php
-                if($TrangThai == 3){
-            ?>
-                <div class="row">
-               
+            <div class="row">
                 <div class="col-md-4">
                 <img src="<?=$img?>" alt="Ảnh sản phẩm" class="img-fluid" width="300" height="100">
-    
                 </div>
-
                 <div class="col-md-4">
                     <p><strong><?=$TenSanPham?></strong></p>
                     <p>Giá: <strong><?=$Gia?></strong></p>
                     <p>Số lượng: <strong><?=$SoLuongSp?></strong></p>
                     <p>Tổng đơn hàng: <strong><?=$toltal?></strong></p>
                 </div>
-                
-                </div>     
-            <?php
-                    }else{
-            ?>
-                        <div class="row">
-               
-               <div class="col-md-4">
-               <img src="<?=$img?>" alt="Ảnh sản phẩm" class="img-fluid" width="300" height="100">
-             
-               </div>
-
-               <div class="col-md-4">
-                   <p><strong><?=$TenSanPham?></strong></p>
-                   <p>Giá: <strong><?=$Gia?></strong></p>
-                   <p>Số lượng: <strong><?=$SoLuongSp?></strong></p>
-                   <p>Tổng đơn hàng: <strong><?=$toltal?></strong></p>
-               </div>
-               
-               </div>     
-            <?php
-                    }
-            ?>
-               <?php   
-                    }
-                ?>       
-                <div class="col-md-4">
+                <?php
+    }
+          ?>  
+                 <div class="col-md-4">
                     <p><strong>Họ tên:</strong><?=$HoTen?></p>
                     <p><strong>Email:</strong><?=$Email?></p>
                     <p><strong>Địa chỉ:</strong> <?=$DiaChi?></p>
                     <p><strong>Số điện thoại:</strong><?=$SoDienThoai?></p>
                     <p><strong>Ngày đặt hàng:</strong> <?=$NgayDatHang?></p>    
                 </div>   
+            </div>              
         </form>
     </div>
                    

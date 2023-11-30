@@ -87,7 +87,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;     
         case "donhang":
-            $load_donhang = loadall_donhang($_GET['IdDonHang']);
+            $load_donhang = loadall_donhang(1);
             include "view/donhang.php";
             break;    
         case "giohang":
