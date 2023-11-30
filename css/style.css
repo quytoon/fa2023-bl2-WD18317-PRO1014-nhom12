@@ -5399,7 +5399,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
- 
+
 }
 
 .card-footer:last-child {
@@ -12473,6 +12473,7 @@ h5,
   background: black;
   color: #fff;
 }
+
 .product-category li a:hover {
   background: black;
   color: #fff;
@@ -13008,7 +13009,7 @@ h5,
   padding-left: 15px;
   padding-right: 15px;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.4) !important;
+  color: black !important;
   font-size: 14px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -13017,22 +13018,18 @@ h5,
 
 .billing-form .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:focus,
@@ -14411,11 +14408,13 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
+
 .color-btn {
   border: none;
   margin: 5px;
   cursor: pointer;
 }
+
 .color-btn.selected {
   border: 2px solid black;
 }

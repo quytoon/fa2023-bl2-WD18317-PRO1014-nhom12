@@ -1,9 +1,12 @@
 <?php
 //load all giỏ hàng theo id user
 function loadall_giohang($IdTaiKhoan) {
-    $sql = "SELECT * FROM giohang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
-    join taikhoan as c on c.IdTaiKhoan = a.IdTaiKhoan 
-    WHERE c.IdTaiKhoan = ".$IdTaiKhoan;
+    $sql = "SELECT b.Gia * a.SoLuongSp AS tong_gia,
+    SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
+    SUM(a.SoLuongSp ) OVER () AS tong_sl,a.*,b.*,c.*
+    FROM giohang AS a JOIN sanpham AS b ON a.IdSanPham = b.IdSanPham
+    JOIN taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
+    WHERE c.IdTaiKhoan =".$IdTaiKhoan;
     $result = pdo_query($sql);
     return $result;
 }
@@ -31,5 +34,17 @@ function delete_giohang($IdTaiKhoan) {
 function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan) {
     $sql = "update giohang set SoLuongSp = SoLuongSp + 1 where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan";
     pdo_execute($sql);
+}
+
+function demsoluong_giohang($IdSanPham) {
+    $sql = "SELECT SUM(SoLuongSp) as soluong FROM giohang WHERE IdTaiKhoan = $IdSanPham";
+    $result = pdo_query_one($sql);
+    return $result;
+}
+
+function insert_donhang($ngay,$tien,$id,$sl,$diachi){
+    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat) VALUES ('$ngay','$tien','$id','$sl','$diachi')";
+    $result = pdo_query($sql);
+    return $result;
 }
 ?>

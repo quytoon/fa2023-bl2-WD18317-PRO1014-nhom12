@@ -1,177 +1,245 @@
-    <div class="hero-wrap hero-bread" style="background-image: url('images/banner1.png');">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Trang chủ</a></span> <span>Hóa đơn</span></p>
-            <h1 class="mb-0 bread">Hóa đơn</h1>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="hero-wrap hero-bread" style="background-image: url('images/banner1.png');">
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate text-center">
+				<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Trang chủ</a></span> <span>Hóa đơn</span>
+				</p>
+				<h1 class="mb-0 bread">Hóa đơn</h1>
+			</div>
+		</div>
+	</div>
+</div>
 
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-7 ftco-animate">
-						<form action="#" class="billing-form">
-							<h3 class="mb-4 billing-heading">Chi tiết thanh toán</h3>
-	          	<div class="row align-items-end">
-	          		<div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="firstname">Họ</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="lastname">Tên</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-                </div>
-                <div class="w-100"></div>
-		            <div class="col-md-12">
-		            	<div class="form-group">
-		            		<label for="country">Thành Phố</label>
-		            		<div class="select-wrap">
-		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                  <select name="" id="" class="form-control">
-		                  	<option value="">Hà Nội</option>
-		                    <option value="">Đà Nẵng</option>
-		                    <option value="">Hải Phòng</option>
-		                    <option value="">Hồ Chí Minh</option>
-		                  </select>
-		                </div>
-		            	</div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="streetaddress">Địa chỉ</label>
-	                  <input type="text" class="form-control" placeholder="Số nhà">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Đường , ngõ , ngách">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="towncity">Khu Vực</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-		            		<label for="postcodezip">Mã Bưu Chính*</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="phone">Số Điện Thoại</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="emailaddress">Địa Chỉ Email</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                	<div class="form-group mt-4">
-										<div class="radio">
-										  <label class="mr-3"><input type="radio" name="optradio"> Tạo một tài khoản mới? </label>
-										  <label><input type="radio" name="optradio"> Gửi đến một địa chỉ khác </label>
-										</div>
-									</div>
-                </div>
-	            </div>
-	          </form><!-- END -->
+<section class="ftco-section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-7 ftco-animate">
+				<form action="index.php?act=xacnhanthanhtoan" class="billing-form" method="POST">
+					<h3 class="mb-4 billing-heading">Chi tiết thanh toán</h3>
+					<div class="row align-items-end">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstname">Họ và tên</label>
+								<?php extract($thongtinuser) ?>
+								<input type="text" class="form-control" placeholder="" value="<?= $HoTen ?>"
+									name="hoten">
+								<input type="hidden" class="form-control" placeholder="" value="<?= $IdTaiKhoan ?>"
+									name="id">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstname">Số điện thoại</label>
+								<input type="text" class="form-control" placeholder="" value="<?= $SoDienThoai ?>"
+									name="sdt">
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="country">Thành Phố</label>
+								<div class="select-wrap">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="thanhpho" id="thanhpho" class="form-control">
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="country">Quận huyện</label>
+								<div class="select-wrap">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="quanhuyen" id="quanhuyen" class="form-control">
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="country">Xã</label>
+								<div class="select-wrap">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="xa" id="xa" class="form-control">
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="streetaddress">Địa chỉ chi tiết</label>
+								<input type="text" class="form-control" placeholder="Số nhà" name="diachi">
+							</div>
+						</div>
+
+						<div class="w-100"></div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="emailaddress">Địa Chỉ Email</label>
+								<input type="text" class="form-control" placeholder="" name="email"
+									value="<?= $Email ?>">
+							</div>
+						</div>
+						<div class="w-100"></div>
 					</div>
-					<div class="col-xl-5">
-	          <div class="row mt-5 pt-3">
-	          	<div class="col-md-12 d-flex mb-5">
-	          		<div class="cart-detail cart-total p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Tổng hóa đơn</h3>
-	          			<p class="d-flex">
-		    						<span>Tổng đơn hàng</span>
-		    						<span>$20.60</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Vận chuyển</span>
-		    						<span>$0.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Giảm giá</span>
-		    						<span>$3.00</span>
-		    					</p>
-		    					<hr>
-		    					<p class="d-flex total-price">
-		    						<span>Tổng tiền</span>
-		    						<span>$17.60</span>
-		    					</p>
-								</div>
-	          	</div>
-	          	<div class="col-md-12">
-	          		<div class="cart-detail p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Phương thức thanh toán</h3>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Thanh toán qua chuyển khoản ngân hàng</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Thanh toán khi nhận hàng thành công</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Thanh toán bằng ví điện tử</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value="" class="mr-2">Tôi đã đọc và chấp nhận các điều khoản và điều kiện</label>
-											</div>
-										</div>
-									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Thanh Toán</a></p>
-								</div>
-	          	</div>
-	          </div>
-          </div> <!-- .col-md-8 -->
-        </div>
-      </div>
-    </section> <!-- .section -->
 
-		<!-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Điền địa chỉ email</h2>
-          	<span>Nhận thông tin mới nhất và ưu đãi đặc biệt của chúng tôi</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Điền địa chỉ email">
-                <input type="submit" value="Đăng ký" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>	 -->
+			</div>
+			<div class="col-xl-5">
+				<div class="row mt-5 pt-3">
+					<div class="col-md-12 d-flex mb-5">
+						<div class="cart-detail cart-total p-3 p-md-4">
+							<h3 class="billing-heading mb-4">Tổng hóa đơn</h3>
+							<p class="d-flex">
+								<span>Đơn hàng</span>
+							</p>
+
+							<?php
+							foreach($load_giohang as $key) {
+								extract($key);
+								echo '<p class="d-flex">
+										<span>'.$TenSanPham.' x'.$SoLuongSp.'</span>
+										  <span>'.number_format($tong_gia).' vnđ</span>
+										  </p>';
+							}
+							?>
+
+							<p class="d-flex">
+								<span>Tổng đơn hàng</span>
+								<?= '<span>'.number_format($load_giohang['0']['tong_bill']).' vnđ</span>' ?>
+							</p>
+							<p class="d-flex">
+								<span>Vận chuyển</span>
+								<span>$0.00</span>
+							</p>
+							<p class="d-flex">
+								<span>Giảm giá</span>
+								<span>$0.00</span>
+							</p>
+							<hr>
+							<p class="d-flex total-price">
+								<span>Tổng tiền</span>
+								<span>
+									<?= number_format($load_giohang['0']['tong_bill']).' vnđ' ?>
+								</span>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="cart-detail p-3 p-md-4">
+							<h3 class="billing-heading mb-4">Phương thức thanh toán</h3>
+							<div class="form-group">
+								<div class="col-md-12">
+									<div class="radio">
+										<label><input type="radio" name="optradio" class="mr-2" value="1"> Thanh toán
+											qua chuyển
+											khoản ngân hàng</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-12">
+									<div class="radio">
+										<label><input type="radio" name="optradio" class="mr-2" value="2" checked> Thanh
+											toán
+											khi nhận
+											hàng</label>
+									</div>
+								</div>
+							</div>
+							<input type="submit" class="btn btn-primary py-3 px-4" value="Thanh toán" name="thanhtoan">
+							</form><!-- END -->
+						</div>
+					</div>
+				</div>
+			</div> <!-- .col-md-8 -->
+		</div>
+	</div>
+</section> <!-- .section -->
+
+<!-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+	  <div class="container py-4">
+		<div class="row d-flex justify-content-center py-5">
+		  <div class="col-md-6">
+			  <h2 style="font-size: 22px;" class="mb-0">Điền địa chỉ email</h2>
+			  <span>Nhận thông tin mới nhất và ưu đãi đặc biệt của chúng tôi</span>
+		  </div>
+		  <div class="col-md-6 d-flex align-items-center">
+			<form action="#" class="subscribe-form">
+			  <div class="form-group d-flex">
+				<input type="text" class="form-control" placeholder="Điền địa chỉ email">
+				<input type="submit" value="Đăng ký" class="submit px-3">
+			  </div>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</section>	 -->
+<script>
+	function loadtinhthanh(DiaChi) {
+		const apiDiaChi = "https://provinces.open-api.vn/api/?depth=3";
+
+		fetch(apiDiaChi)
+			.then(response => response.json())
+			.then(data => {
+				const quanSelect = document.getElementById("quanhuyen");
+				const phuongSelect = document.getElementById("xa");
+				const thanhPhoSelect = document.getElementById("thanhpho");
+
+				data.forEach(item => {
+					let option = document.createElement("option");
+					option.value = `${item.name}`;
+					option.text = `${item.name}`;
+					if (item.name == DiaChi) {
+						option.selected = true;
+					};
+					thanhPhoSelect.add(option);
+				});
+
+				thanhPhoSelect.addEventListener("change", displayDistricts);
+
+				function displayDistricts() {
+					// Clear Quận and Phường select
+					quanSelect.innerHTML = "<option value=''>Chọn quận</option>";
+					phuongSelect.innerHTML = "<option value=''>Chọn phường</option>";
+
+					// Get the selected Thành phố code
+					const selectedCityCode = thanhPhoSelect.value;
+
+					// Find the selected city in the data
+					const selectedCity = data.find(item => item.name == selectedCityCode);
+
+					// Populate Quận select with districts of the selected city
+					selectedCity.districts.forEach(district => {
+						let option = document.createElement("option");
+						option.value = district.name;
+						option.text = district.name;
+						quanSelect.add(option);
+					});
+				}
+
+				quanSelect.addEventListener("change", displayWards);
+
+				function displayWards() {
+					// Clear Phường select
+					phuongSelect.innerHTML = "<option value=''>Chọn phường</option>";
+
+					// Get the selected Quận code
+					const selectedDistrictCode = quanSelect.value;
+
+					// Find the selected district in the data
+					const selectedDistrict = data.flatMap(item => item.districts).find(district => district.name == selectedDistrictCode);
+
+					// Populate Phường select with wards of the selected district
+					selectedDistrict.wards.forEach(ward => {
+						let option = document.createElement("option");
+						option.value = ward.name;
+						option.text = ward.name;
+						phuongSelect.add(option);
+					});
+				}
+			});
+	}
+
+	loadtinhthanh('<?php echo $DiaChi; ?>');
+</script>

@@ -71,7 +71,15 @@
 					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>
 
 					<li class="nav-item cta cta-colored"><a href="index.php?act=giohang" class="nav-link"><span
-								class="icon-shopping_cart"></span>[0]</a></li>
+								class="icon-shopping_cart"></span>
+							<?php if(isset($_SESSION['TenTaiKhoan'])) {
+								extract(demsoluong_giohang($_SESSION['TenTaiKhoan']["IdTaiKhoan"]));
+								echo $soluong;
+							} else {
+								echo "[0]";
+							}
+							?>
+						</a></li>
 
 					<?php
 					if(isset($_SESSION['TenTaiKhoan'])) {
@@ -94,12 +102,12 @@
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
 								<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
-						<?php
+							<?php
 								} else {
 									?>
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 								<li class="nav-item"><a href="admin_staff/index.php" class="nav-link">Đăng nhập nhân viên</a></li>
-						<?php
+							<?php
 								}
 								?>
 					<?php } else if(!isset($_SESSION['TenTaiKhoan'])) { ?>

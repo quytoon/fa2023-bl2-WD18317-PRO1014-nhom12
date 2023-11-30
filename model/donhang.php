@@ -1,13 +1,14 @@
 <?php
 
-function loadall_donhang($IdDonHang)
+function loadall_donhang($idtk)
 {
     $sql = "SELECT donhang.*, COUNT(chitietdonhang.IdDonHang) as soluong
     FROM donhang
     LEFT JOIN chitietdonhang ON donhang.IdDonHang = chitietdonhang.IdDonHang
-    GROUP BY donhang.IdDonHang;";
+    WHERE donhang.IdTaiKhoan = '$idtk'
+    GROUP BY donhang.IdDonHang ORDER BY donhang.NgayDatHang desc;";
     $load_donhang = pdo_query($sql);
-    return $load_donhang;   
+    return $load_donhang;
 }
 //load thông tin của đơn hàng được chọn
 function loadall_dh_sp_tk($IdDonHang)
