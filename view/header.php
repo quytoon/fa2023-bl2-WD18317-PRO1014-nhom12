@@ -86,14 +86,14 @@
 								<?php if($role == 1) { ?>
 									<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 									<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
-									<a href="index.php?act=donhang" class="dropdown-item">Lịch sử đơn hàng</a>
+									<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
 							<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
 							<?php
 								} else if($role == 0) {
 									?>
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
-								<a href="index.php?act=donhang" class="dropdown-item">Lịch sử đơn hàng</a>
+								<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
 						<?php
 								} else {
 									?>

@@ -54,6 +54,38 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "chitietdonhang":
+            if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+                $donhang = load_chitietdonhang($_GET['IdDonHang']);
+                include "view/chitietdonhang.php";
+            } else {
+                include "view/home.php";
+            }
+            break; 
+        case "huydonhang":
+            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != ''){
+                if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+                    $huy_giohang = huy_donhang($_GET['IdDonHang']);
+                    $load_donhang = loadall_donhang($_GET['IdDonHang']);
+                    include "view/donhang.php";
+                } else {
+                    include "view/home.php";
+                }
+            }
+            break;
+        case "xoagiohang":
+            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    include "view/giohang.php";
+                } else {
+                    include "view/home.php";
+                }
+            } else {
+                include "view/taikhoan/dangnhap.php";
+            }
+            break;     
         case "donhang":
             $load_donhang = loadall_donhang(1);
             include "view/donhang.php";
@@ -133,6 +165,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 } else {
                     $loginMess = "dang nhap khong thanh cong";
                 }
+                echo"<meta http-equiv='refresh' content='0;url=index.php'>";
             }
             include "view/taikhoan/dangnhap.php";
 
@@ -161,7 +194,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
         case "dangxuat":
             dangxuat();
-            include "view/home.php";
+            echo"<meta http-equiv='refresh' content='0;url=index.php'>";
+     
             break;
         case "quenmk":
             if(isset($_POST['guimail'])) {
@@ -175,7 +209,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 // }
             }
             include "view/taikhoan/quenmatkhau.php";
-            break;
+            break;  
     }
 } else {
     include "view/home.php";
