@@ -41,7 +41,7 @@
                     </li>
                     <li><a class="dropdown-item" href="../index.php?act=dangxuat">Đăng xuất</a></li>
                     <hr class="dropdown-divider" />
-                    <li><a class="dropdown-item" href="../index.php">Về Trang chủ</a></li>
+                    <li><a class="dropdown-item" href="../index.php">Về trang người dùng</a></li>
                 </ul>
             </li>
         </ul>
@@ -111,5 +111,4 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Trang chủ Admin</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active"><a href="index.php">Admin</a></li>
-                    </ol>   
+                        <li class="breadcrumb-item active"><a href="index.php">Admin</a></li>  

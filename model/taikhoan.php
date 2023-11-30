@@ -111,4 +111,10 @@ function update_taikhoan($TenTaiKhoan,$MatKhau,$HoTen,$DiaChi,$Email,$SoDienThoa
     $sql = "UPDATE `taikhoan` SET `TenTaiKhoan` = '{$TenTaiKhoan}', `MatKhau` = '{$MatKhau}', `HoTen` = '{$HoTen}', `DiaChi` = '{$DiaChi}', `Email` = '{$Email}', `SoDienThoai` = '{$SoDienThoai}', `avatarUser` = '{$avatarUser}', `role` = '{$role}' WHERE `taikhoan`.`IdTaiKhoan` = $IdTaiKhoan";
     pdo_execute($sql);
 }
+
+//uupdate trang thai
+function update_trangthai($TrangThai,$luachon){
+    $sql = "UPDATE donhang set TrangThai = $TrangThai where IdDonHang = $luachon";
+    pdo_execute($sql);
+}
 ?>

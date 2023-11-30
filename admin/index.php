@@ -316,9 +316,22 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                     include 'danhmuc/chitiet.php';
                 }
                 break;
-
+            case 'updatetrangthai':
+                if (isset($_POST['capnhat'])) {
+                    $luachon = $_POST['luachon'];
+                    $id = $_GET['IdDonHang'];
+                    $update=update_trangthai($luachon,$id);
+                    $listdonhang = loadthongke_donhang();
+                    include "donhang/listdonhang.php";
+                }
+                break;
+            case 'chitietdonhang':
+                if(isset($_GET['IdChiTietDonHang']) && ($_GET['IdChiTietDonHang'])){
+                    $load_donhang=loadall_dh_sp_tk($_GET['IdChiTietDonHang']);
+                    include 'donhang/chitiet.php';             
+                }
+                break;    
         }
-
     } else {
         include 'home.php';
     }
