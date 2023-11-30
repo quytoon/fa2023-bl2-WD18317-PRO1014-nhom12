@@ -63,11 +63,11 @@ extract($_SESSION['TenTaiKhoan']);
 									}else if($TrangThai == 3){
 										echo "Giao hàng thành công";
 									}else if($TrangThai == 0){
-										echo "Hủy";
+										echo "Đã hủy";
 									}
 								echo '</td>
-						 <td><button style="padding:0px 20px " type="submit" class="btn btn-danger btn-sm"><a href="index.php?act=huydonhang&IdDonHang='.$IdDonHang.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')">Hủy</a></button> </td>
-								<td><a href="'.$linkdh.'"><input type="submit" value="Xem chi tiết"></td>
+						 <td><a class="btn btn-primary" href="index.php?act=huydonhang&IdDonHang='.$IdDonHang.'" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')">Hủy</a>
+								<a href="'.$linkdh.'"><input type="submit" value="Xem chi tiết" class="btn btn-primary"></td>
 							</tr><!-- END TR-->
 								';
 							}
