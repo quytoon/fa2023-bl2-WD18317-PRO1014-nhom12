@@ -110,8 +110,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                             break;
                         }
                     }
-                    if(!$productExists) {
-                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    if(!$productExists){
+                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'] );
                     }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     include "view/giohang.php";

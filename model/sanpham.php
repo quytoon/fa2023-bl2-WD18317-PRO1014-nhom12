@@ -98,4 +98,12 @@ function delete_sp_dm($id) {
     $sql = "DELETE FROM sanpham WHERE `sanpham`.`iddm` = ".$id;
     pdo_execute($sql);
 }
+function delete_sp_gh($IdSanPham) {
+    $sql = 'delete from giohang where IdSanPham='.$IdSanPham;
+    pdo_execute($sql);
+}
+function delete_sp_bl($IdSanPham) {
+    $sql = 'delete from binhluan where IdSanPham='.$IdSanPham;
+    pdo_execute($sql);
+}
 ?>

@@ -1,3 +1,5 @@
+/<a href="index.php?act=dsbl">Quản Lý Bình Luận</a></li>
+</ol>
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -29,7 +31,7 @@
                             <td>' . $NgayBinhLuan . '</td>
                             <td>' . $DiemDanhGia . '</td>
                             <td>
-                                <a href="' . $xoabl . '"  onclick="return confirmDelete(\'' . $xoabl . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
+                                <a href="' . $xoabl . '" onclick="return confirmDelete(\'' . $xoabl . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
                             </td>
                         </tr>';
             }
@@ -38,21 +40,20 @@
         </table>
     </div>
 </div>
+
 <!-- Add these lines to include DataTables CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-<!-- Add this script to initialize DataTables with search functionality -->
+<!-- Add this script to initialize DataTables with search functionality and confirmDelete function -->
 <script>
     $(document).ready(function() {
         $('#datatablesSimple').DataTable();
-    });
-</script>
 
-<script>
-    function confirmDelete(deleteUrl) {
-        if (confirm("Bạn có chắc muốn xóa không?")) {
-            window.location.href = deleteUrl;
+        function confirmDelete(deleteUrl) {
+            if (confirm("Bạn có chắc muốn xóa không?")) {
+                window.location.href = deleteUrl;
+            }
         }
-    }
+    });
 </script>

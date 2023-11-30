@@ -1,3 +1,5 @@
+/<a href="">sửa sản phẩm</a>
+</ol>
 <?php
 if(is_array($sanpham)) {
     extract($sanpham);
