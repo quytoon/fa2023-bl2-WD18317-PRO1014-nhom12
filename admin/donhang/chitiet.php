@@ -11,12 +11,12 @@
             <thead>
                 <tr>
                     <th>ID đơn hàng</th>
-                    <th>Tên khách hàng</th>
                     <th>Ảnh sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số Lượng</th>
                     <th>Ngày đặt hàng</th>
+                    <th>Nơi nhận hàng</th>
                     <th>Tổng đơn hàng</th>
                     <th>Trạng thái</th>
 
@@ -24,17 +24,34 @@
             </thead>
             <tbody>
                 <?php
+                 function soSanhNgayDatHang($a, $b) {
+                    return strtotime($a['NgayDatHang']) - strtotime($b['NgayDatHang']);
+                }
+                
+                // Sắp xếp mảng $listdonhang theo ngày tăng dần
+                usort($load_donhang, 'soSanhNgayDatHang');
+
                 foreach($load_donhang as $key => $value) {
                     extract($value);
                     $img = '../upload/'.$img;
+                    $ngay = $NgayDatHang;
+
+                    // Chuyển đổi chuỗi ngày thành timestamp
+                    $timestamp = strtotime($ngay);
+                
+                    // Định dạng lại ngày với định dạng mong muốn
+                    $ngayDaDoi = date("d-m-Y", $timestamp);
                     echo '<tr>
                                 <td>'.$IdDonHang.'</td>
-                                <td>'.$TenTaiKhoan.'</td>
+                              
                                 <td><img src="'.$img.'" height="80" width ="80"></td>
                                 <td>'.$TenSanPham.'</td>
                                 <td>'.number_format($Gia, 0, '.', ',').' VND</td>
-                                <td>'.$SoLuongSp.'</td>
-                                <td>'.$NgayDatHang.'</td>
+                                <td>'.$SoLuong.'</td>
+                              
+                                <td>'.$ngayDaDoi.'</td>
+            <td>' . $DiaChiDat . '</td>
+
                                 <td>'.number_format($TongTien, 0, '.', ',').' VND</td>';                       
                                 if($TrangThai == 1){
                                     echo "<td>Đang xác nhận</td>";

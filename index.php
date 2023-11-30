@@ -54,6 +54,38 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break;
+        case "chitietdonhang":
+            if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+                $donhang = load_chitietdonhang($_GET['IdDonHang']);
+                include "view/chitietdonhang.php";
+            } else {
+                include "view/home.php";
+            }
+            break; 
+        case "xoadonhang":
+            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != ''){
+                if(isset($_GET['IdChiTietDonHang']) && $_GET['IdChiTietDonHang'] > 0) {
+                    $delete_giohang = delete_donhang($_GET['IdChiTietDonHang']);
+                    $donhang = load_chitietdonhang($_GET['IdChiTietDonHang']);
+                    include "view/chitietdonhang.php";
+                } else {
+                    include "view/home.php";
+                }
+            }
+            break;
+        case "xoagiohang":
+            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    include "view/giohang.php";
+                } else {
+                    include "view/home.php";
+                }
+            } else {
+                include "view/taikhoan/dangnhap.php";
+            }
+            break;     
         case "donhang":
             $load_donhang = loadall_donhang(1);
             include "view/donhang.php";
@@ -177,7 +209,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 // }
             }
             include "view/taikhoan/quenmatkhau.php";
-            break;
+            break;  
     }
 } else {
     include "view/home.php";
