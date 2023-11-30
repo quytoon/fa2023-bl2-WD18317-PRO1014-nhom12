@@ -10,51 +10,59 @@
             <thead>
                 <tr>
                     <th>Id đơn hàng</th>
-                    <th>Sản phẩm</th>
-                    <th>Ngày đặt hàng</th>
-                    <th>Tổng tiền</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày đặt hàng</th>    
+                    <th>Nơi nhận hàng</th> 
                     <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Id đơn hàng</th>
-                    <th>Sản phẩm</th>
+                    <th>Id đơn hàng</th> 
+                    <th>Tên khách hàng</th>   
+                    <th>Số điện thoại</th> 
                     <th>Ngày đặt hàng</th>
-                    <th>Tổng tiền</th>
+                    <th>Nơi nhận hàng</th> 
                     <th>Trạng thái</th>
                     <th>Hành động</th>
-
                 </tr>
             </tfoot>
             <tbody>
             <?php
+          
+            
 foreach ($listdonhang as $key) {
     extract($key);
-    $chitietdonhang = "index.php?act=chitietdonhang&IdDonHang=" . $IdDonHang;
+    $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=" . $IdDonHang;
+   
     echo '<tr>
             <td>' . $IdDonHang . '</td>
-            <td>' . $TenSanPham . '</td>
+            <td>' . $TenTaiKhoan . '</td>
+            <td>' . $SoDienThoai . ' </td>
             <td>' . $NgayDatHang . '</td>
-            <td>' . $TongTien . '</td>
+            <td>' . $DiaChiDat . '</td>
+            
             <td>
-                <form method="post" action="index.php?act=updatetrangthai&IdDonHang='.$IdDonHang.'">
-                    <select name="luachon">
-                        <option value ="1" ' . ($TrangThai == 1 ? 'selected' : '') . '>Đang xác nhận</option>
-                        <option value ="2" ' . ($TrangThai == 2 ? 'selected' : '') . '>Đang giao hàng</option>
-                        <option value ="3" ' . ($TrangThai == 3 ? 'selected' : '') . '>Giao hàng thành công</option>
-                        <option value ="0" ' . ($TrangThai == 0 ? 'selected' : '') . '>Hủy</option>
-                    </select>
-                    <button type="submit" name="capnhat">Cập nhật</button>
-                </form>
-            </td>
+            <form method="post" action="index.php?act=updatetrangthai&IdDonHang='.$IdDonHang.'">
+                <select name="luachon" >
+                
+                ' . ($TrangThai != 2 ? '<option value ="1" ' . ($TrangThai == 1 ? 'selected' : '') . '>Đang xác nhận</option>' : '') . '
+                ' . ($TrangThai != 3 ?  '<option value ="2" ' . ($TrangThai == 3 ? 'selected' : '') . '>Đang giao hàng</option>' : '') . '
+        
+                    <option value ="3" ' . ($TrangThai == 3 ? 'selected' : '') . '>Giao hàng thành công</option>
+                    <option value ="0" ' . ($TrangThai == 0 ? 'disabled selected ' : '') . '>Hủy</option>
+                </select>
+                <button type="submit" name="capnhat">Cập nhật</button>
+            </form>
+        </td>
 
-            <td>"
+            <td>
                 <a href="'.$chitietdonhang.'"><input type="submit" value="Xem chi tiết">
             </td>
-          </tr>';
-    }
+          </tr>';     
+    } 
 ?> 
                 <!-- $suadh = "index.php?act=updatedonhang&IdDonHang=" . $IdDonHang;
                 $xoadh = "index.php?act=xoadh&IdDonHang=" . $IdDonHang; -->

@@ -10,8 +10,8 @@
                         <thead>
                             <tr>
                                 <th>TÊN USER</th>
-                                <th>SẢN PHẨM</th>
-                                <th>NGÀY ĐẶT HÀNG</th>
+                                <th>SỐ LƯỢNG</th>
+                                <th>NGÀY ĐẶ<Table></Table> HÀNG</th>
                                 <th>TỔNG TIỀN(VNĐ)</th>
                             </tr>
                         </thead>
@@ -28,7 +28,7 @@
                                 extract($key);
                                 echo '<tr>
                                         <td>' . $TenTaiKhoan . '</td>
-                                        <td>' . $TenSanPham . '</td>
+                                        <td>' . $SoLuongSp . '</td>  
                                         <td>' . $NgayDatHang . '</td>
                                         <td>' . $TongTien . '</td>
                                     </tr>';

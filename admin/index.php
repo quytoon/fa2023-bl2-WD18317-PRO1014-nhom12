@@ -326,8 +326,8 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                 }
                 break;
             case 'chitietdonhang':
-                if(isset($_GET['IdDonHang']) && ($_GET['IdDonHang'])){
-                    $load_donhang=loadall_dh_sp_tk($_GET['IdDonHang']);
+                if(isset($_GET['IdChiTietDonHang']) && ($_GET['IdChiTietDonHang'])){
+                    $load_donhang=loadall_dh_sp_tk($_GET['IdChiTietDonHang']);
                     include 'donhang/chitiet.php';             
                 }
                 break;    
