@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2023 lúc 03:35 AM
+-- Thời gian đã tạo: Th10 30, 2023 lúc 12:38 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -88,11 +88,6 @@ CREATE TABLE `binhluan` (
 --
 
 INSERT INTO `binhluan` (`IdBinhLuan`, `IdSanPham`, `IdTaiKhoan`, `NoiDung`, `NgayBinhLuan`, `DiemDanhGia`, `TrangThai`) VALUES
-(1, 1, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-11', 5, 0),
-(2, 2, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-10', 4, 0),
-(3, 3, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-09', 3, 0),
-(4, 4, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-08', 2, 0),
-(5, 5, 1, 'Sản phẩm đẹp gần bằng nyc', '2023-11-07', 1, 0),
 (6, 1, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-06', 2, 0),
 (7, 2, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-05', 3, 0),
 (8, 3, 2, 'Sản phẩm xấu gần bằng nyc', '2023-11-04', 4, 0),
@@ -109,20 +104,18 @@ CREATE TABLE `chitietdonhang` (
   `IdDonHang` int(11) NOT NULL,
   `IdSanPham` int(11) NOT NULL,
   `SoLuong` int(11) NOT NULL,
-  `Gia` double(10,2) NOT NULL DEFAULT 0.00
+  `Gia` double(10,2) NOT NULL DEFAULT 0.00,
+  `Trangthai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
 
-INSERT INTO `chitietdonhang` (`IdChiTietDonHang`, `IdDonHang`, `IdSanPham`, `SoLuong`, `Gia`) VALUES
-(1, 1, 1, 1, 2200000.00),
-(2, 1, 2, 1, 1900000.00),
-(3, 1, 3, 1, 2500000.00),
-(4, 1, 4, 1, 2600000.00),
-(5, 2, 1, 2, 3800000.00),
-(6, 2, 2, 4, 10000000.00);
+INSERT INTO `chitietdonhang` (`IdChiTietDonHang`, `IdDonHang`, `IdSanPham`, `SoLuong`, `Gia`, `Trangthai`) VALUES
+(1, 1, 2, 2, 0.00, 3),
+(3, 1, 3, 1, 2500000.00, 0),
+(5, 2, 1, 2, 3800000.00, 0);
 
 -- --------------------------------------------------------
 
@@ -161,17 +154,18 @@ CREATE TABLE `donhang` (
   `TongTien` float NOT NULL,
   `TrangThai` int(11) NOT NULL,
   `IdTaiKhoan` int(11) NOT NULL,
-  `IdSanPham` int(11) NOT NULL,
-  `SoLuongSp` int(11) NOT NULL DEFAULT 1
+  `SoLuongSp` int(11) NOT NULL DEFAULT 1,
+  `DiaChiDat` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`IdDonHang`, `NgayDatHang`, `TongTien`, `TrangThai`, `IdTaiKhoan`, `IdSanPham`, `SoLuongSp`) VALUES
-(1, '2023-11-11', 9200000, 1, 1, 1, 1),
-(2, '2023-10-11', 13800000, 1, 1, 2, 1);
+INSERT INTO `donhang` (`IdDonHang`, `NgayDatHang`, `TongTien`, `TrangThai`, `IdTaiKhoan`, `SoLuongSp`, `DiaChiDat`) VALUES
+(1, '2023-11-11', 9200000, 1, 1, 13, 'mễ trì hà nội việt nam'),
+(2, '2023-10-11', 13800000, 2, 1, 1, '6/98 phú đô hà nội'),
+(3, '2023-11-29', 130000, 0, 1, 1, 'sân vận động mý đình');
 
 -- --------------------------------------------------------
 
@@ -240,7 +234,9 @@ INSERT INTO `giohang` (`IdGioHang`, `IdSanPham`, `IdTaiKhoan`, `SoLuongSp`) VALU
 (10, 3, 1, 1),
 (11, 5, 1, 1),
 (12, 2, 1, 1),
-(13, 3, 1, 1);
+(13, 3, 1, 1),
+(19, 6, 3, 1),
+(20, 5, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -380,8 +376,7 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`IdDonHang`),
-  ADD KEY `lk_dh_tk` (`IdTaiKhoan`),
-  ADD KEY `lk_dh_sp` (`IdSanPham`);
+  ADD KEY `lk_dh_tk` (`IdTaiKhoan`);
 
 --
 -- Chỉ mục cho bảng `giay_bienthe`
@@ -451,13 +446,13 @@ ALTER TABLE `chitietdonhang`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `IdDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `giay_bienthe`
@@ -469,7 +464,7 @@ ALTER TABLE `giay_bienthe`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `mausac`
@@ -523,7 +518,6 @@ ALTER TABLE `chitietdonhang`
 -- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  ADD CONSTRAINT `lk_dh_sp` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
   ADD CONSTRAINT `lk_dh_tk` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
 
 --
