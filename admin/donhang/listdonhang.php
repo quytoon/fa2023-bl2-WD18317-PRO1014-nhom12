@@ -31,30 +31,17 @@
             </tfoot>
             <tbody>
             <?php
-            function soSanhNgayDatHang($a, $b) {
-                return strtotime($a['NgayDatHang']) - strtotime($b['NgayDatHang']);
-            }
-            
-            // Sắp xếp mảng $listdonhang theo ngày tăng dần
-            usort($listdonhang, 'soSanhNgayDatHang');
+          
             
 foreach ($listdonhang as $key) {
     extract($key);
-    $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=" . $IdChiTietDonHang;
-    $ngay = $NgayDatHang;
-
-    // Chuyển đổi chuỗi ngày thành timestamp
-    $timestamp = strtotime($ngay);
-
-    // Định dạng lại ngày với định dạng mong muốn
-    $ngayDaDoi = date("d-m-Y", $timestamp);
-
-
+    $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=" . $IdDonHang;
+   
     echo '<tr>
             <td>' . $IdDonHang . '</td>
             <td>' . $TenTaiKhoan . '</td>
             <td>' . $SoDienThoai . ' </td>
-            <td>' . $ngayDaDoi . '</td>
+            <td>' . $NgayDatHang . '</td>
             <td>' . $DiaChiDat . '</td>
             
             <td>
@@ -65,7 +52,7 @@ foreach ($listdonhang as $key) {
                 ' . ($TrangThai != 3 ?  '<option value ="2" ' . ($TrangThai == 3 ? 'selected' : '') . '>Đang giao hàng</option>' : '') . '
         
                     <option value ="3" ' . ($TrangThai == 3 ? 'selected' : '') . '>Giao hàng thành công</option>
-                    <option value ="0" ' . ($TrangThai == 0 ? 'selected' : '') . '>Hủy</option>
+                    <option value ="0" ' . ($TrangThai == 0 ? 'disabled selected ' : '') . '>Hủy</option>
                 </select>
                 <button type="submit" name="capnhat">Cập nhật</button>
             </form>

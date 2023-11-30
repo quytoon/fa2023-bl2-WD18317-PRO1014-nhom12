@@ -20,47 +20,73 @@ extract($_SESSION['TenTaiKhoan']);
                 <div class="card-header">
                     <h2>Đơn hàng</h2>
                 </div>
-                <?php foreach ($donhang as $key) {
-    extract($key);
-    $img = $img_path . $img;
-    $toltal = $Gia * $SoLuongSp;
-    global $bill;
-    $bill += $toltal;
+    <?php foreach ($donhang as $key) {
+        extract($key);
+        $img = $img_path . $img;
+        $toltal = $Gia * $SoLuongSp;
+        global $bill;
+        $bill += $toltal;
     ?>
     <div class="card-body">
         <form method="post" action="xoa_san_pham.php">
             <input type="hidden" name="id_san_pham" value="<?=$IdSanPham?>">
-            <div class="row">
+           
+
+            <?php
+                if($TrangThai == 3){
+            ?>
+                <div class="row">
+               
                 <div class="col-md-4">
-                    <img src="<?=$img?>" alt="Ảnh sản phẩm" class="img-fluid" width="300" height="100">
-                    <?php echo '<button type="submit" name="xoa_san_pham" class="btn btn-danger btn-sm"><a href="index.php?act=xoadonhang&IdChiTietDonHang='.$IdChiTietDonHang.'">Xóa</a></button> '?>
-                </div>
+                <img src="<?=$img?>" alt="Ảnh sản phẩm" class="img-fluid" width="300" height="100">
     
+                </div>
+
                 <div class="col-md-4">
                     <p><strong><?=$TenSanPham?></strong></p>
                     <p>Giá: <strong><?=$Gia?></strong></p>
                     <p>Số lượng: <strong><?=$SoLuongSp?></strong></p>
                     <p>Tổng đơn hàng: <strong><?=$toltal?></strong></p>
                 </div>
+                
+                </div>     
+            <?php
+                    }else{
+            ?>
+                        <div class="row">
+               
+               <div class="col-md-4">
+               <img src="<?=$img?>" alt="Ảnh sản phẩm" class="img-fluid" width="300" height="100">
+             
+               </div>
 
+               <div class="col-md-4">
+                   <p><strong><?=$TenSanPham?></strong></p>
+                   <p>Giá: <strong><?=$Gia?></strong></p>
+                   <p>Số lượng: <strong><?=$SoLuongSp?></strong></p>
+                   <p>Tổng đơn hàng: <strong><?=$toltal?></strong></p>
+               </div>
+               
+               </div>     
+            <?php
+                    }
+            ?>
+               <?php   
+                    }
+                ?>       
                 <div class="col-md-4">
                     <p><strong>Họ tên:</strong><?=$HoTen?></p>
                     <p><strong>Email:</strong><?=$Email?></p>
                     <p><strong>Địa chỉ:</strong> <?=$DiaChi?></p>
                     <p><strong>Số điện thoại:</strong><?=$SoDienThoai?></p>
                     <p><strong>Ngày đặt hàng:</strong> <?=$NgayDatHang?></p>    
-                </div>
-            </div>
+                </div>   
         </form>
     </div>
-    <?php
-}
-?>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Sửa thông tin</a>
-                </div>
+                   
+                        
             </div>
         </div>
     </div>
  
-    
+   

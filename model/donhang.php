@@ -12,24 +12,24 @@ function loadall_donhang($IdDonHang)
 //load thông tin của đơn hàng được chọn
 function loadall_dh_sp_tk($IdDonHang)
 {
-    $sql = "SELECT * from chitietdonhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
+    $sql = "SELECT a.*,b.*,c.*, a.SoLuong as SoLuongChiTiet ,b.Gia*a.SoLuong as Tong 
+    from chitietdonhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
     join donhang as c on c.IdDonHang = a.IdDonHang 
     WHERE c.IdDonHang = a.IdDonHang";
     $dh = pdo_query($sql);
     return $dh;
 }
 function load_chitietdonhang($IdDonHang) {
-    $sql = "SELECT * FROM donhang as a 
-    join chitietdonhang as b on a.IdDonHang =b.IdDonHang 
-    join sanpham as c on c.IdSanPham = b.IdSanPham
-    WHERE b.IdDonHang = $IdDonHang";
+    $sql = "SELECT * from chitietdonhang as a JOIN donhang as b on a.IdDonHang=b.IdDonHang
+    join sanpham as c on a.IdSanPham=c.IdSanPham
+    WHERE a.IdDonHang=$IdDonHang";
     $result = pdo_query($sql);
     return $result;
    
 }
-function delete_donhang($IdChiTietDonHang) {
+function huy_donhang($IdDonHang) {
     $sql = 
-    "DELETE FROM chitietdonhang WHERE `chitietdonhang`.`IdChiTietDonHang` = $IdChiTietDonHang";
+    "UPDATE `donhang` SET `TrangThai` = '0' WHERE `donhang`.`IdDonHang` = $IdDonHang";
     $result = pdo_query($sql);
     return $result;
 }

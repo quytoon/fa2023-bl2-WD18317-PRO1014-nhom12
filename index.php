@@ -62,12 +62,12 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "view/home.php";
             }
             break; 
-        case "xoadonhang":
+        case "huydonhang":
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != ''){
-                if(isset($_GET['IdChiTietDonHang']) && $_GET['IdChiTietDonHang'] > 0) {
-                    $delete_giohang = delete_donhang($_GET['IdChiTietDonHang']);
-                    $donhang = load_chitietdonhang($_GET['IdChiTietDonHang']);
-                    include "view/chitietdonhang.php";
+                if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+                    $huy_giohang = huy_donhang($_GET['IdDonHang']);
+                    $load_donhang = loadall_donhang($_GET['IdDonHang']);
+                    include "view/donhang.php";
                 } else {
                     include "view/home.php";
                 }
@@ -87,7 +87,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;     
         case "donhang":
-            $load_donhang = loadall_donhang(1);
+            $load_donhang = loadall_donhang($_GET['IdDonHang']);
             include "view/donhang.php";
             break;    
         case "giohang":
