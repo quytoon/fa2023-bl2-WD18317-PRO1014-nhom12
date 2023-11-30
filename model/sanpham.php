@@ -102,4 +102,8 @@ function delete_sp_gh($IdSanPham) {
     $sql = 'delete from giohang where IdSanPham='.$IdSanPham;
     pdo_execute($sql);
 }
+function delete_sp_bl($IdSanPham) {
+    $sql = 'delete from binhluan where IdSanPham='.$IdSanPham;
+    pdo_execute($sql);
+}
 ?>

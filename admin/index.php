@@ -268,8 +268,10 @@ if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
                 break;
             case 'xoasp':
                 if(isset($_GET['IdSanPham']) && ($_GET['IdSanPham'] > 0)) {
-                    xoa_sanpham($_GET['IdSanPham']);
+                    delete_sp_bl($_GET['IdSanPham']);
                     delete_sp_gh($_GET['IdSanPham']);
+                    xoa_sanpham($_GET['IdSanPham']);
+
                 }
                 $listsanpham = loadall_sanpham("", 0);
                 include 'sanpham/list.php';
