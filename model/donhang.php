@@ -1,7 +1,6 @@
 <?php
 
-function loadall_donhang($idtk)
-{
+function loadall_donhang($idtk) {
     $sql = "SELECT donhang.*, COUNT(chitietdonhang.IdDonHang) as soluong
     FROM donhang
     LEFT JOIN chitietdonhang ON donhang.IdDonHang = chitietdonhang.IdDonHang
@@ -11,8 +10,7 @@ function loadall_donhang($idtk)
     return $load_donhang;
 }
 //load thông tin của đơn hàng được chọn
-function loadall_dh_sp_tk($IdDonHang)
-{
+function loadall_dh_sp_tk($IdDonHang) {
     $sql = "SELECT a.*,b.*,c.*, a.SoLuong as SoLuongChiTiet ,b.Gia*a.SoLuong as Tong 
     from chitietdonhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
     join donhang as c on c.IdDonHang = a.IdDonHang 
@@ -26,11 +24,17 @@ function load_chitietdonhang($IdDonHang) {
     WHERE a.IdDonHang=$IdDonHang";
     $result = pdo_query($sql);
     return $result;
-   
+
 }
 function huy_donhang($IdDonHang) {
-    $sql = 
-    "UPDATE `donhang` SET `TrangThai` = '0' WHERE `donhang`.`IdDonHang` = $IdDonHang";
+    $sql =
+        "UPDATE `donhang` SET `TrangThai` = '0' WHERE `donhang`.`IdDonHang` = $IdDonHang";
+    $result = pdo_query($sql);
+    return $result;
+}
+function insert_chitietdonhang($iddh, $idsp, $sl, $gia) {
+    $sql = "insert into chitietdonhang (IdDonHang,IdSanPham,SoLuong,Gia)
+    values ('$iddh','$idsp','$sl','$gia')";
     $result = pdo_query($sql);
     return $result;
 }

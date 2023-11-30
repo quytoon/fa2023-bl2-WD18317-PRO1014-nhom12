@@ -221,6 +221,13 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $diachi = $_POST["thanhpho"].','.$_POST["quanhuyen"].','.$_POST["xa"].','.$_POST["diachi"];
                 insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi);
+                $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+                $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+                foreach ($load_giohang as $key) {
+                    insert_chitietdonhang($load_donhang['0']['IdDonHang'],$key['IdSanPham'],$key['SoLuongSp'],$key['Gia']);
+                }
+                $delete_giohang = xoagiohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+
                 include "view/thanhtoanthanhcong.php";
             }
             if(isset($_POST["optradio"]) && $_POST["optradio"] == "1") {

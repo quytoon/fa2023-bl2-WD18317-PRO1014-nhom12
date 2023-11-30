@@ -47,4 +47,10 @@ function insert_donhang($ngay,$tien,$id,$sl,$diachi){
     $result = pdo_query($sql);
     return $result;
 }
+function xoagiohang($id) {
+    $sql = "delete from giohang where IdTaiKhoan = $id";
+    $result = pdo_query($sql);
+    return $result;
+}
+    
 ?>
