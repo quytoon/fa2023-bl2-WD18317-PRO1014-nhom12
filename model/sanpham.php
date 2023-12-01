@@ -3,7 +3,7 @@ function loadall_sanpham($keyw = "", $iddm = 0) {
     $sql = "SELECT * from sanpham where trangThai = 1";
     // where 1 tức là nó đúng
     if($keyw != "") {
-        $sql .= " and TenSanPham like '%" . $keyw . "%'";
+        $sql .= " and TenSanPham like '%".$keyw."%'";
 
     }
     if($iddm > 0) {
@@ -24,14 +24,12 @@ function xoa_sanpham($IdSanPham) {
 }
 
 //cau truy van xoa mem
-function xoamem_sanpham($IdSanPham)
-{
+function xoamem_sanpham($IdSanPham) {
     $sql = "UPDATE `sanpham` set `trangthai` = 0 where `sanpham`.`IdSanPham` = $IdSanPham";
     pdo_execute($sql);
 }
-function loadone_sanpham($IdSanPham)
-{
-    $sql = "select * from sanpham where IdSanPham=" . $IdSanPham;
+function loadone_sanpham($IdSanPham) {
+    $sql = "select * from sanpham where IdSanPham=".$IdSanPham;
 
     $sp = pdo_query_one($sql);
     return $sp;
@@ -104,6 +102,10 @@ function delete_sp_gh($IdSanPham) {
 }
 function delete_sp_bl($IdSanPham) {
     $sql = 'delete from binhluan where IdSanPham='.$IdSanPham;
+    pdo_execute($sql);
+}
+function delete_spdonhang($sl, $id) {
+    $sql = "UPDATE sanpham SET sanpham.SoLuong = sanpham.SoLuong - '$sl' WHERE sanpham.IdSanPham = '$id'";
     pdo_execute($sql);
 }
 ?>
