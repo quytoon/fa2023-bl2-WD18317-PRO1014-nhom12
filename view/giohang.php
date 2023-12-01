@@ -32,9 +32,6 @@
 							foreach ($load_giohang as $key) {
 								extract($key);
 								$img = $img_path . $img;
-								$toltal = $Gia * $SoLuongSp;
-								global $bill;
-								$bill += $toltal;
 								echo '
 								<tr class="text-center">
 								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
@@ -66,7 +63,7 @@
 									</div>
 								</td>
 
-								<td class="total">' . number_format($toltal, 0, '.', ',') . ' vnđ</td>
+								<td class="total">' . number_format($tong_gia, 0, '.', ',') . ' vnđ</td>
 							</tr><!-- END TR-->
 								';
 							}
@@ -76,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-end">
+		<div class="row justify-content-center">
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Mã giảm giá</h3>
@@ -88,31 +85,7 @@
 						</div>
 					</form>
 				</div>
-				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
-			</div>
-			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-				<div class="cart-total mb-3">
-					<h3>Nhập đỉa chị nhận hàng của bạn</h3>
-					<form action="#" class="info">
-						<div class="form-group">
-							<label for="">Tỉnh/Thành phố</label>
-							<input type="text" class="form-control text-left px-3" placeholder="">
-						</div>
-						<div class="form-group">
-							<label for="country">Quận/Huyện</label>
-							<input type="text" class="form-control text-left px-3" placeholder="">
-						</div>
-						<div class="form-group">
-							<label for="country">Phường/Xã</label>
-							<input type="text" class="form-control text-left px-3" placeholder="">
-						</div>
-						<div class="form-group">
-							<label for="country">Địa chỉ chi tiết</label>
-							<input type="text" class="form-control text-left px-3" placeholder="">
-						</div>
-					</form>
-				</div>
-				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Xác nhận</a></p>
+				<p><a href="" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
 			</div>
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
@@ -120,7 +93,7 @@
 					<p class="d-flex">
 						<span>Tổng phụ</span>
 						<span>
-							<?= number_format($bill, 0, '.', ',') ?> vnđ
+							<?= number_format($load_giohang['0']['tong_bill'], 0, '.', ',') ?> vnđ
 						</span>
 					</p>
 					<p class="d-flex">
@@ -129,17 +102,17 @@
 					</p>
 					<p class="d-flex">
 						<span>Giảm giá</span>
-						<span>$3.00</span>
+						<span>$0.00</span>
 					</p>
 					<hr>
 					<p class="d-flex total-price">
 						<span>Tổng</span>
 						<span>
-							<?= number_format($bill, 0, '.', ',') ?> vnđ
+							<?= number_format($load_giohang['0']['tong_bill'], 0, '.', ',') ?> vnđ
 						</span>
 					</p>
 				</div>
-				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Thanh toán</a></p>
+				<p><a href="index.php?act=thanhtoan" class="btn btn-primary py-3 px-4">Thanh toán</a></p>
 			</div>
 		</div>
 	</div>
