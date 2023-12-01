@@ -377,6 +377,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $IdSizeGiay =$_POST['IdSizeGiay'];
                     $IdMauSac=$_POST['IdMauSac'];
                     insert_bienthe($IdMauSac,$IdSizeGiay,$IdSanPham,$SoLuong);
+                    $thongbao = "Them Thanh cong ";
 
                 }
 
