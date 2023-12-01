@@ -57,9 +57,9 @@ extract($_SESSION['TenTaiKhoan']);
 								
 								<td class="role">';
 									if($TrangThai == 1){
-										echo "Đang xác nhận";
+										echo "Chờ xác nhận";
 									}else if($TrangThai == 2){
-										echo "Đang giao hàng";
+										echo "Đã xác nhận";
 									}else if($TrangThai == 3){
 										echo "Giao hàng thành công";
 									}else if($TrangThai == 0){

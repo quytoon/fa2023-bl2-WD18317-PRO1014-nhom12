@@ -52,5 +52,8 @@ function xoagiohang($id) {
     $result = pdo_query($sql);
     return $result;
 }
-    
+function update_giohang($sl,$idsp,$idtk){
+    $sql = "update giohang set SoLuongSp = $sl where IdSanPham = $idsp and IdTaiKhoan = $idtk";
+    pdo_execute($sql);
+}
 ?>

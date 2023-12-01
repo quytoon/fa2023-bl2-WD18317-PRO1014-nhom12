@@ -15,61 +15,57 @@
 		<div class="row">
 			<div class="col-md-12 ftco-animate">
 				<div class="cart-list">
-					<table class="table">
-						<thead class="thead-primary">
-							<tr class="text-center">
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>Tên sản phẩm</th>
-								<th>Giá</th>
-								<th>Số lượng</th>
-								<th>Tổng</th>
-							</tr>
-						</thead>
-						<tbody>
+					<form action="index.php?act=giohang" method="post">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr class="text-center">
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+									<th>Tên sản phẩm</th>
+									<th>Giá</th>
+									<th>Số lượng</th>
+									<th>Tổng</th>
+								</tr>
+							</thead>
+							<tbody>
 
-							<?php
-							foreach ($load_giohang as $key) {
-								extract($key);
-								$img = $img_path . $img;
-								echo '
+								<?php
+								foreach($load_giohang as $key) {
+									extract($key);
+									$img = $img_path.$img;
+									echo '
 								<tr class="text-center">
 								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
-
+								<input type="hidden" name="idsp" value="'.$IdSanPham.'">
 								<td class="image-prod">
-									<div class="img" style="background-image:url(' . $img . ');"></div>
+									<div class="img" style="background-image:url('.$img.');"></div>
 								</td>
 
 								<td class="product-name">
-									<h3>' . $TenSanPham . '</h3>
+									<h3>'.$TenSanPham.'</h3>
 								</td>
 
-								<td class="price">' . number_format($Gia, 0, '.', ',') . ' vnđ</td>
+								<td class="price">'.number_format($Gia, 0, '.', ',').' vnđ</td>
 
 								<td class="quantity">
 									<div class="row">
-										<div class="col"><button type="button" class="quantity-left-minus btn"
-												data-type="minus" data-field="">
-												<i class="ion-ios-remove"></i>
-											</button>
-
 										</div>
 										<div class="col"><input type="text" id="quantity" name="quantity"
-												class="form-control input-number" value="' . $SoLuongSp . '" min="1" max="100"></div>
-										<div class="col"><button type="button" class="quantity-right-plus btn"
-												data-type="plus" data-field="">
-												<i class="ion-ios-add"></i>
-											</button></div>
+												class="form-control input-number" value="'.$SoLuongSp.'" min="1" max="100"></div>
 									</div>
 								</td>
 
-								<td class="total">' . number_format($tong_gia, 0, '.', ',') . ' vnđ</td>
+								<td class="total">'.number_format($tong_gia, 0, '.', ',').' vnđ</td>
 							</tr><!-- END TR-->
 								';
-							}
-							?>
-						</tbody>
-					</table>
+								}
+								?>
+							</tbody>
+							<tfoot>
+								<input type="submit" value="Cập nhật giỏ hàng" name="update" >
+							</tfoot>
+						</table>
+					</form>
 				</div>
 			</div>
 		</div>
