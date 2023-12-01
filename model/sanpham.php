@@ -3,13 +3,8 @@ function loadall_sanpham($keyw = "", $iddm = 0)
 {
     $sql = "SELECT * from sanpham where trangThai = 1";
     // where 1 tức là nó đúng
-<<<<<<< HEAD
-    if ($keyw != "") {
-        $sql .= " and TenSanPham like '%" . $keyw . "%'";
-=======
     if($keyw != "") {
         $sql .= " and TenSanPham like '%".$keyw."%'";
->>>>>>> 6d95a18c2a19be86dcb5f08302034525939a7e75
 
     }
     if ($iddm > 0) {
@@ -44,15 +39,8 @@ function xoamem_sanpham($IdSanPham) {
     $sql = "UPDATE `sanpham` set `trangthai` = 0 where `sanpham`.`IdSanPham` = $IdSanPham";
     pdo_execute($sql);
 }
-<<<<<<< HEAD
-
-function loadone_sanpham($IdSanPham)
-{
-    $sql = "select * from sanpham where IdSanPham=" . $IdSanPham;
-=======
 function loadone_sanpham($IdSanPham) {
     $sql = "select * from sanpham where IdSanPham=".$IdSanPham;
->>>>>>> 6d95a18c2a19be86dcb5f08302034525939a7e75
 
     $sp = pdo_query_one($sql);
     return $sp;
@@ -150,7 +138,6 @@ function delete_sp_bl($IdSanPham)
     $sql = 'delete from binhluan where IdSanPham=' . $IdSanPham;
     pdo_execute($sql);
 }
-<<<<<<< HEAD
 
 function insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong)
 {
@@ -177,10 +164,8 @@ function sl_bienthe($IdSanPham){
    return pdo_query_value($sql , $IdSanPham);
 }
 
-=======
 function delete_spdonhang($sl, $id) {
     $sql = "UPDATE sanpham SET sanpham.SoLuong = sanpham.SoLuong - '$sl' WHERE sanpham.IdSanPham = '$id'";
     pdo_execute($sql);
 }
->>>>>>> 6d95a18c2a19be86dcb5f08302034525939a7e75
 ?>
