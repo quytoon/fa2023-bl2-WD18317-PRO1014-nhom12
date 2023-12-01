@@ -20,12 +20,12 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch($act) {
         case "sanpham":
-            if(isset($_POST['keyword']) && $_POST['keyword'] != 0) {
+            if (isset($_POST['keyword']) && $_POST['keyword'] != 0) {
                 $kyw = $_POST['keyword'];
             } else {
                 $kyw = "";
             }
-            if(isset($_GET['iddm']) && ($_GET['iddm'] > 0)) {
+            if (isset($_GET['iddm']) && ($_GET['iddm'] > 0)) {
                 $iddm = $_GET['iddm'];
             } else {
                 $iddm = 0;
@@ -42,7 +42,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $DiemDanhGia = isset($_POST["rating"]) ? (int)$_POST["rating"] : 0;
                 them_binhluan($IdSanPham, $IdTaiKhoan, $NoiDung, $DiemDanhGia);
             }
-            if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+            if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                 $sanpham = load_chitietsanpham($_GET['idsp']);
                 $mausac = loadall_mausac();
                 $sizegiay = loadall_size();
@@ -55,7 +55,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "chitietdonhang":
-            if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+            if (isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
                 $donhang = load_chitietdonhang($_GET['IdDonHang']);
                 include "view/chitietdonhang.php";
             } else {
@@ -63,8 +63,13 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "huydonhang":
+<<<<<<< HEAD
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if (isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+=======
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
+>>>>>>> fe16d447e769d476351accf1e8eac54857eaf742
                     $huy_giohang = huy_donhang($_GET['IdDonHang']);
                     $load_donhang = loadall_donhang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     include "view/donhang.php";
@@ -74,8 +79,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "xoagiohang":
-            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
-                if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     include "view/giohang.php";
@@ -91,12 +96,16 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/donhang.php";
             break;
         case "giohang":
+<<<<<<< HEAD
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+=======
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_POST['update']) && $_POST['update'] != '') {
                     $soluong = $_POST['quantity'];
                     $idsp = $_POST['idsp'];
                     update_giohang($soluong, $idsp, $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 }
+>>>>>>> 6d95a18c2a19be86dcb5f08302034525939a7e75
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 include "view/giohang.php";
             } else {
@@ -105,17 +114,26 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "themgiohang":
             $productExists = false;
+<<<<<<< HEAD
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+=======
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+>>>>>>> fe16d447e769d476351accf1e8eac54857eaf742
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-                    foreach($load_giohang as $key) {
-                        if($_GET['idsp'] == $key['IdSanPham']) {
+                    foreach ($load_giohang as $key) {
+                        if ($_GET['idsp'] == $key['IdSanPham']) {
                             $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                             $productExists = true;
                             break;
                         }
                     }
+<<<<<<< HEAD
+                    if (!$productExists) {
+=======
                     if(!$productExists) {
+>>>>>>> 6d95a18c2a19be86dcb5f08302034525939a7e75
                         $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
@@ -128,8 +146,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             break;
         case "xoagiohang":
-            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
-                if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
