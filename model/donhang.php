@@ -19,7 +19,7 @@ function loadall_dh_sp_tk($IdDonHang) {
     return $dh;
 }
 function load_chitietdonhang($IdDonHang) {
-    $sql = "SELECT * from chitietdonhang as a JOIN donhang as b on a.IdDonHang=b.IdDonHang
+    $sql = "SELECT a.SoLuong as sl,a.*,b.*,c.* from chitietdonhang as a JOIN donhang as b on a.IdDonHang=b.IdDonHang
     join sanpham as c on a.IdSanPham=c.IdSanPham
     WHERE a.IdDonHang=$IdDonHang";
     $result = pdo_query($sql);
@@ -28,7 +28,7 @@ function load_chitietdonhang($IdDonHang) {
 }
 function huy_donhang($IdDonHang) {
     $sql =
-        "UPDATE `donhang` SET `TrangThai` = '0' WHERE `donhang`.`IdDonHang` = $IdDonHang";
+        "UPDATE `donhang` SET `TrangThai` = '5' WHERE `donhang`.`IdDonHang` = $IdDonHang";
     $result = pdo_query($sql);
     return $result;
 }
