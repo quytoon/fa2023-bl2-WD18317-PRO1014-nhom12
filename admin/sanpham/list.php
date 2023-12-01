@@ -15,6 +15,7 @@
                         <th>ẢNH SẢN PHẨM</th>
                         <th>GIÁ SẢN PHẨM</th>
                         <th>LƯỢT XEM SẢN PHẨM</th>
+                        <th>So Luong</th>
                         <th>TUỲ CHỌN</th>
                     </tr>
                     </thead>
@@ -22,30 +23,39 @@
                     <?php
                     foreach ($listsanpham as $lissp) {
                         extract($lissp);
-                        $suasp = "index.php?act=suasp&IdSanPham=" . $IdSanPham;
-                        $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
-                        $xoamemsp = "index.php?act=xoamemsp&IdSanPham=" . $IdSanPham;
-                        $hinh = '../upload/' . $img;
-                        if (is_file($hinh)) {
-                            $hinh = "<img src='" . $hinh . "' height='100px' width='100px' />";
-                        } else {
-                            $hinh = 'no photo';
-                        }
-                        echo '<tr>
-                    <td>' . $IdSanPham . '</td>
-                    <td>' . $TenSanPham . '</td>
-                    <td>' . $hinh . '</td>
-                    <td>' . $Gia . '</td>
-                    <td>' . $luotxem . '</td>
-                    <td>
-                     <a href="' . $suasp . '"><button type="button" class="btn btn-primary">Sửa</button></a>
-                     <a href="' . $xoasp . '" onclick="return confirmDelete(\'' . $xoasp . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
-                     <a href="' . $xoamemsp . '" onclick="return confirmDelete(\'' . $xoamemsp . '\')"><button type="button" class="btn btn-danger">Xóa mềm</button></a>
-                    </td>
 
-                </tr>';
+//                        foreach ($listsp as $value)
+//                            var_dump($value);
+                            $suasp = "index.php?act=suasp&IdSanPham=" . $IdSanPham;
+                            $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
+                            $xoamemsp = "index.php?act=xoamemsp&IdSanPham=" . $IdSanPham;
+                            $xemct = "index.php?act=listspbienthe&IdSanPham=". $IdSanPham;
+                            $hinh = '../upload/' . $img;
+
+                            if (is_file($hinh)) {
+                                $hinh = "<img src='" . $hinh . "' height='100px' width='100px' />";
+                            } else {
+                                $hinh = 'no photo';
+                            }
+
+                            echo '<tr>
+            <td>' . $IdSanPham . '</td>
+            <td>' . $TenSanPham . '</td>
+            <td>' . $hinh . '</td>
+            <td>' . $Gia . '</td>
+            <td>' . $luotxem . '</td>
+            <td>' . $SoLuong . ' </td>
+            <td>
+           <a href="' . $xemct . '"><button type="button" class="btn btn-primary">xem chi tiet </button></a>
+                <a href="' . $suasp . '"><button type="button" class="btn btn-primary">Sửa</button></a>
+                <a href="' . $xoasp . '" onclick="return confirmDelete(\'' . $xoasp . '\')"><button type="button" class="btn btn-danger">Xóa</button></a>
+                <a href="' . $xoamemsp . '" onclick="return confirmDelete(\'' . $xoamemsp . '\')"><button type="button" class="btn btn-danger">Xóa mềm</button></a>
+            </td>
+        </tr>';
+
                     }
                     ?>
+
                     </tbody>
                 </table>
             </div>
