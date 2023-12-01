@@ -48,10 +48,10 @@
             <form method="post" action="index.php?act=updatetrangthai&IdDonHang='.$IdDonHang.'">
                 <select name="luachon" >
                 <option value ="1" '.($TrangThai == 1 ? 'selected' : 'disabled').'>Chờ xác nhận</option>
-                    <option value ="2" '.($TrangThai == 2 ? ' selected ' : '').'>Đã xác nhận</option>
-                    <option value ="3" '.($TrangThai == 3 ? ' selected ' : '').'>Đang giao hàng</option>
-                    <option value ="4" '.($TrangThai == 4 ? 'selected' : '').'>Giao hàng thành công</option>
-                    <option value ="0" '.($TrangThai == 0 ? ' selected ' : '').'>Hủy</option>
+                    <option value ="2" '.($TrangThai > 2 ? ' disabled ' : $TrangThai = 2 ? ' selected ' : '').'>Đã xác nhận</option>
+                    <option value ="3" '.($TrangThai > 3 ? ' disabled ' : $TrangThai = 3 ? ' selected ' : '').'>Đang giao hàng</option>
+                    <option value ="4" '.($TrangThai > 4 ? ' disabled ' : $TrangThai = 4 ? ' selected ' : '').'>Giao hàng thành công</option>
+                    <option value ="5" '.($TrangThai == 5 ? ' selected ' : $TrangThai = 4 ? ' disabled ' : '').'>Hủy</option>
                 </select>
                 <button type="submit" name="capnhat">Cập nhật</button>
             </form>

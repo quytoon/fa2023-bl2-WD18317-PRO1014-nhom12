@@ -187,12 +187,12 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $checkuser = checkuser($TenTaiKhoan, $MatKhau);
                 if(is_array($checkuser)) {
                     $_SESSION['TenTaiKhoan'] = $checkuser;
+                    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
 
                     // include "index.php";
                 } else {
                     $loginMess = "dang nhap khong thanh cong";
                 }
-                echo "<meta http-equiv='refresh' content='0;url=index.php'>";
             }
             include "view/taikhoan/dangnhap.php";
 

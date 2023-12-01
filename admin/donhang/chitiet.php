@@ -45,7 +45,7 @@
                                     echo "<td>Đang giao hàng</td>";
                                 }if($TrangThai == 3){
                                     echo "<td>Giao hàng thành công</td>";
-                                }if($TrangThai == 0){
+                                }if($TrangThai == 5){
                                     echo "<td>Hủy</td>";
                                 }                                 
                         '</tr>';
@@ -54,8 +54,6 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer">
-        <a href="index.php?act=adddanhmuc"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
-    </div>
+
 </div>
 </main>

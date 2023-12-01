@@ -1,4 +1,4 @@
-<?php 
+<?php
 extract($_SESSION['TenTaiKhoan']);
 ?>
 <div class="hero-wrap hero-bread" style="background-image: url('images/ms_banner_img1.png');">
@@ -28,46 +28,54 @@ extract($_SESSION['TenTaiKhoan']);
 								<th>Tình trạng</th>
 								<th>Hành động</th>
 								<th>&nbsp;</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
-						<!-- <td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td> -->
+							<!-- <td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td> -->
 							<?php
-							foreach ($load_donhang as $key) {
-								extract($key);		
-								$linkdh = "index.php?act=chitietdonhang&IdDonHang=" . $IdDonHang;
+							foreach($load_donhang as $key) {
+								extract($key);
+								$linkdh = "index.php?act=chitietdonhang&IdDonHang=".$IdDonHang;
 								echo '
 								<tr class="text-center">
 								
 								<td class="product-name" style="width:200px">
-									<h3>' . $IdDonHang . '</h3>
+									<h3>'.$IdDonHang.'</h3>
 								</td>
 							
 								<td class="quantity">
 									<div class="row">
 										
 										<div class="col"><input type="text" id="quantity" name="quantity"
-												class="form-control input-number" value="' . $soluong . '" min="1" max="100" readonly></div>
+												class="form-control input-number" value="'.$soluong.'" min="1" max="100" readonly></div>
 										
 									</div>
 								</td>
 							
-								<td >' . $DiaChiDat . ' </td>
+								<td >'.$DiaChiDat.' </td>
 								
 								<td class="role">';
-									if($TrangThai == 1){
-										echo "Chờ xác nhận";
-									}else if($TrangThai == 2){
-										echo "Đã xác nhận";
-									}else if($TrangThai == 3){
-										echo "Giao hàng thành công";
-									}else if($TrangThai == 0){
-										echo "Đã hủy";
-									}
-								echo '</td>
-						 <td><a class="btn btn-primary" href="index.php?act=huydonhang&IdDonHang='.$IdDonHang.'" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')">Hủy</a>
-								<a href="'.$linkdh.'"><input type="submit" value="Xem chi tiết" class="btn btn-primary"></td>
+								if($TrangThai == 1) {
+									echo "Chờ xác nhận
+									</td>
+						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
+
+								} else if($TrangThai == 2) {
+									echo "Đã xác nhận
+									</td>
+						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
+								} else if($TrangThai == 3) {
+									echo "Đang giao hàng
+									</td>
+						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
+								} else if($TrangThai == 4) {
+									echo "Giao hàng thành công";
+								} else if($TrangThai == 5) {
+									echo "Đã hủy";
+								}
+
+								echo '<td><a href="'.$linkdh.'"><input type="submit" value="Xem chi tiết" class="btn btn-primary"></td>
 							</tr><!-- END TR-->
 								';
 							}
@@ -77,21 +85,21 @@ extract($_SESSION['TenTaiKhoan']);
 												<i class="ion-ios-remove"></i>
 											</button>
 							</div>
-							     day la button them hoac giam so luong
+								 day la button them hoac giam so luong
 
 											<div class="col"><button type="button" class="quantity-right-plus btn"
 												data-type="plus" data-field="">
 												<i class="ion-ios-add"></i>
 							
 											</button></div> -->
-											<!-- <input type="submit" value="Xem chi tiết"> -->
+							<!-- <input type="submit" value="Xem chi tiết"> -->
 						</tbody>
-						
+
 					</table>
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 </section>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
