@@ -14,7 +14,7 @@ function loadall_dh_sp_tk($IdDonHang) {
     $sql = "SELECT a.*,b.*,c.*, a.SoLuong as SoLuongChiTiet ,b.Gia*a.SoLuong as Tong 
     from chitietdonhang as a join sanpham as b on a.IdSanPham = b.IdSanPham 
     join donhang as c on c.IdDonHang = a.IdDonHang 
-    WHERE c.IdDonHang = a.IdDonHang";
+    WHERE c.IdDonHang = $IdDonHang";
     $dh = pdo_query($sql);
     return $dh;
 }

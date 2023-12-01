@@ -66,7 +66,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
                     $huy_giohang = huy_donhang($_GET['IdDonHang']);
-                    $load_donhang = loadall_donhang($_GET['IdDonHang']);
+                    $load_donhang = loadall_donhang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     include "view/donhang.php";
                 } else {
                     include "view/home.php";
@@ -92,6 +92,11 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "giohang":
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if(isset($_POST['update']) && $_POST['update'] != '') {
+                    $soluong = $_POST['quantity'];
+                    $idsp = $_POST['idsp'];
+                    update_giohang($soluong, $idsp, $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                }
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 include "view/giohang.php";
             } else {
@@ -114,7 +119,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                         $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-                    include "view/giohang.php";
+                    echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                 } else {
                     include "view/home.php";
                 }
@@ -127,7 +132,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-                    include "view/giohang.php";
+                    echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                 } else {
                     include "view/home.php";
                 }
