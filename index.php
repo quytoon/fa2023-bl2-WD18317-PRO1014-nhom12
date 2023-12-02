@@ -186,21 +186,25 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $MatKhau = trim($_POST['MatKhau']);
                 $MatKhau2 = trim($_POST['MatKhau2']);
 
-                if(!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2)) {
-                    if($MatKhau == $MatKhau2) {
-                        dangky($TenTaiKhoan, $Email, $MatKhau);
-                        $thongbao = "Đăng ký thành công";
-                    } else {
-                        $thongbao = "Mật khẩu không khớp";
-                    }
-                } else {
-
+                if (empty($TenTaiKhoan)) {
+                    $thongbao1 = check_Validate("Vui lòng điền đầy đủ thông tin");
+                    
+                }if( !empty($TenTaiKhoan)&&(strlen($TenTaiKhoan) < 6)){
+                    $thongbao1=check_Validate("Tên đăng nhập phải có ít nhất 6 ký tự ");
+                } if (empty($Email)) {
+                    $thongbao2 = check_Validate("Vui lòng điền đầy đủ thông tin");
+                } if (empty($MatKhau) || empty($MatKhau2)) {
                     $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin");
+                } if ($MatKhau != $MatKhau2) {
+                    $thongbao = check_Validate("Mật khẩu không khớp");
+                } else if(!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2) && strlen($TenTaiKhoan) >= 6){
+                    dangky($TenTaiKhoan, $Email, $MatKhau);
+                    $thongbao3 = "Đăng ký thành công";
                 }
             }
             include "view/taikhoan/dangky.php";
             break;
-
+        
         case "dangxuat":
             dangxuat();
             echo "<meta http-equiv='refresh' content='0;url=index.php'>";
