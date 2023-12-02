@@ -1,4 +1,5 @@
-
+/<a href="">Danh sách sản phẩm</a>
+</ol>
         <div class="card mb-4">
             <div class="card-header">
                 <h1>DANH SÁCH LOẠI HÀNG HÓA</h1>
@@ -36,6 +37,7 @@
                         <th>ẢNH SẢN PHẨM</th>
                         <th>GIÁ SẢN PHẨM</th>
                         <th>LƯỢT XEM SẢN PHẨM</th>
+                        <th>So Luong</th>
                         <th>TUỲ CHỌN</th>
                     </tr>
                     </thead>
@@ -58,6 +60,8 @@
                     <td>' . $hinh . '</td>
                     <td>' . $Gia . '</td>
                     <td>' . $luotxem . '</td>
+            <td>' . $SoLuong . ' </td>
+
                     <td>
                      <a href="' . $suasp . '"><button type="button" class="btn btn-primary">Sửa</button></a>
 

@@ -1,4 +1,4 @@
-<div class="container d-flex align-items-center justify-content-center vh-100">
+<!-- <div class="container d-flex align-items-center justify-content-center vh-100"> -->
     <div class="row-cols-md-12 ">
         <div class="mb-8 font_title text-center">
             <h1>DANH SÁCH BÌNH LUẬN</h1>
@@ -43,4 +43,4 @@
             </div>
         </form>
     </div>
-</div>
+<!-- </div> -->

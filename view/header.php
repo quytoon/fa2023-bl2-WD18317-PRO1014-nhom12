@@ -106,7 +106,10 @@
 								} else {
 									?>
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
+								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
+								<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
 								<li class="nav-item"><a href="admin_staff/index.php" class="nav-link">Đăng nhập nhân viên</a></li>
+								
 							<?php
 								}
 								?>
