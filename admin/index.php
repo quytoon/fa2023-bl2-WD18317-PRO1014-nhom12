@@ -14,6 +14,7 @@ include '../model/sanpham.php';
 include '../model/binhluan.php';
 include '../model/validate.php';
 include '../model/donhang.php';
+include '../model/giamgia.php';
 //include '../model/'
 if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
     if (isset($_GET['act'])) {
@@ -390,8 +391,46 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listspbienthe = list_bienthe($_GET['IdSanPham']);
                 include 'sanpham/listspbienthe.php';
                 break;
-
-
+            case 'listgiamgia':
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/listgiamgia.php';
+                break;
+            case 'addgiamgia':
+                if (isset($_POST['themgiamgia']) && ($_POST['themgiamgia'])) {
+                    $tenGiamGia = $_POST['tenGiamGia'];
+                    $soluong = $_POST['soluong'];
+                    $codeGiamGia = $_POST['codeGiamGia'];
+                    insert_giamgia($tenGiamGia,$soluong,$codeGiamGia);
+                    $thongbao = "Thêm Thành công ";
+                }
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/addgiamgia.php';
+                break;
+            case 'xoagiamgia':
+                if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia'] > 0)) {
+                    delete_giamgia($_GET['idGiamGia']);
+                }
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/listgiamgia.php';
+                break;  
+                case 'updategiamgia':
+                    if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia']) > 0) {
+                        $chitietgiamgia = loadone_giamgia($_GET['idGiamGia']);
+                    }
+                    include 'giamgia/updategiamgia.php';
+                    break;
+                case 'suagiamgia':
+                    if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                        $tenGiamGia = $_POST['tenGiamGia'];
+                        $soluong = $_POST['soluong'];
+                        $codeGiamGia = $_POST['codeGiamGia'];
+                        $idGiamGia=$_POST['idGiamGia'];
+                        update_giamgia($tenGiamGia,$soluong,$codeGiamGia,$idGiamGia);                       
+                        $thongbao = "Cập nhật thành công ";
+                    }
+                    $listgiamgia = loadall_giamgia();
+                    include "giamgia/listgiamgia.php";
+                    break;      
         }
 
     } else {
