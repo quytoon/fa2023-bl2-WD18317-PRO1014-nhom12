@@ -25,7 +25,11 @@
                 <label for="codeGiamGia">Code mã giảm giá:</label>
                 <input type="text" class="form-control" id="codeGiamGia" placeholder="Nhập code mã giảm giá"
                     name="codeGiamGia" value="<?php if (isset($codeGiamGia) && ($codeGiamGia != ""))
-                        echo $codeGiamGia; ?>">                 
+                        echo $codeGiamGia; ?>"> 
+                <label for="tienGiamGia">Tiền giảm giá:</label>
+                <input type="text" class="form-control" id="tienGiamGia" placeholder="Nhập tiền giảm giá"
+                    name="tienGiamGia" value="<?php if (isset($tienGiamGia) && ($tienGiamGia != ""))
+                        echo $tienGiamGia; ?>">                 
             </div>
             <input type="hidden" name="idGiamGia" value="<?php if (isset($idGiamGia) && ($idGiamGia > 0))
                             echo $idGiamGia; ?>"> 

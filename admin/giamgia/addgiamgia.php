@@ -23,6 +23,11 @@
                 <input type="text" class="form-control" id="codeGiamGia" placeholder="Nhập code mã giảm giá"
                     name="codeGiamGia">
             </div>
+            <div class="form-group">
+                <label for="tienGiamGia">Tiền giảm giá:</label>
+                <input type="text" class="form-control" id="tienGiamGia" placeholder="Nhập tiền mã giảm giá"
+                    name="tienGiamGia">
+            </div>
             <!-- Nút lưu -->
             <input type="submit" name="themgiamgia" class="btn btn-primary my-1" value="Thêm mã giảm giá">
             <input type="reset" class="btn btn-primary my-1" value="Nhập lại">

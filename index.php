@@ -11,6 +11,7 @@ include "model/taikhoan.php";
 include "model/giohang.php";
 include "model/donhang.php";
 include "model/validate.php";
+include "model/giamgia.php";
 include "view/header.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
@@ -245,6 +246,13 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             }
             break;
+        case "giamgiafree":
+            $dsgiamgia = loadall_giamgia();
+            include "view/giamgiafree.php";
+            break;    
+        case "nhanma":
+           
+            break;    
     }
 } else {
     include "view/home.php";

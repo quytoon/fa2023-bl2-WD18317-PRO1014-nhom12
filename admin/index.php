@@ -400,7 +400,8 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $tenGiamGia = $_POST['tenGiamGia'];
                     $soluong = $_POST['soluong'];
                     $codeGiamGia = $_POST['codeGiamGia'];
-                    insert_giamgia($tenGiamGia,$soluong,$codeGiamGia);
+                    $tienGiamGia = $_POST['tienGiamGia'];
+                    insert_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia);
                     $thongbao = "Thêm Thành công ";
                 }
                 $listgiamgia = loadall_giamgia();
@@ -413,24 +414,25 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listgiamgia = loadall_giamgia();
                 include 'giamgia/listgiamgia.php';
                 break;  
-                case 'updategiamgia':
-                    if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia']) > 0) {
-                        $chitietgiamgia = loadone_giamgia($_GET['idGiamGia']);
-                    }
-                    include 'giamgia/updategiamgia.php';
-                    break;
-                case 'suagiamgia':
-                    if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                        $tenGiamGia = $_POST['tenGiamGia'];
-                        $soluong = $_POST['soluong'];
-                        $codeGiamGia = $_POST['codeGiamGia'];
-                        $idGiamGia=$_POST['idGiamGia'];
-                        update_giamgia($tenGiamGia,$soluong,$codeGiamGia,$idGiamGia);                       
-                        $thongbao = "Cập nhật thành công ";
-                    }
-                    $listgiamgia = loadall_giamgia();
-                    include "giamgia/listgiamgia.php";
-                    break;      
+            case 'updategiamgia':
+                if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia']) > 0) {
+                    $chitietgiamgia = loadone_giamgia($_GET['idGiamGia']);
+                }
+                include 'giamgia/updategiamgia.php';
+                break;
+            case 'suagiamgia':
+                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $tenGiamGia = $_POST['tenGiamGia'];
+                    $soluong = $_POST['soluong'];
+                    $codeGiamGia = $_POST['codeGiamGia'];
+                    $tienGiamGia = $_POST['tienGiamGia'];
+                    $idGiamGia=$_POST['idGiamGia'];
+                    update_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia,$idGiamGia);                       
+                    $thongbao = "Cập nhật thành công ";
+                }
+                $listgiamgia = loadall_giamgia();
+                include "giamgia/listgiamgia.php";
+                break;      
         }
 
     } else {

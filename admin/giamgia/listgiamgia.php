@@ -13,6 +13,7 @@
                     <th>Tên mã giảm giá</th>
                     <th>Số lượng</th>
                     <th>Code mã giảm giá</th>
+                    <th>Tiền giảm giá</th>
                     <th>Hành động</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <th>Tên mã giảm giá</th>
                     <th>Số lượng</th>
                     <th>Code mã giảm giá</th>
+                    <th>Tiền giảm giá</th>
                     <th>Hành động</th>
                 </tr>
             </tfoot>
@@ -40,6 +42,7 @@
                             <td>' . $tenGiamGia . '</td>
                             <td>' . $soluong . '</td>
                             <td>' . $codeGiamGia . '</td>
+                            <td>' .number_format( $tienGiamGia , 0, '.', ',').' vnđ</td>
                            <td>
                                 <a href="' . $suagg . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
                                 <a href="' . $xoagg . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>                
