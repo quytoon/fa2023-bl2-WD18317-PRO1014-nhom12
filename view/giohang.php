@@ -43,6 +43,7 @@
 
 								<td class="product-name">
 									<h3>'.$TenSanPham.'</h3>
+									
 								</td>
 
 								<td class="price">'.number_format($Gia, 0, '.', ',').' vnđ</td>

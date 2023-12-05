@@ -195,5 +195,10 @@ function update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , 
     $sql = "UPDATE giay_bienthe SET IdSanPham=?,IdSizeGiay=?,IdMauSac=?,SoLuong=? WHERE IdGiayBienThe = ?";
     pdo_execute($sql, $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong ,$IdGiayBienThe);
 }
+function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
+{
+    $sql = "SELECT * FROM giay_bienthe WHERE IdSanPham = ? AND IdSizeGiay = ? AND IdMauSac = ?";
+    return pdo_query_one($sql, $IdSanPham, $IdSizeGiay, $IdMauSac);
+}
 
 ?>
