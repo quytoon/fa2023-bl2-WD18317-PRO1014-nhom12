@@ -5,7 +5,6 @@ function loadall_sanpham($keyw = "", $iddm = 0)
     // where 1 tức là nó đúng
     if ($keyw != "") {
         $sql .= " and TenSanPham like '%" . $keyw . "%'";
-
     }
     if ($iddm > 0) {
         $sql .= " and iddm ='" . $iddm . "'";
@@ -39,11 +38,9 @@ function xoamem_sanpham($IdSanPham) {
     $sql = "UPDATE `sanpham` set `trangthai` = 0 where `sanpham`.`IdSanPham` = $IdSanPham";
     pdo_execute($sql);
 }
-
 function loadone_sanpham($IdSanPham)
 {
     $sql = "select * from sanpham where IdSanPham=" . $IdSanPham;
-
     $sp = pdo_query_one($sql);
     return $sp;
 }
