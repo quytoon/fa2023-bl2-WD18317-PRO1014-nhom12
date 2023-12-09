@@ -115,7 +115,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                                 }
                             }
                         }
-                        insert_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role);
+                        // insert_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role);
                         $thongbao = "Thêm thành công";
                     }
                 }
