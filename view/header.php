@@ -66,6 +66,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item active"><a href="index.php?act=sanpham" class="nav-link">Cửa hàng</a></li>
+					<li class="nav-item"><a href="index.php?act=giamgiafree" class="nav-link">Mã giảm giá free</a></li>
 					<li class="nav-item"><a href="index.php?act=thongtin" class="nav-link">Thông tin</a></li>
 
 					<li class="nav-item"><a href="index.php?act=lienhe" class="nav-link">Liên hệ</a></li>
@@ -95,6 +96,7 @@
 									<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 									<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
 									<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
+									<a href="index.php?act=magiamgiacuaban" class="dropdown-item">Mã giảm giá của bạn</a>
 							<li class="nav-item"><a href="admin/index.php" class="nav-link">Đăng nhập admin</a></li>
 							<?php
 								} else if($role == 0) {
@@ -102,11 +104,16 @@
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
 								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
 								<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
+								<a href="index.php?act=magiamgiacuaban" class="dropdown-item">Mã giảm giá của bạn</a>
 							<?php
 								} else {
 									?>
 								<a href="index.php?act=dangxuat" class="dropdown-item">Đăng Xuất</a>
+								<a href="index.php?act=thongtintaikhoan" class="dropdown-item">Thông tin tài khoản</a>
+								<a href="index.php?act=donhang" class="dropdown-item">Đơn hàng</a>
+								<a href="index.php?act=magiamgiacuaban" class="dropdown-item">Mã giảm giá của bạn</a>
 								<li class="nav-item"><a href="admin_staff/index.php" class="nav-link">Đăng nhập nhân viên</a></li>
+								
 							<?php
 								}
 								?>

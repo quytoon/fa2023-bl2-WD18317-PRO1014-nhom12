@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 30, 2023 lúc 12:38 PM
+-- Thời gian đã tạo: Th12 03, 2023 lúc 11:50 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -140,7 +140,8 @@ INSERT INTO `danhmuc` (`idDanhMuc`, `tenDanhMuc`, `TrangThai`) VALUES
 (4, 'Platform', 0),
 (24, 'balo', 0),
 (25, 'tui', 0),
-(26, 'dep', 0);
+(26, 'dep', 0),
+(31, '1234511', 0);
 
 -- --------------------------------------------------------
 
@@ -164,8 +165,32 @@ CREATE TABLE `donhang` (
 
 INSERT INTO `donhang` (`IdDonHang`, `NgayDatHang`, `TongTien`, `TrangThai`, `IdTaiKhoan`, `SoLuongSp`, `DiaChiDat`) VALUES
 (1, '2023-11-11', 9200000, 1, 1, 13, 'mễ trì hà nội việt nam'),
-(2, '2023-10-11', 13800000, 2, 1, 1, '6/98 phú đô hà nội'),
-(3, '2023-11-29', 130000, 0, 1, 1, 'sân vận động mý đình');
+(2, '2023-10-11', 13800000, 2, 3, 1, '6/98 phú đô hà nội'),
+(3, '2023-11-29', 130000, 4, 1, 1, 'sân vận động mý đình');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giamgia`
+--
+
+CREATE TABLE `giamgia` (
+  `idGiamGia` int(11) NOT NULL,
+  `tenGiamGia` varchar(200) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `codeGiamGia` varchar(50) NOT NULL,
+  `tienGiamGia` int(11) NOT NULL,
+  `IdTaiKhoan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giamgia`
+--
+
+INSERT INTO `giamgia` (`idGiamGia`, `tenGiamGia`, `soluong`, `codeGiamGia`, `tienGiamGia`, `IdTaiKhoan`) VALUES
+(1, 'Mừng lễ giáng sinh 2023 ', 10, 'GSINH2023', 100000, 1),
+(2, 'Mừng lễ tết 2024', 15, 'TET2024', 500000, 1),
+(15, 'noel 2024', 12, 'NOEL2024', 1000000, 3);
 
 -- --------------------------------------------------------
 
@@ -235,8 +260,12 @@ INSERT INTO `giohang` (`IdGioHang`, `IdSanPham`, `IdTaiKhoan`, `SoLuongSp`) VALU
 (11, 5, 1, 1),
 (12, 2, 1, 1),
 (13, 3, 1, 1),
-(19, 6, 3, 1),
-(20, 5, 2, 2);
+(20, 5, 2, 2),
+(23, 8, 3, 1),
+(24, 5, 3, 3),
+(25, 1, 2, 1),
+(26, 1, 2, 1),
+(27, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -286,7 +315,9 @@ INSERT INTO `sanpham` (`IdSanPham`, `TenSanPham`, `Gia`, `img`, `MoTa`, `SoLuong
 (3, 'Giày Converse Aeon Active Cx Future Comfort', 2500000.00, 'giay3.jpg', 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1),
 (4, 'Giày Converse Run Star Motion Canvas Platform Foundational', 2600000.00, 'giay4.jpg', 'Giày Converse Run Star Motion Canvas Platform- một sản phẩm mang tính đột phá đến từ thương hiệu Converse. Nếu dòng classic là “gà cưng” của ông hoàng Converse. Thì “chiến thần” Run Star Motion Canvas Platform là màu áo mới được Converse tung ra để thách thức cho các thương hiệu khác trên đường đua thời trang. Với thiết kế tuyệt đẹp nhờ dải lượn sóng răng cưa ở phần quanh đế giày,  được ví như biển cả rộng lớn nhằm mục đích mang đến sự trẻ trung và hiện đại cho sản phẩm. Bên cạnh đó, đế giày của sản phẩm được làm bằng chất liệu cao su, đảm bảo độ bền và độ bám tốt trên mọi địa hình. \r\nVới Converse Run Star Motion Canvas Platform, vùng lưỡi gà được thiết kế cao, tạo nên điểm nhấn ấn tượng và ôm sát chân người mang. Phần thân giày vẫn giữ nguyên sự đơn giản và cổ điển, tạo nên sự nổi bật cho phần đế và mang lại vẻ trẻ trung và năng động cho người sử dụng. Đặc biệt, phần đế được thiết kế theo kiểu chunky bản to và chia làm hai phần thể hiện phong cách trẻ trung và đầy táo bạo. Các bộ phận có đường răng cưa lớn giúp giữ form và thăng bằng tốt hơn khi di chuyển, tạo nên sự thoải mái và tiện ích cho người sử dụng, đồng thời giúp tăng chiều cao một cách tự nhiên. ', 50, 0, 1, 1),
 (5, 'Giày Converse CHUCK TAYLOR ALL STAR', 1160000.00, 'giay5.jpg', 'Thay vì sử dụng những mẫu giày Chuck Taylor hoặc Jack Purcells cổ điển đã làm nên thương hiệu cho Converse như vẫn thường thấy trong các bộ sưu tập trước, Converse chọn một đôi giày thể thao định hướng hiệu suất tương tai để truyền đạt nét thiết kế đặc trưng của mình. Với Converse Aeon Active Cx, đây là một đôi Sneaker được thiết kế không dây, mang tới sự thoải mái và linh động từ thiết kế hướng tới tương lai. Phần upper bao gồm một lớp lưới kết hợp và bootie co giãn đàn hồi với những đường may đè tạo nên sự thoáng khí, vừa vặn thoải mái cùng kết cấu cải tiền từ phần thân đến phần đế giúp tối đa hóa sự hỗ trợ. Bên cạnh đó, một thanh kéo gót phía sau và miếng đệm gót TPU cho phép người dùng mang tháo giày dễ dàng hơn mà không dẫm lên gót giày làm hỏng form dáng, trong khi đế giữa CX -  loại xốp sở hữu khả năng hấp thụ chấn động và đàn hồi năng lượng cực tốt thể hiện một kết cấu tương tự như bê tông thô và một lớp đệm CX thả PU đảm bảo cho những bước đi cực kỳ nhẹ nhàng và thoải mái. Đặc biệt, góp phần tạo dấu ấn cho sản phẩm chính là phần phối hợp màu sắc độc đáo đem tới cái nhìn ấn tượng cho mọi người cùng logo đặc trưng của Converse cũng xuất hiện ở vị trí tiêu chuẩn bên hông thân giày giúp tạo điểm nhấn cho sản phẩm và tăng độ nhận diện cho thương hiệu. Với tinh thần ready to tread đầy cảm hứng, đôi giày sẽ cùng bạn sẵn sàng tiến bước, tự tin hướng đến tương lai mới với phong cách của riêng bạn.', 50, 0, 1, 1),
-(6, 'giày vip', 123456.00, 'Screenshot (919).png', 'quá đẹp luôn ấy chứ', 111, 0, 1, 1);
+(6, 'giày vip', 123456.00, 'Screenshot (919).png', 'quá đẹp luôn ấy chứ', 111, 0, 1, 1),
+(7, 'giày huhu', 122.00, '168508v1d68b84818ce1459982197d.webp', 'quá đẹp luôn ấy chứ', 2, 0, 1, 0),
+(8, 'giày huhu', 123.00, '168508v1d68b84818ce1459982197d.webp', '11233', 12, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -336,7 +367,8 @@ INSERT INTO `taikhoan` (`IdTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi
 (3, 'bao', '123', 'vuvanbao', 'hanoi', 'baovvph36087@fpt.edu.vn', 2147483647, 'Screenshot (896).png', 1),
 (4, 'bao123', '123', 'vuvanbao', '12321312', 'baovvph36087@fpt.edu.vn', 124121321, 'Screenshot (919).png', 2),
 (5, 'khachhang1', '123', 'hungbeti', 'hanoi', 'baovvph36087@fpt.edu.vn', 12312, 'Screenshot (931).png', 0),
-(6, 'khachhang2', '123', 'vuvanbao', 'hanoi', 'baovvph36087@fpt.edu.vn', 2131231, 'Screenshot (946).png', 0);
+(6, 'khachhang2', '123', 'vuvanbao', 'hanoi', 'baovvph36087@fpt.edu.vn', 2131231, 'Screenshot (946).png', 0),
+(26, 'bao14102004', '123414124', 'vuvanbao', 'hanoi', 'baovvph36087@fpt.edu.vn', 376473406, '168508v1d68b84818ce1459982197d.webp', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -377,6 +409,13 @@ ALTER TABLE `danhmuc`
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`IdDonHang`),
   ADD KEY `lk_dh_tk` (`IdTaiKhoan`);
+
+--
+-- Chỉ mục cho bảng `giamgia`
+--
+ALTER TABLE `giamgia`
+  ADD PRIMARY KEY (`idGiamGia`),
+  ADD KEY `lk_gg_tk` (`IdTaiKhoan`);
 
 --
 -- Chỉ mục cho bảng `giay_bienthe`
@@ -446,13 +485,19 @@ ALTER TABLE `chitietdonhang`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   MODIFY `IdDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `giamgia`
+--
+ALTER TABLE `giamgia`
+  MODIFY `idGiamGia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `giay_bienthe`
@@ -464,7 +509,7 @@ ALTER TABLE `giay_bienthe`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IdGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `mausac`
@@ -476,7 +521,7 @@ ALTER TABLE `mausac`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `IdSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `sizegiay`
@@ -488,7 +533,7 @@ ALTER TABLE `sizegiay`
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `IdTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -519,6 +564,12 @@ ALTER TABLE `chitietdonhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `lk_dh_tk` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
+
+--
+-- Các ràng buộc cho bảng `giamgia`
+--
+ALTER TABLE `giamgia`
+  ADD CONSTRAINT `lk_gg_tk` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
 
 --
 -- Các ràng buộc cho bảng `giay_bienthe`
