@@ -8,7 +8,6 @@ include '../model/pdo.php';
 include '../model/danhmuc.php';
 include '../model/taikhoan.php';
 include '../model/thongke.php';
-include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
@@ -188,38 +187,6 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $thongkedm = loadthongke_danhmuc();
                 include 'thongke/bieudodanhmuc.php';
                 break;
-            case 'thongkegiohang':
-                $thongkegiohang = loadthongke_giohang();
-                include 'thongke/thongkegiohang.php';
-                break;
-            case 'bieudogiohang';
-                $thongkegiohang = loadthongke_giohang();
-                include 'thongke/bieudogiohang.php';
-                break;
-            case 'listgiohang':
-                $listgiohang = loadthongke_giohang();
-                include 'giohang/listgiohang.php';
-                break;
-            case 'chitietgiohang':
-                if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) != "") {
-                    $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
-                }
-                include 'giohang/chitietgiohang.php';
-                break;
-            case 'xoaspgiohang':
-                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
-                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_GET["IdTaiKhoan"]);
-                    $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
-                    include 'giohang/chitietgiohang.php';
-                }
-                break;
-            case 'xoagiohang':
-                if (isset($_GET['IdTaiKhoan']) && $_GET['IdTaiKhoan'] > 0) {
-                    $delete_giohang = delete_giohang($_GET["IdTaiKhoan"]);
-                    $listgiohang = loadthongke_giohang();
-                    include 'giohang/listgiohang.php';
-                }
-            //het danh mục
             case 'addsp':
                 if (isset($_REQUEST['themmoi']) && $_REQUEST['themmoi']) {
                     $iddm = $_POST['iddm'];
