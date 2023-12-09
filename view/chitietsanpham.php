@@ -90,10 +90,13 @@
                             <?php endforeach ?>
                         </div>
                     </div>
-<!--                    <input type="hidden" name="IdSanPham" value="--><?php //echo $sanpham['IdSanPham']?><!--"-->
                     <div class="w-100"></div>
                     <div class="input-group col-md-6 d-flex mb-3">
         <span class="input-group-btn mr-2">
+            <input type="hidden" name="IdSanPham" value="
+                    <?php echo $sanpham['IdSanPham'] ?>"
+                   <input type="hidden" name="IdSanPham" value="
+                    <?php echo $tim_Idbt['IdGiayBienThe'] ?>"
             <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
                 <i class="ion-ios-remove"></i>
             </button>
@@ -108,7 +111,8 @@
                     </div>
                     <div class="w-100"></div>
                     <p>
-                        <button type="submit" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</button>
+                        <button type="submit" class="btn btn-black py-3 px-5" name="themgiohang">Thêm vào giỏ hàng
+                        </button>
                     </p>
                 </form>
 
@@ -142,7 +146,7 @@
                         </div>
                         <div>
                             <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
-                            <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
+                                <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
                                 <input type="text" name="noidung">
                                 <div class="form-group" id="rating">
                                     <label for="rating">Điểm đánh giá:</label>

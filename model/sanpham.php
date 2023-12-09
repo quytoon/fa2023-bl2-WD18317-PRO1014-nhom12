@@ -144,10 +144,13 @@ function delete_sp_bl($IdSanPham)
 
 function insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong)
 {
-    $sql = "INSERT INTO giay_bienthe(IdMauSac,IdSizeGiay,IdSanPham,SoLuong) 
-        VALUES ('$IdMauSac',$IdSizeGiay,$IdSanPham,$SoLuong)";
-    pdo_execute($sql);
+    $sql = "INSERT INTO giay_bienthe(IdMauSac, IdSizeGiay, IdSanPham, SoLuong) 
+            VALUES (?, ?, ?, ?)";
+    pdo_execute($sql, $IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong);
+    // You might return some information if needed
+    // return $someValue;
 }
+
 
 function list_bienthe($IdSanPham)
 {
@@ -197,7 +200,7 @@ function update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , 
 }
 function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
 {
-    $sql = "SELECT * FROM giay_bienthe WHERE IdSanPham = ? AND IdSizeGiay = ? AND IdMauSac = ?";
+    $sql = "SELECT IdGiayBienThe FROM giay_bienthe WHERE IdSanPham = ? AND IdSizeGiay = ? AND IdMauSac = ?";
     return pdo_query_one($sql, $IdSanPham, $IdSizeGiay, $IdMauSac);
 }
 

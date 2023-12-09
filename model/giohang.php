@@ -1,48 +1,52 @@
 <?php
 //load all giỏ hàng theo id user
-function loadall_giohang($IdTaiKhoan) {
-    $sql = "SELECT b.Gia * a.SoLuongSp AS tong_gia,
-    SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
-    SUM(a.SoLuongSp ) OVER () AS tong_sl,a.*,b.*,c.*
-    FROM giohang AS a JOIN sanpham AS b ON a.IdSanPham = b.IdSanPham
-    JOIN taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
-    WHERE c.IdTaiKhoan =".$IdTaiKhoan;
-    $result = pdo_query($sql);
-    return $result;
-}
-// thêm sản phẩm vào giỏ hàng
-
-//function loadall_giohang($IdTaiKhoan)
-//{
-//    $sql = "SELECT
-//    b.Gia * a.SoLuongSp AS tong_gia,
+//function loadall_giohang($IdTaiKhoan) {
+//    $sql = "SELECT b.Gia * a.SoLuongSp AS tong_gia,
 //    SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
-//    SUM(a.SoLuongSp) OVER () AS tong_sl,
-//    a.*,
-//    b.*,
-//    c.*,
-//    ms.TenMauSac,   -- Thêm cột TenMauSac từ bảng mausac
-//    sg.Size      -- Thêm cột TenSize từ bảng sizegiay
-//FROM
-//    giohang AS a
-//JOIN
-//    sanpham AS b ON a.IdSanPham = b.IdSanPham
-//JOIN
-//    taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
-// JOIN
-//    mausac AS ms ON b.IdSanPham = ms.IdMauSac  -- LEFT JOIN với bảng mausac
-// JOIN
-//    sizegiay AS sg ON b.IdSanPham = sg.IdSizeGiay  -- LEFT JOIN với bảng sizegiay
-//WHERE
-//    c.IdTaiKhoan =" . $IdTaiKhoan;;
+//    SUM(a.SoLuongSp ) OVER () AS tong_sl,a.*,b.*,c.*
+//    FROM giohang AS a JOIN sanpham AS b ON a.IdSanPham = b.IdSanPham
+//    JOIN taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
+//    WHERE c.IdTaiKhoan =".$IdTaiKhoan;
 //    $result = pdo_query($sql);
 //    return $result;
 //}
 
-function insert_giohang($IdSanPham, $IdTaiKhoan)
+
+function loadall_giohang($IdTaiKhoan)
 {
-    $sql = "INSERT into giohang (`IdSanPham`,`IdTaiKhoan`) 
-    VALUES ('$IdSanPham','$IdTaiKhoan')";
+    $sql = "SELECT
+        b.Gia * a.SoLuongSp AS tong_gia,
+        SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
+        SUM(a.SoLuongSp) OVER () AS tong_sl,
+        a.*,
+        b.*,
+        c.*,
+        ms.TenMauSac,
+        sg.Size
+    FROM
+        giohang AS a
+    JOIN
+        sanpham AS b ON a.IdSanPham = b.IdSanPham
+    JOIN
+        taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
+    LEFT JOIN
+        mausac AS ms ON a.IdMauSac = ms.IdMauSac
+    LEFT JOIN
+        sizegiay AS sg ON a.IdSizeGiay = sg.IdSizeGiay
+    WHERE
+        c.IdTaiKhoan = $IdTaiKhoan
+    GROUP BY
+        a.IdGioHang"; // Group by the primary key of giohang to avoid duplicate rows
+
+    $result = pdo_query($sql);
+    return $result;
+}
+
+
+function insert_giohang($IdSanPham, $IdTaiKhoan,$IdMauSac,$IdSizeGiay)
+{
+    $sql = "INSERT into giohang (`IdSanPham`,`IdTaiKhoan`,`IdMauSac`,`IdSizeGiay`) 
+    VALUES ('$IdSanPham','$IdTaiKhoan','$IdMauSac','$IdSizeGiay')";
     $result = pdo_query($sql);
     return $result;
 }

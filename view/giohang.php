@@ -43,6 +43,8 @@
 
 								<td class="product-name">
 									<h3>'.$TenSanPham.'</h3>
+									<h6>'.$TenMauSac.'</h6>
+									<h6>'.$Size.'</h6>
 									
 								</td>
 
