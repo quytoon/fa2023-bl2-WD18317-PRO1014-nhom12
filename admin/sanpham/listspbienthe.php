@@ -21,20 +21,18 @@
             <tbody>
             <?php
             foreach ($listspbienthe as $value) {
-//                $suasp = "index.php?act=suasp&IdSanPham=" . $IdSanPham;
-//                $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
-//                $xoamemsp = "index.php?act=xoamemsp&IdSanPham=" . $IdSanPham;
-                $xemct = "index.php?act=listspbienthe&IdSanPham=". $value['IdSanPham'];
+                $suasp = "index.php?act=suabienthe&IdGiayBienThe=" .  $value['IdGiayBienThe'];
+                $xoasp = "index.php?act=xoabienthe&IdGiayBienThe=" .  $value['IdGiayBienThe'] ;
                 echo '<tr>
                     <td>' . $value['IdGiayBienThe'] . '</td>
                     <td>' . $value['TenSanPham']  . '</td>
-                    <td>' .$value['IdSizeGiay']  . '</td>
-                    <td>' . $value['IdMauSac']  . '</td>
+                    <td>' .$value['Size']  . '</td>
+                    <td>' . $value['TenMauSac']  . '</td>
                     <td>' . $value['SoLuong']  . '</td>
                    <td>
-                    <a href=""><button type="button" class="btn btn-primary">Sửa</button></a>
-                    <a href="" onclick="return confirmDelete()"><button type="button" class="btn btn-danger">Xóa</button></a>
-                    <a href="" onclick="return confirmDelete()"><button type="button" class="btn btn-danger">Xóa mềm</button></a>
+                    <a href="'.$suasp.'"><button type="button" class="btn btn-primary">Sửa</button></a>
+                    <a href="'.$xoasp.'" onclick="return confirmDelete()"><button type="button" class="btn btn-danger">Xóa</button></a>
+                 
                    </td>
 
                 </tr>';
