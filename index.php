@@ -11,6 +11,7 @@ include "model/taikhoan.php";
 include "model/giohang.php";
 include "model/donhang.php";
 include "model/validate.php";
+include "model/giamgia.php";
 include "view/header.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
@@ -91,7 +92,14 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/donhang.php";
             break;
         case "giohang":
-            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+
+            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if(isset($_POST['update']) && $_POST['update'] != '') {
+                    $soluong = $_POST['quantity'];
+                    $idsp = $_POST['idsp'];
+                    update_giohang($soluong, $idsp, $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                }
+
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 include "view/giohang.php";
             } else {
@@ -100,8 +108,9 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "themgiohang":
             $productExists = false;
-            if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
-                if(isset($_GET['idsp']) && $_GET['idsp'] > 0) {
+
+            if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
+                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     foreach ($load_giohang as $key) {
                         if ($_GET['idsp'] == $key['IdSanPham']) {
@@ -110,6 +119,10 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                             break;
                         }
                     }
+
+                    if (!$productExists) {
+                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+
                     if(isset($_POST['themgiohang'])) {
                         if (!$productExists) {
                             $IdMauSac=$_POST['IdMauSac'];
@@ -131,6 +144,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
 
                         }
+
                     }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
@@ -200,21 +214,25 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $MatKhau = trim($_POST['MatKhau']);
                 $MatKhau2 = trim($_POST['MatKhau2']);
 
-                if(!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2)) {
-                    if($MatKhau == $MatKhau2) {
-                        dangky($TenTaiKhoan, $Email, $MatKhau);
-                        $thongbao = "Đăng ký thành công";
-                    } else {
-                        $thongbao = "Mật khẩu không khớp";
-                    }
-                } else {
-
+                if (empty($TenTaiKhoan)) {
+                    $thongbao1 = check_Validate("Vui lòng điền đầy đủ thông tin");
+                    
+                }if( !empty($TenTaiKhoan)&&(strlen($TenTaiKhoan) < 6)){
+                    $thongbao1=check_Validate("Tên đăng nhập phải có ít nhất 6 ký tự ");
+                } if (empty($Email)) {
+                    $thongbao2 = check_Validate("Vui lòng điền đầy đủ thông tin");
+                } if (empty($MatKhau) || empty($MatKhau2)) {
                     $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin");
+                } if ($MatKhau != $MatKhau2) {
+                    $thongbao = check_Validate("Mật khẩu không khớp");
+                } else if(!empty($TenTaiKhoan) && !empty($Email) && !empty($MatKhau) && !empty($MatKhau2) && strlen($TenTaiKhoan) >= 6){
+                    dangky($TenTaiKhoan, $Email, $MatKhau);
+                    $thongbao3 = "Đăng ký thành công";
                 }
             }
             include "view/taikhoan/dangky.php";
             break;
-
+        
         case "dangxuat":
             dangxuat();
             echo "<meta http-equiv='refresh' content='0;url=index.php'>";
@@ -255,6 +273,13 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             }
             break;
+        case "giamgiafree":
+            $dsgiamgia = loadall_giamgia();
+            include "view/giamgiafree.php";
+            break;    
+        case "nhanma":
+           
+            break;    
     }
 } else {
     include "view/home.php";

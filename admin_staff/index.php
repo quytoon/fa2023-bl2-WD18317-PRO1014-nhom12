@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -12,7 +12,7 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
-if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)){
+if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 2 || $_SESSION['TenTaiKhoan']['role'] == 1)){
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
