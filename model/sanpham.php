@@ -35,7 +35,8 @@ function xoa_sanpham($IdSanPham)
 }
 
 //cau truy van xoa mem
-function xoamem_sanpham($IdSanPham) {
+function xoamem_sanpham($IdSanPham)
+{
     $sql = "UPDATE `sanpham` set `trangthai` = 0 where `sanpham`.`IdSanPham` = $IdSanPham";
     pdo_execute($sql);
 }
@@ -143,27 +144,64 @@ function delete_sp_bl($IdSanPham)
 
 function insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong)
 {
-    $sql = "INSERT INTO giay_bienthe(IdMauSac,IdSizeGiay,IdSanPham,SoLuong) 
-        VALUES ('$IdMauSac',$IdSizeGiay,$IdSanPham,$SoLuong)";
-    pdo_execute($sql);
+    $sql = "INSERT INTO giay_bienthe(IdMauSac, IdSizeGiay, IdSanPham, SoLuong) 
+            VALUES (?, ?, ?, ?)";
+    pdo_execute($sql, $IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong);
+    // You might return some information if needed
+    // return $someValue;
 }
+
 
 function list_bienthe($IdSanPham)
 {
-    $sql = "SELECT giay_bienthe.*, sanpham.*, sizegiay.*, mausac.*, giay_bienthe.SoLuong 
+    $sql = "SELECT giay_bienthe.*, sanpham.*, sizegiay.Size, mausac.TenMauSac, giay_bienthe.SoLuong 
         FROM giay_bienthe 
         JOIN sanpham ON giay_bienthe.IdSanPham = sanpham.IdSanPham 
         JOIN sizegiay ON giay_bienthe.IdSizeGiay = sizegiay.IdSizeGiay 
         JOIN mausac ON giay_bienthe.IdMauSac = mausac.IdMauSac 
-        WHERE giay_bienthe.IdSanPham = ?";
+        WHERE giay_bienthe.IdSanPham = ?
+        ORDER BY giay_bienthe.IdGiayBienThe DESC";
 
-    return pdo_query($sql , $IdSanPham);
+    return pdo_query($sql, $IdSanPham);
 }
 
 
-function sl_bienthe($IdSanPham){
-   $sql= "SELECT SUM(giay_bienthe.SoLuong ) FROM giay_bienthe WHERE IdSanPham = ? ";
-   return pdo_query_value($sql , $IdSanPham);
+function sl_bienthe($IdSanPham)
+{
+    $sql = "SELECT SUM(giay_bienthe.SoLuong ) FROM giay_bienthe WHERE IdSanPham = ? ";
+    return pdo_query_value($sql, $IdSanPham);
+}
+
+function delete_spdonhang($sl, $id)
+{
+    $sql = "UPDATE sanpham SET sanpham.SoLuong = sanpham.SoLuong - '$sl' WHERE sanpham.IdSanPham = '$id'";
+    pdo_execute($sql);
+}
+
+function xoa_bienthe($IdGiayBienThe)
+{
+    $sql = "delete from giay_bienthe where `giay_bienthe`.`IdGiaybienThe` = '$IdGiayBienThe'";
+    pdo_execute($sql);
+}
+
+function load_spbt_one($IdGiayBienThe)
+{
+    $sql = "SELECT giay_bienthe.*, sanpham.*, sizegiay.Size, mausac.TenMauSac, giay_bienthe.SoLuong 
+        FROM giay_bienthe 
+        JOIN sanpham ON giay_bienthe.IdSanPham = sanpham.IdSanPham 
+        JOIN sizegiay ON giay_bienthe.IdSizeGiay = sizegiay.IdSizeGiay 
+        JOIN mausac ON giay_bienthe.IdMauSac = mausac.IdMauSac 
+WHERE giay_bienthe.IdGiayBienThe = ?;";
+    return pdo_query_one($sql, $IdGiayBienThe);
+}
+function update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong){
+    $sql = "UPDATE giay_bienthe SET IdSanPham=?,IdSizeGiay=?,IdMauSac=?,SoLuong=? WHERE IdGiayBienThe = ?";
+    pdo_execute($sql, $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong ,$IdGiayBienThe);
+}
+function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
+{
+    $sql = "SELECT IdGiayBienThe FROM giay_bienthe WHERE IdSanPham = ? AND IdSizeGiay = ? AND IdMauSac = ?";
+    return pdo_query_one($sql, $IdSanPham, $IdSizeGiay, $IdMauSac);
 }
 
 ?>

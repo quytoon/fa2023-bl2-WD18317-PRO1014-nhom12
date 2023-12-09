@@ -375,9 +375,9 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 if (isset($_POST['addspbienthe']) && ($_POST['addspbienthe'])) {
                     $IdSanPham = $_REQUEST['IdSanPham'];
                     $SoLuong = $_POST['SoLuong'];
-                    $IdSizeGiay =$_POST['IdSizeGiay'];
-                    $IdMauSac=$_POST['IdMauSac'];
-                    insert_bienthe($IdMauSac,$IdSizeGiay,$IdSanPham,$SoLuong);
+                    $IdSizeGiay = $_POST['IdSizeGiay'];
+                    $IdMauSac = $_POST['IdMauSac'];
+                    insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong);
                     $thongbao = "Them Thanh cong ";
 
                 }
@@ -391,6 +391,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listspbienthe = list_bienthe($_GET['IdSanPham']);
                 include 'sanpham/listspbienthe.php';
                 break;
+
             case 'listgiamgia':
                 $listgiamgia = loadall_giamgia();
                 include 'giamgia/listgiamgia.php';
@@ -433,6 +434,37 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listgiamgia = loadall_giamgia();
                 include "giamgia/listgiamgia.php";
                 break;      
+
+            case 'xoabienthe':
+                if (isset($_GET['IdGiayBienThe'])) {
+                    xoa_bienthe($_GET['IdGiayBienThe']);
+                }
+                $listspbienthe = list_bienthe($_GET['IdGiayBienThe']);
+                include 'sanpham/listspbienthe.php';
+                break;
+            case 'suabienthe':
+                if (isset($_GET['IdGiayBienThe']) && ($_GET['IdGiayBienThe'] > 0)) {
+                    $loadspbtone = load_spbt_one($_GET['IdGiayBienThe']);
+                    $listsize = loadall_size();
+                    $listmau = loadall_mausac();
+
+                }
+                include 'sanpham/updatespbienthe.php';
+                break;
+            case 'updatespbienthe':
+                if (isset($_POST['updatespbienthe']) && ($_POST['updatespbienthe'])) {
+                    $IdGiayBienThe=$_POST['IdGiayBienThe'];
+                    $IdSanPham = $_REQUEST['IdSanPham'];
+                    $SoLuong = $_POST['SoLuong'];
+                    $IdSizeGiay = $_POST['IdSizeGiay'];
+                    $IdMauSac = $_POST['IdMauSac'];
+                    update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong);
+                }
+                $listsanpham = san_pham_all();
+                $listsize = loadall_size();
+                $listmau = loadall_mausac();
+
+                break;
         }
 
     } else {

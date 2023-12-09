@@ -31,6 +31,8 @@
 
 								<td class="product-name">
 									' . $TenSanPham . '
+									<br>' . $TenMauSac . '<br>
+									' . $Size . '
 								</td>
 
 								<td class="price">' . number_format($Gia, 0, '.', ',') . ' vnđ</td>

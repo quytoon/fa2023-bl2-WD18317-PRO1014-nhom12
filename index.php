@@ -92,12 +92,14 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/donhang.php";
             break;
         case "giohang":
+
             if(isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if(isset($_POST['update']) && $_POST['update'] != '') {
                     $soluong = $_POST['quantity'];
                     $idsp = $_POST['idsp'];
                     update_giohang($soluong, $idsp, $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 }
+
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 include "view/giohang.php";
             } else {
@@ -106,6 +108,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "themgiohang":
             $productExists = false;
+
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
@@ -116,8 +119,32 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                             break;
                         }
                     }
+
                     if (!$productExists) {
                         $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+
+                    if(isset($_POST['themgiohang'])) {
+                        if (!$productExists) {
+                            $IdMauSac=$_POST['IdMauSac'];
+                            $IdSizeGiay=$_POST['IdSizeGiay'];
+                            $SoLuong = $_POST["quantity"];
+                            $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac);
+
+                            if ($productExists) {
+                                $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay);
+                                echo "Sản phẩm đã được thêm vào giỏ hàng.";
+                            } else {
+                                // Sản phẩm không tồn tại trong cơ sở dữ liệu
+                                $thongbao = "Sản phẩm đã hết. Vui lòng chọn sản phẩm khác.";
+                                echo "<script>";
+                                echo "alert('$thongbao');";
+                                echo "window.location.href = 'index.php?act=chitietsanpham&idsp=" . $_GET['idsp'] . "';";
+                                echo "</script>";
+                            }
+
+
+                        }
+
                     }
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
