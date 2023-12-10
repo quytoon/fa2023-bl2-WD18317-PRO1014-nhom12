@@ -95,7 +95,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "themgiohang":
             $productExists = false;
-
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
@@ -128,7 +127,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                                 echo "window.location.href = 'index.php?act=chitietsanpham&idsp=" . $_GET['idsp'] . "';";
                                 echo "</script>";
                             }
-
+                        }
 
                         }
 
@@ -174,7 +173,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 include "view/thanhtoan.php";
             }
-            break;
+            break;   
         case "dangnhap":
             // include "view/taikhoan/dangnhap.php"; 
             if(isset($_POST['dangnhap'])) {
