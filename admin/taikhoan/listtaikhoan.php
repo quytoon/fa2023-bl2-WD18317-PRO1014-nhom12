@@ -62,16 +62,13 @@
                                             
                                     //     </td>';
                                     // }
-                                    if($role != 1){
+                                    
                                         echo'<td>
                                             <a href="' . $suatk . '"><input type="button" value="Sửa" class="btn btn-primary my-1"></a>
                                             <a href="' . $xoatk . '"><input type="button" value="Xóa" class="btn btn-primary my-1" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
                                         </td>';  
-                                    }if($role == 1){
-                                        echo'<td>
-                                        <a href="' . $suatk . '"><input type="button" value="Sửa" class="btn btn-primary my-1"></a> 
-                                        </td>';   
-                                    }
+                                  
+                                     
                                     
                                                  
                                 }

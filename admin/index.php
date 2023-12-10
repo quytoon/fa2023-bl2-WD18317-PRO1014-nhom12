@@ -84,7 +84,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 include "taikhoan/listtaikhoan.php";
                 break;
             case 'addtaikhoan':
-                if (isset($_POST['themtaikhoan']) && ($_POST['themtaikhoan'])) {
+                if (isset($_REQUEST['themtaikhoan']) && ($_REQUEST['themtaikhoan'])) {
                     $TenTaiKhoan = trim($_POST['TenTaiKhoan']);
                     $MatKhau = trim($_POST['MatKhau']);
                     $HoTen = trim($_POST['HoTen']);
@@ -92,7 +92,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $Email = trim($_POST['Email']);
                     $SoDienThoai = trim($_POST['SoDienThoai']);
                     $role = trim($_POST['role']);
-
+                    $avatarUser = $_FILES['avatarUser']['name'];
                     if (empty($TenTaiKhoan) || empty($MatKhau) || empty($HoTen) || empty($DiaChi) || empty($Email) || empty($SoDienThoai) || empty($role)) {
                         $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin!");
                     } else if (checkTk($TenTaiKhoan)) {
@@ -104,7 +104,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                             if (!is_numeric($SoDienThoai)) {
                                 $thongbao = check_Validate("Số điện thoại phải là số!");
                             } else {
-                                $avatarUser = $_FILES['avatarUser']['name'];
+                              
                                 $target_dir = "../upload/";
                                 $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
                                 if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
@@ -123,7 +123,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 break;
             case 'updatetaikhoan':
                 if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) > 0) {
-                    $chitiettaikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
+                    $taikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
                 }
                 include 'taikhoan/updatetaikhoan.php';
                 break;
@@ -138,15 +138,9 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $SoDienThoai = $_POST['SoDienThoai'];
                     $role = $_POST['role'];
                     $avatarUser = $_FILES['avatarUser']['name'];
-                    $target_dir = "../upload/";
+                    $target_dir = '../upload/';
                     $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
-                    if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
-                        // Upload thành công
-                        // echo "Bạn đã upload ảnh thành công";
-                    } else {
-                        // Upload không thành công
-                        // echo "Upload ảnh không thành công";
-                    }
+                    move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file);
                     update_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role, $IdTaiKhoan);
                     $thongbao = "Cập nhật thành công ";
                 }
