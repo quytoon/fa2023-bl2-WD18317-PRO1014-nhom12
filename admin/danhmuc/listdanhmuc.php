@@ -18,6 +18,7 @@
                 <tr>
                     <th>Tên Danh Mục</th>
                     <th>Số lượng sản phẩm trong danh mục</th>
+                    <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
             </tfoot>
@@ -31,6 +32,7 @@
                     $xoamemdm = "index.php?act=xoamemdm&idDanhMuc=" . $idDanhMuc;
                     echo '<tr>
                                         <td>' . $tenDanhMuc . '</td>
+                                        <td>' . $SoLuong . '</td>
                                         <td>' . $SoLuong . '</td>
                                         <td>
                                         <a href="' . $chitietdanhmuc . '"><input type="button" value="Xem chi tiết" class="btn btn-primary"></a> 
