@@ -5,6 +5,19 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Admin</li>
             </ol> -->
+
+            <?php 
+            if (is_array($taikhoan)) {
+                extract($taikhoan);    
+                } 
+                $hinh = "../upload/" . $avatarUser;
+                if(is_file($hinh)) {
+                    $hinh = "<img src='".$hinh."' height='80'>";
+                } else {
+                    $hinh = 'no photo';
+                }
+            ?>
+
             /<a href="index.php?act=addtaikhoan">Sửa tài khoản</a></li>
             </ol>
             <div class="card mb-4">
@@ -13,12 +26,9 @@
                     Cập nhật tài khoản
                 </div>
                 <div class="card-body">
-                    <form action="index.php?act=suataikhoan" method="POST" enctype="multipart/form-data">
+                    <form action="index.php?act=suataikhoan" method="post" enctype="multipart/form-data">
                         <!-- Tên sản phẩm -->
                         <div class="form-group">
-                            <?php if (is_array($chitiettaikhoan)) {
-                                extract($chitiettaikhoan);
-                            } ?>
                             <label for="TenTaiKhoan">Tên tài khoản</label>
                             <input type="text" class="form-control" id="TenTaiKhoan" placeholder="Nhập tên tài khoản"
                                 name="TenTaiKhoan" value="<?php if (isset($TenTaiKhoan) && ($TenTaiKhoan != ""))
@@ -44,9 +54,10 @@
                                 name="SoDienThoai" value="<?php if (isset($SoDienThoai) && ($SoDienThoai != ""))
                                     echo $SoDienThoai; ?>">
                                      <label for="avatarUser">Hình ảnh</label>
-                            <input type="file" class="form-control" id="avatarUser" 
-                                name="avatarUser" value="<?php if (isset($avatarUser) && ($avatarUser != ""))
-                                    echo $avatarUser; ?>">
+                            <input type="file" class="form-control" 
+                                name="avatarUser" >
+                                <?=$hinh ?>
+                             <br>
                                      <label for="role">Vai trò</label>
                             <input type="text" class="form-control" id="role" placeholder="Nhập vai trò"
                                 name="role" value="<?php if (isset($role) && ($role != ""))

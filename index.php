@@ -127,10 +127,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                     echo "window.location.href = 'index.php?act=chitietsanpham&idsp=" . $_GET['idsp'] . "';";
                                     echo "</script>";
                                 }
-
-
                             }
-
                         }
                         $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                         echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";

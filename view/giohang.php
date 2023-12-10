@@ -84,8 +84,8 @@
 						</div>
 					</form>
 				</div>
-				<p><a href="" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
-			</div>
+				<p><a href="index.php?act=giamgia" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
+			</div>	
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Tổng tiền</h3>
@@ -101,7 +101,6 @@
 					</p>
 					<p class="d-flex">
 						<span>Giảm giá</span>
-						<span>$0.00</span>
 					</p>
 					<hr>
 					<p class="d-flex total-price">
