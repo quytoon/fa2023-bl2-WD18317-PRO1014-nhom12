@@ -39,16 +39,13 @@
 								<td class="image-prod">
 									<div class="img" style="background-image:url('.$img.');"></div>
 								</td>
-
 								<td class="product-name">
 									<a href="index.php?act=chitietsanpham&idsp='.$IdSanPham.'"><h3>'.$TenSanPham.'</h3></a>
 									<h6>Màu: '.$TenMauSac.'</h6>
 									<h6>Size: '.$Size.'</h6>
 									
 								</td>
-
 								<td class="price">'.number_format($Gia, 0, '.', ',').' vnđ</td>
-
 								<td class="quantity">
 									<div class="row">
 										</div>
@@ -56,7 +53,6 @@
 												class="form-control input-number" value="'.$SoLuongSp.'" min="1" max="100"></div>
 									</div>
 								</td>
-
 								<td class="total">'.number_format($tong_gia, 0, '.', ',').' vnđ</td>
 							</tr><!-- END TR-->
 								';

@@ -68,9 +68,9 @@ function delete_giohang($IdTaiKhoan)
     return $result;
 }
 
-function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan,$SoLuong)
+function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan,$SoLuong,$IdSizeGiay,$IdMauSac)
 {
-    $sql = "update giohang set SoLuongSp = SoLuongSp + $SoLuong where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan";
+    $sql = "update giohang set SoLuongSp = SoLuongSp + $SoLuong where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan and `IdSizeGiay` = '$IdSizeGiay' and `IdMauSac` = '$IdMauSac'";
     pdo_execute($sql);
 }
 

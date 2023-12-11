@@ -102,10 +102,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    $IdMauSac = $_POST['IdMauSac'];
+                    $IdSizeGiay = $_POST['IdSizeGiay'];
+                    $SoLuong = $_POST["quantity"];
                     foreach ($load_giohang as $key) {
                         if ($_GET['idsp'] == $key['IdSanPham'] && $_POST['IdSizeGiay'] == $key['IdSizeGiay'] && $_POST['IdMauSac'] == $key['IdMauSac']) {
-                            $SoLuong = $_POST["quantity"];
-                            $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $SoLuong);
+                            $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $SoLuong, $IdSizeGiay,$IdMauSac);
                             $productExists = true;
                             echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                             break;
@@ -114,13 +116,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     if (!$productExists) {
                         if (isset($_POST['themgiohang'])) {
                             if (!$productExists) {
-                                $IdMauSac = $_POST['IdMauSac'];
-                                $IdSizeGiay = $_POST['IdSizeGiay'];
-                                $SoLuong = $_POST["quantity"];
-                                $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac, $SoLuong);
+                                $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac);
                                 if ($productExists) {
                                     $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay, $SoLuong);
-                                    echo "Sản phẩm đã được thêm vào giỏ hàng.";
                                 } else {
                                     // Sản phẩm không tồn tại trong cơ sở dữ liệu
                                     $thongbao = "Sản phẩm đã hết. Vui lòng chọn sản phẩm khác.";
