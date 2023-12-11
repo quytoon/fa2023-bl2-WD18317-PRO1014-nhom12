@@ -33,32 +33,33 @@
                 <?php
 
 
-                foreach($listdonhang as $key) {
+                foreach ($listdonhang as $key) {
                     extract($key);
-                    $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=".$IdDonHang;
+                    var_dump($tt);
+                    $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=" . $IdDonHang;
 
                     echo '<tr>
-            <td>'.$IdDonHang.'</td>
-            <td>'.$TenTaiKhoan.'</td>
-            <td>'.$SoDienThoai.' </td>
-            <td>'.$NgayDatHang.'</td>
-            <td>'.$DiaChiDat.'</td>
+            <td>' . $IdDonHang . '</td>
+            <td>' . $TenTaiKhoan . '</td>
+            <td>' . $SoDienThoai . ' </td>
+            <td>' . $NgayDatHang . '</td>
+            <td>' . $DiaChiDat . '</td>
             
             <td>
-            <form method="post" action="index.php?act=updatetrangthai&IdDonHang='.$IdDonHang.'">
+            <form method="post" action="index.php?act=updatetrangthai&IdDonHang=' . $IdDonHang . '">
                 <select name="luachon" >
-                <option value ="1" '.($TrangThai == 1 ? 'selected' : 'disabled').'>Chờ xác nhận</option>
-                    <option value ="2" '.($TrangThai > 2 ? ' disabled ' : $TrangThai = 2 ? ' selected ' : '').'>Đã xác nhận</option>
-                    <option value ="3" '.($TrangThai > 3 ? ' disabled ' : $TrangThai = 3 ? ' selected ' : '').'>Đang giao hàng</option>
-                    <option value ="4" '.($TrangThai > 4 ? ' disabled ' : $TrangThai = 4 ? ' selected ' : '').'>Giao hàng thành công</option>
-                    <option value ="5" '.($TrangThai == 5 ? ' selected ' : $TrangThai = 4 ? ' disabled ' : '').'>Hủy</option>
+                    <option value ="0" ' . ($tt == 0 ? 'selected' : 'disabled') . '>Chờ xác nhận</option>
+                    <option value ="1" ' . ($tt == 1 ? 'selected' : ($tt > 1 ? 'disabled' : '')) . '>Đã xác nhận</option>
+                    <option value ="2" ' . ($tt == 2 ? 'selected' : ($tt > 2 ? 'disabled' : '')) . '>Đang giao hàng</option>
+                    <option value ="3" ' . ($tt == 3 ? 'selected' : ($tt > 3 ? 'disabled' : '')) . '>Giao hàng thành công</option>
+                    <option value ="4" ' . (($tt == 4 || $tt == 2 || $tt == 3) ? 'disabled' : ($tt == 4 ? 'selected' : '')) . '>Hủy</option>
                 </select>
                 <button type="submit" name="capnhat">Cập nhật</button>
             </form>
         </td>
 
             <td>
-                <a href="'.$chitietdonhang.'"><input type="submit" value="Xem chi tiết">
+                <a href="' . $chitietdonhang . '"><input type="submit" value="Xem chi tiết">
             </td>
           </tr>';
                 }

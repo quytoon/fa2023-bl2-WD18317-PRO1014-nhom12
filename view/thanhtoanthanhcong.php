@@ -50,7 +50,7 @@
 							</ul>
 							<div class="row mt-3">
 								<?php if(isset($_SESSION['TenTaiKhoan'])): ?>
-									<a href="index.php?act=donhang&idtk=<?php echo $_SESSION['TenTaiKhoan']?>"
+									<a href="index.php?act=chitietdonhang&IdDonHang=<?php echo $load_donhang['0']['IdDonHang'] ?>"
 										class="btn btn-outline-success px-2 py-1 justify-content-center">Xem đơn
 										hàng</a>
 									<a href="index.php"

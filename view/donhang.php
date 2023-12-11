@@ -56,22 +56,22 @@ extract($_SESSION['TenTaiKhoan']);
 								<td >'.$DiaChiDat.' </td>
 								
 								<td class="role">';
-								if($TrangThai == 1) {
+								if($TrangThai == 0) {
 									echo "Chờ xác nhận
 									</td>
 						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
 
-								} else if($TrangThai == 2) {
+								} else if($TrangThai == 1) {
 									echo "Đã xác nhận
 									</td>
 						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
-								} else if($TrangThai == 3) {
+								} else if($TrangThai == 2) {
 									echo "Đang giao hàng
 									</td>
 						 <td><a class='btn btn-primary' href='index.php?act=huydonhang&IdDonHang=$IdDonHang' onclick='return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này\')'>Hủy</a>";
-								} else if($TrangThai == 4) {
+								} else if($TrangThai == 3) {
 									echo "Giao hàng thành công";
-								} else if($TrangThai == 5) {
+								} else if($TrangThai == 4) {
 									echo "Đã hủy";
 								}
 
