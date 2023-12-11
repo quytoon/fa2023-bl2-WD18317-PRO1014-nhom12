@@ -35,7 +35,6 @@
 
                 foreach ($listdonhang as $key) {
                     extract($key);
-                    var_dump($tt);
                     $chitietdonhang = "index.php?act=chitietdonhang&IdChiTietDonHang=" . $IdDonHang;
 
                     echo '<tr>
@@ -44,7 +43,6 @@
             <td>' . $SoDienThoai . ' </td>
             <td>' . $NgayDatHang . '</td>
             <td>' . $DiaChiDat . '</td>
-            
             <td>
             <form method="post" action="index.php?act=updatetrangthai&IdDonHang=' . $IdDonHang . '">
                 <select name="luachon" >
@@ -52,9 +50,12 @@
                     <option value ="1" ' . ($tt == 1 ? 'selected' : ($tt > 1 ? 'disabled' : '')) . '>Đã xác nhận</option>
                     <option value ="2" ' . ($tt == 2 ? 'selected' : ($tt > 2 ? 'disabled' : '')) . '>Đang giao hàng</option>
                     <option value ="3" ' . ($tt == 3 ? 'selected' : ($tt > 3 ? 'disabled' : '')) . '>Giao hàng thành công</option>
-                    <option value ="4" ' . (($tt == 4 || $tt == 2 || $tt == 3) ? 'disabled' : ($tt == 4 ? 'selected' : '')) . '>Hủy</option>
-                </select>
-                <button type="submit" name="capnhat">Cập nhật</button>
+                    <option value ="4" ' . (($tt == 2 || $tt == 3) ? 'disabled' : ($tt == 4 ? 'selected' : '')) . '>Hủy</option>
+                </select>'; ?>
+                    <button type="submit" name="capnhat" onclick="return confirm('Bạn có chắc chắn thay đổi trạng thái đơn hàng?')">Cập
+                        nhật</button>
+                    <?php
+                    echo '
             </form>
         </td>
 
@@ -64,26 +65,8 @@
           </tr>';
                 }
                 ?>
-                <!-- $suadh = "index.php?act=updatedonhang&IdDonHang=" . $IdDonHang;
-                $xoadh = "index.php?act=xoadh&IdDonHang=" . $IdDonHang; -->
-                <!-- <a href="' . $suadh . '"><input type="button" value="Sửa" class="btn btn-primary"></a> 
-                <a href="' . $xoadh . '"><input type="button" value="Xóa" class="btn btn-primary" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td> -->
             </tbody>
         </table>
     </div>
-
-    <!-- // if (selectedOption === 'b') {
-//         optionA.style.display = 'none';
-//     } else if (selectedOption === 'c') {
-//         optionA.style.display = 'none';
-//         optionB.style.display = 'none';
-//     } else {
-//         optionA.style.display = 'block';
-//         optionB.style.display = 'block';
-//     } -->
-
-    <!-- <div class="card-footer">
-        <a href="index.php?act=adddanhmuc"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
-    </div> -->
 </div>
 </main>

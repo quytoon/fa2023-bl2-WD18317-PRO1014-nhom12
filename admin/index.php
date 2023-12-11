@@ -103,7 +103,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                             if (!is_numeric($SoDienThoai)) {
                                 $thongbao = check_Validate("Số điện thoại phải là số!");
                             } else {
-                              
+
                                 $target_dir = "../upload/";
                                 $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
                                 if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
@@ -319,11 +319,20 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 break;
             case 'updatetrangthai':
                 if (isset($_POST['capnhat'])) {
-                    $luachon = $_POST['luachon'];
-                    $id = $_GET['IdDonHang'];
-                    $update = update_trangthai($luachon, $id);
+                    $ttdh = checkstatus_dh($_GET['IdDonHang']);
                     $listdonhang = loadthongke_donhang();
-                    include "donhang/listdonhang.php";
+                    if ($ttdh["TrangThai"] == 4) {
+                        $thongbao = "Thao tác của bạn chưa được thực hiện do trạng thái đơn hàng đã thay đổi ";
+                        echo "<script>";
+                        echo "alert('$thongbao');";
+                        echo "</script>";
+                        include "donhang/listdonhang.php";
+                    } else {
+                        $luachon = $_POST['luachon'];
+                        $id = $_GET['IdDonHang'];
+                        $update = update_trangthai($luachon, $id);
+                        include "donhang/listdonhang.php";
+                    }
                 }
                 break;
             case 'chitietdonhang':
@@ -363,7 +372,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $soluong = $_POST['soluong'];
                     $codeGiamGia = $_POST['codeGiamGia'];
                     $tienGiamGia = $_POST['tienGiamGia'];
-                    insert_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia);
+                    insert_giamgia($tenGiamGia, $soluong, $codeGiamGia, $tienGiamGia);
                     $thongbao = "Thêm Thành công ";
                 }
                 $listgiamgia = loadall_giamgia();
@@ -375,7 +384,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 }
                 $listgiamgia = loadall_giamgia();
                 include 'giamgia/listgiamgia.php';
-                break;  
+                break;
             case 'updategiamgia':
                 if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia']) > 0) {
                     $chitietgiamgia = loadone_giamgia($_GET['idGiamGia']);
@@ -388,13 +397,13 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $soluong = $_POST['soluong'];
                     $codeGiamGia = $_POST['codeGiamGia'];
                     $tienGiamGia = $_POST['tienGiamGia'];
-                    $idGiamGia=$_POST['idGiamGia'];
-                    update_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia,$idGiamGia);                       
+                    $idGiamGia = $_POST['idGiamGia'];
+                    update_giamgia($tenGiamGia, $soluong, $codeGiamGia, $tienGiamGia, $idGiamGia);
                     $thongbao = "Cập nhật thành công ";
                 }
                 $listgiamgia = loadall_giamgia();
                 include "giamgia/listgiamgia.php";
-                break;      
+                break;
 
             case 'xoabienthe':
                 if (isset($_GET['IdGiayBienThe'])) {
@@ -414,12 +423,12 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 break;
             case 'updatespbienthe':
                 if (isset($_POST['updatespbienthe']) && ($_POST['updatespbienthe'])) {
-                    $IdGiayBienThe=$_POST['IdGiayBienThe'];
+                    $IdGiayBienThe = $_POST['IdGiayBienThe'];
                     $IdSanPham = $_REQUEST['IdSanPham'];
                     $SoLuong = $_POST['SoLuong'];
                     $IdSizeGiay = $_POST['IdSizeGiay'];
                     $IdMauSac = $_POST['IdMauSac'];
-                    update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong);
+                    update_bienthe($IdGiayBienThe, $IdSanPham, $IdSizeGiay, $IdMauSac, $SoLuong);
                 }
                 $listsanpham = san_pham_all();
                 $listsize = loadall_size();

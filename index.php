@@ -66,9 +66,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "huydonhang":
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
-                    $huy_giohang = huy_donhang($_GET['IdDonHang']);
                     $load_donhang = loadall_donhang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-                    include "view/donhang.php";
+                    $ttdh = checkstatus_dh($_GET['IdDonHang']);
+                    if ($ttdh['TrangThai'] == 3 || $ttdh['TrangThai'] == 2) {
+                        $thongbao = "Thao tác của bạn chưa được thực hiện do trạng thái đơn hàng đã thay đổi ";
+                        echo "<script>";
+                        echo "alert('$thongbao');";
+                        echo "</script>";
+                        include "view/donhang.php";
+                    } else {
+                        var_dump($ttdh['TrangThai']);
+                        $huy_giohang = huy_donhang($_GET['IdDonHang']);
+                        $donhang = load_chitietdonhang($_GET['IdDonHang']);
+                        foreach ($donhang as $key) {
+                            $update_slsp = update_slsp_huydh($key['sl'], $key['IdMauSac'], $key['IdSizeGiay'], $key['IdSanPham']);
+                        }
+                        include "view/donhang.php";
+                    }
                 } else {
                     include "view/home.php";
                 }
@@ -245,7 +259,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $diachi = $_POST["thanhpho"] . ',' . $_POST["quanhuyen"] . ',' . $_POST["xa"] . ',' . $_POST["diachi"];
-                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi,$_POST['hoten'],$_POST['sdt'],$_POST['email']);
+                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi, $_POST['hoten'], $_POST['sdt'], $_POST['email']);
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 foreach ($load_giohang as $key) {
