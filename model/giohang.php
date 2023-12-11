@@ -43,7 +43,7 @@ function loadall_giohang($IdTaiKhoan)
 }
 
 
-function insert_giohang($IdSanPham, $IdTaiKhoan,$IdMauSac,$IdSizeGiay,$SoLuongSp)
+function insert_giohang($IdSanPham, $IdTaiKhoan, $IdMauSac, $IdSizeGiay, $SoLuongSp)
 {
     $sql = "INSERT into giohang (`IdSanPham`,`IdTaiKhoan`,`IdMauSac`,`IdSizeGiay`,`SoLuongSp`) 
     VALUES ('$IdSanPham','$IdTaiKhoan','$IdMauSac','$IdSizeGiay','$SoLuongSp')";
@@ -52,7 +52,7 @@ function insert_giohang($IdSanPham, $IdTaiKhoan,$IdMauSac,$IdSizeGiay,$SoLuongSp
 }
 
 //xóa sản phẩm từ giỏ hàng
-function delete_sp_giohang($IdSanPham, $IdTaiKhoan,$IdSizeGiay,$IdMauSac)
+function delete_sp_giohang($IdSanPham, $IdTaiKhoan, $IdSizeGiay, $IdMauSac)
 {
     $sql = "DELETE FROM `giohang` 
     WHERE `IdSanPham` = '$IdSanPham' and `IdTaiKhoan` = '$IdTaiKhoan' and `IdSizeGiay` = '$IdSizeGiay' and `IdMauSac` = '$IdMauSac'";
@@ -68,7 +68,7 @@ function delete_giohang($IdTaiKhoan)
     return $result;
 }
 
-function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan,$SoLuong,$IdSizeGiay,$IdMauSac)
+function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan, $SoLuong, $IdSizeGiay, $IdMauSac)
 {
     $sql = "update giohang set SoLuongSp = SoLuongSp + $SoLuong where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan and `IdSizeGiay` = '$IdSizeGiay' and `IdMauSac` = '$IdMauSac'";
     pdo_execute($sql);
@@ -81,9 +81,10 @@ function demsoluong_giohang($IdSanPham)
     return $result;
 }
 
-function insert_donhang($ngay, $tien, $id, $sl, $diachi)
+function insert_donhang($ngay, $tien, $id, $sl, $diachi, $hoten, $sdt, $email)
 {
-    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat) VALUES ('$ngay','$tien','$id','$sl','$diachi')";
+    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat,HoVaTen,SoDienThoai,Email) 
+    VALUES ('$ngay','$tien','$id','$sl','$diachi','$hoten','$sdt','$email')";
     $result = pdo_query($sql);
     return $result;
 }
@@ -95,7 +96,7 @@ function xoagiohang($id)
     return $result;
 }
 
-function update_giohang($sl, $idsp, $idtk,$idmau,$idsize)
+function update_giohang($sl, $idsp, $idtk, $idmau, $idsize)
 {
     $sql = "update giohang set SoLuongSp = $sl where IdSanPham = $idsp and IdTaiKhoan = $idtk and IdMauSac = $idmau and IdSizeGiay = $idsize";
     pdo_execute($sql);

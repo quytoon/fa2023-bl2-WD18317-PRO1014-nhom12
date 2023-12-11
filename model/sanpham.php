@@ -174,7 +174,11 @@ function delete_spdonhang($sl, $id)
     $sql = "UPDATE sanpham SET sanpham.SoLuong = sanpham.SoLuong - '$sl' WHERE sanpham.IdSanPham = '$id'";
     pdo_execute($sql);
 }
-
+function delete_spbienthe($sl, $id, $mau, $size)
+{
+    $sql = "UPDATE giay_bienthe SET SoLuong = SoLuong - $sl WHERE IdSanPham = $id AND IdMauSac = $mau AND IdSizeGiay = $size ";
+    pdo_execute($sql);
+}
 function xoa_bienthe($IdGiayBienThe)
 {
     $sql = "delete from giay_bienthe where `giay_bienthe`.`IdGiaybienThe` = '$IdGiayBienThe'";
@@ -191,9 +195,10 @@ function load_spbt_one($IdGiayBienThe)
 WHERE giay_bienthe.IdGiayBienThe = ?;";
     return pdo_query_one($sql, $IdGiayBienThe);
 }
-function update_bienthe($IdGiayBienThe , $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong){
+function update_bienthe($IdGiayBienThe, $IdSanPham, $IdSizeGiay, $IdMauSac, $SoLuong)
+{
     $sql = "UPDATE giay_bienthe SET IdSanPham=?,IdSizeGiay=?,IdMauSac=?,SoLuong=? WHERE IdGiayBienThe = ?";
-    pdo_execute($sql, $IdSanPham , $IdSizeGiay , $IdMauSac , $SoLuong ,$IdGiayBienThe);
+    pdo_execute($sql, $IdSanPham, $IdSizeGiay, $IdMauSac, $SoLuong, $IdGiayBienThe);
 }
 function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
 {

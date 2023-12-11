@@ -21,7 +21,7 @@
 							<div class="form-group">
 								<label for="firstname">Họ và tên</label>
 								<?php extract($thongtinuser) ?>
-								<input type="text" class="form-control" placeholder="" value="<?= $HoTen ?>"
+								<input type="text" class="form-control" placeholder="" value="<?= $HoTen ?> "
 									name="hoten">
 								<input type="hidden" class="form-control" placeholder="" value="<?= $IdTaiKhoan ?>"
 									name="id">
@@ -98,7 +98,7 @@
 							foreach($load_giohang as $key) {
 								extract($key);
 								echo '<p class="d-flex">
-										<span>'.$TenSanPham.' x'.$SoLuongSp.'</span>
+										<span>'.$TenSanPham.'<br> <b>Màu</b> '.$TenMauSac.' <b>Size</b> '.$Size.' x'.$SoLuongSp.'</span>
 										  <span>'.number_format($tong_gia).' vnđ</span>
 										  </p>';
 							}
