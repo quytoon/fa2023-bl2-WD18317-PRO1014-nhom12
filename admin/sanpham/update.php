@@ -63,7 +63,6 @@ if(is_file($hinh)) {
                     echo $hinh1;
                 }
                 ?>
-
             </div>
         </div>
         <div class="mb-3">

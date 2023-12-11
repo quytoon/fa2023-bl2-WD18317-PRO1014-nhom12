@@ -36,9 +36,9 @@ extract($_SESSION['TenTaiKhoan']);
                 </div>
                 <div class="col-md-4">
                     <p><strong><?=$TenSanPham?></strong></p>
-                    <p>Giá: <strong><?=$Gia?></strong></p>
+                    <p>Giá: <strong><?=number_format($Gia)?> VNĐ</strong></p>
                     <p>Số lượng: <strong><?=$sl?></strong></p>
-                    <p>Tổng đơn hàng: <strong><?=$toltal?></strong></p>
+                    <p>Tổng đơn hàng: <strong><?=number_format($toltal)?> VNĐ</strong></p>
                 </div>
                 <?php
     }

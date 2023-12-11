@@ -79,14 +79,18 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/donhang.php";
             break;
         case "giohang":
-
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_POST['update']) && $_POST['update'] != '') {
                     $soluong = $_POST['quantity'];
                     $idsp = $_POST['idsp'];
-                    update_giohang($soluong, $idsp, $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    foreach ($soluong as $k => $v) {
+                        foreach ($v as $v1 => $v2) {
+                            foreach ($v2 as $v3 => $v4) {
+                                update_giohang($v4, $k, $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $v1, $v3);
+                            }
+                        }
+                    }
                 }
-
                 $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                 include "view/giohang.php";
             } else {
@@ -99,25 +103,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     foreach ($load_giohang as $key) {
-                        if ($_GET['idsp'] == $key['IdSanPham']) {
-                            $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                        if ($_GET['idsp'] == $key['IdSanPham'] && $_POST['IdSizeGiay'] == $key['IdSizeGiay'] && $_POST['IdMauSac'] == $key['IdMauSac']) {
+                            $SoLuong = $_POST["quantity"];
+                            $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $SoLuong);
                             $productExists = true;
+                            echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                             break;
                         }
                     }
-
                     if (!$productExists) {
-                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-
                         if (isset($_POST['themgiohang'])) {
                             if (!$productExists) {
                                 $IdMauSac = $_POST['IdMauSac'];
                                 $IdSizeGiay = $_POST['IdSizeGiay'];
                                 $SoLuong = $_POST["quantity"];
-                                $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac);
-
+                                $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac, $SoLuong);
                                 if ($productExists) {
-                                    $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay);
+                                    $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay, $SoLuong);
                                     echo "Sản phẩm đã được thêm vào giỏ hàng.";
                                 } else {
                                     // Sản phẩm không tồn tại trong cơ sở dữ liệu
@@ -142,7 +144,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "xoagiohang":
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
-                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan']);
+                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $_GET['size'], $_GET['mau']);
                     $load_giohang = loadall_giohang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
                     echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                 } else {

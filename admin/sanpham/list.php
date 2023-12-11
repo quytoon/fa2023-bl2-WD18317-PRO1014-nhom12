@@ -23,9 +23,6 @@
                     <?php
                     foreach ($listsanpham as $lissp) {
                         extract($lissp);
-
-//                        foreach ($listsp as $value)
-//                            var_dump($value);
                             $suasp = "index.php?act=suasp&IdSanPham=" . $IdSanPham;
                             $xoasp = "index.php?act=xoasp&IdSanPham=" . $IdSanPham;
                             $xoamemsp = "index.php?act=xoamemsp&IdSanPham=" . $IdSanPham;
