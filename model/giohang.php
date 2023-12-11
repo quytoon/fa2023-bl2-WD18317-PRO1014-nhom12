@@ -42,19 +42,19 @@ WHERE
 }
 
 
-function insert_giohang($IdSanPham, $IdTaiKhoan,$IdMauSac,$IdSizeGiay)
+function insert_giohang($IdSanPham, $IdTaiKhoan, $IdMauSac, $IdSizeGiay, $SoLuongSp)
 {
-    $sql = "INSERT into giohang (`IdSanPham`,`IdTaiKhoan`,`IdMauSac`,`IdSizeGiay`) 
-    VALUES ('$IdSanPham','$IdTaiKhoan','$IdMauSac','$IdSizeGiay')";
+    $sql = "INSERT into giohang (`IdSanPham`,`IdTaiKhoan`,`IdMauSac`,`IdSizeGiay`,`SoLuongSp`) 
+    VALUES ('$IdSanPham','$IdTaiKhoan','$IdMauSac','$IdSizeGiay','$SoLuongSp')";
     $result = pdo_query($sql);
     return $result;
 }
 
 //xóa sản phẩm từ giỏ hàng
-function delete_sp_giohang($IdSanPham, $IdTaiKhoan)
+function delete_sp_giohang($IdSanPham, $IdTaiKhoan, $IdSizeGiay, $IdMauSac)
 {
     $sql = "DELETE FROM `giohang` 
-    WHERE `IdSanPham` = '$IdSanPham' and `IdTaiKhoan` = '$IdTaiKhoan';";
+    WHERE `IdSanPham` = '$IdSanPham' and `IdTaiKhoan` = '$IdTaiKhoan' and `IdSizeGiay` = '$IdSizeGiay' and `IdMauSac` = '$IdMauSac'";
     $result = pdo_query($sql);
     return $result;
 }
@@ -67,9 +67,9 @@ function delete_giohang($IdTaiKhoan)
     return $result;
 }
 
-function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan)
+function insert_soLuong_gioHang($IdSanPham, $IdTaiKhoan, $SoLuong, $IdSizeGiay, $IdMauSac)
 {
-    $sql = "update giohang set SoLuongSp = SoLuongSp + 1 where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan";
+    $sql = "update giohang set SoLuongSp = SoLuongSp + $SoLuong where IdSanPham = $IdSanPham and IdTaiKhoan = $IdTaiKhoan and `IdSizeGiay` = '$IdSizeGiay' and `IdMauSac` = '$IdMauSac'";
     pdo_execute($sql);
 }
 
@@ -80,9 +80,10 @@ function demsoluong_giohang($IdSanPham)
     return $result;
 }
 
-function insert_donhang($ngay, $tien, $id, $sl, $diachi)
+function insert_donhang($ngay, $tien, $id, $sl, $diachi, $hoten, $sdt, $email)
 {
-    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat) VALUES ('$ngay','$tien','$id','$sl','$diachi')";
+    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat,HoVaTen,SoDienThoai,Email) 
+    VALUES ('$ngay','$tien','$id','$sl','$diachi','$hoten','$sdt','$email')";
     $result = pdo_query($sql);
     return $result;
 }
@@ -94,9 +95,9 @@ function xoagiohang($id)
     return $result;
 }
 
-function update_giohang($sl, $idsp, $idtk)
+function update_giohang($sl, $idsp, $idtk, $idmau, $idsize)
 {
-    $sql = "update giohang set SoLuongSp = $sl where IdSanPham = $idsp and IdTaiKhoan = $idtk";
+    $sql = "update giohang set SoLuongSp = $sl where IdSanPham = $idsp and IdTaiKhoan = $idtk and IdMauSac = $idmau and IdSizeGiay = $idsize";
     pdo_execute($sql);
 }
 

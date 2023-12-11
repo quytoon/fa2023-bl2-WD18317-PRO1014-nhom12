@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 30, 2023 lúc 12:38 PM
+-- Thời gian đã tạo: Th12 10, 2023 lúc 04:48 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `pro1014-websitebangiaypoly-nhom12`
+-- Cơ sở dữ liệu: `shoe`
 --
 
 -- --------------------------------------------------------
@@ -222,6 +222,8 @@ CREATE TABLE `giohang` (
   `IdGioHang` int(11) NOT NULL,
   `IdSanPham` int(11) NOT NULL,
   `IdTaiKhoan` int(11) NOT NULL,
+  `IdMauSac` int(11) NOT NULL,
+  `IdSizeGiay` int(11) NOT NULL,
   `SoLuongSp` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -229,14 +231,14 @@ CREATE TABLE `giohang` (
 -- Đang đổ dữ liệu cho bảng `giohang`
 --
 
-INSERT INTO `giohang` (`IdGioHang`, `IdSanPham`, `IdTaiKhoan`, `SoLuongSp`) VALUES
-(9, 4, 1, 1),
-(10, 3, 1, 1),
-(11, 5, 1, 1),
-(12, 2, 1, 1),
-(13, 3, 1, 1),
-(19, 6, 3, 1),
-(20, 5, 2, 2);
+INSERT INTO `giohang` (`IdGioHang`, `IdSanPham`, `IdTaiKhoan`, `IdMauSac`, `IdSizeGiay`, `SoLuongSp`) VALUES
+(9, 4, 1, 1, 2, 1),
+(10, 3, 1, 3, 1, 1),
+(11, 5, 1, 2, 2, 1),
+(12, 2, 1, 3, 2, 1),
+(13, 3, 1, 1, 3, 1),
+(19, 6, 3, 2, 1, 1),
+(20, 5, 2, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -393,7 +395,9 @@ ALTER TABLE `giay_bienthe`
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`IdGioHang`),
   ADD KEY `fk_gh_sp` (`IdSanPham`),
-  ADD KEY `fk_gh_tk` (`IdTaiKhoan`);
+  ADD KEY `fk_gh_tk` (`IdTaiKhoan`),
+  ADD KEY `fk_gh_ms` (`IdMauSac`),
+  ADD KEY `fk_gh_sg` (`IdSizeGiay`);
 
 --
 -- Chỉ mục cho bảng `mausac`
@@ -505,7 +509,8 @@ ALTER TABLE `anh_sp`
 --
 ALTER TABLE `binhluan`
   ADD CONSTRAINT `binhluan_ibfk_1` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
-  ADD CONSTRAINT `binhluan_ibfk_2` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
+  ADD CONSTRAINT `binhluan_ibfk_2` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_taikhoan_binhluan` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `chitietdonhang`
@@ -532,6 +537,8 @@ ALTER TABLE `giay_bienthe`
 -- Các ràng buộc cho bảng `giohang`
 --
 ALTER TABLE `giohang`
+  ADD CONSTRAINT `fk_gh_ms` FOREIGN KEY (`IdMauSac`) REFERENCES `mausac` (`IdMauSac`),
+  ADD CONSTRAINT `fk_gh_sg` FOREIGN KEY (`IdSizeGiay`) REFERENCES `sizegiay` (`IdSizeGiay`),
   ADD CONSTRAINT `fk_gh_sp` FOREIGN KEY (`IdSanPham`) REFERENCES `sanpham` (`IdSanPham`),
   ADD CONSTRAINT `fk_gh_tk` FOREIGN KEY (`IdTaiKhoan`) REFERENCES `taikhoan` (`IdTaiKhoan`);
 

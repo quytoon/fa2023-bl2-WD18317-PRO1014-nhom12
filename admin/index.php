@@ -8,12 +8,12 @@ include '../model/pdo.php';
 include '../model/danhmuc.php';
 include '../model/taikhoan.php';
 include '../model/thongke.php';
-include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
 include '../model/validate.php';
 include '../model/donhang.php';
+include '../model/giamgia.php';
 //include '../model/'
 if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) {
     if (isset($_GET['act'])) {
@@ -83,7 +83,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 include "taikhoan/listtaikhoan.php";
                 break;
             case 'addtaikhoan':
-                if (isset($_POST['themtaikhoan']) && ($_POST['themtaikhoan'])) {
+                if (isset($_REQUEST['themtaikhoan']) && ($_REQUEST['themtaikhoan'])) {
                     $TenTaiKhoan = trim($_POST['TenTaiKhoan']);
                     $MatKhau = trim($_POST['MatKhau']);
                     $HoTen = trim($_POST['HoTen']);
@@ -91,7 +91,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $Email = trim($_POST['Email']);
                     $SoDienThoai = trim($_POST['SoDienThoai']);
                     $role = trim($_POST['role']);
-
+                    $avatarUser = $_FILES['avatarUser']['name'];
                     if (empty($TenTaiKhoan) || empty($MatKhau) || empty($HoTen) || empty($DiaChi) || empty($Email) || empty($SoDienThoai) || empty($role)) {
                         $thongbao = check_Validate("Vui lòng điền đầy đủ thông tin!");
                     } else if (checkTk($TenTaiKhoan)) {
@@ -103,7 +103,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                             if (!is_numeric($SoDienThoai)) {
                                 $thongbao = check_Validate("Số điện thoại phải là số!");
                             } else {
-                                $avatarUser = $_FILES['avatarUser']['name'];
+                              
                                 $target_dir = "../upload/";
                                 $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
                                 if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
@@ -114,7 +114,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                                 }
                             }
                         }
-                        insert_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role);
+                        // insert_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role);
                         $thongbao = "Thêm thành công";
                     }
                 }
@@ -122,7 +122,7 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 break;
             case 'updatetaikhoan':
                 if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) > 0) {
-                    $chitiettaikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
+                    $taikhoan = loadone_taikhoan($_GET['IdTaiKhoan']);
                 }
                 include 'taikhoan/updatetaikhoan.php';
                 break;
@@ -137,15 +137,9 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $SoDienThoai = $_POST['SoDienThoai'];
                     $role = $_POST['role'];
                     $avatarUser = $_FILES['avatarUser']['name'];
-                    $target_dir = "../upload/";
+                    $target_dir = '../upload/';
                     $target_file = $target_dir . basename($_FILES['avatarUser']['name']);
-                    if (move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file)) {
-                        // Upload thành công
-                        // echo "Bạn đã upload ảnh thành công";
-                    } else {
-                        // Upload không thành công
-                        // echo "Upload ảnh không thành công";
-                    }
+                    move_uploaded_file($_FILES['avatarUser']['tmp_name'], $target_file);
                     update_taikhoan($TenTaiKhoan, $MatKhau, $HoTen, $DiaChi, $Email, $SoDienThoai, $avatarUser, $role, $IdTaiKhoan);
                     $thongbao = "Cập nhật thành công ";
                 }
@@ -187,38 +181,6 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $thongkedm = loadthongke_danhmuc();
                 include 'thongke/bieudodanhmuc.php';
                 break;
-            case 'thongkegiohang':
-                $thongkegiohang = loadthongke_giohang();
-                include 'thongke/thongkegiohang.php';
-                break;
-            case 'bieudogiohang';
-                $thongkegiohang = loadthongke_giohang();
-                include 'thongke/bieudogiohang.php';
-                break;
-            case 'listgiohang':
-                $listgiohang = loadthongke_giohang();
-                include 'giohang/listgiohang.php';
-                break;
-            case 'chitietgiohang':
-                if (isset($_GET['IdTaiKhoan']) && ($_GET['IdTaiKhoan']) != "") {
-                    $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
-                }
-                include 'giohang/chitietgiohang.php';
-                break;
-            case 'xoaspgiohang':
-                if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
-                    $delete_giohang = delete_sp_giohang($_GET['idsp'], $_GET["IdTaiKhoan"]);
-                    $chitietgiohang = loadall_giohang($_GET["IdTaiKhoan"]);
-                    include 'giohang/chitietgiohang.php';
-                }
-                break;
-            case 'xoagiohang':
-                if (isset($_GET['IdTaiKhoan']) && $_GET['IdTaiKhoan'] > 0) {
-                    $delete_giohang = delete_giohang($_GET["IdTaiKhoan"]);
-                    $listgiohang = loadthongke_giohang();
-                    include 'giohang/listgiohang.php';
-                }
-            //het danh mục
             case 'addsp':
                 if (isset($_REQUEST['themmoi']) && $_REQUEST['themmoi']) {
                     $iddm = $_POST['iddm'];
@@ -390,6 +352,50 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listspbienthe = list_bienthe($_GET['IdSanPham']);
                 include 'sanpham/listspbienthe.php';
                 break;
+
+            case 'listgiamgia':
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/listgiamgia.php';
+                break;
+            case 'addgiamgia':
+                if (isset($_POST['themgiamgia']) && ($_POST['themgiamgia'])) {
+                    $tenGiamGia = $_POST['tenGiamGia'];
+                    $soluong = $_POST['soluong'];
+                    $codeGiamGia = $_POST['codeGiamGia'];
+                    $tienGiamGia = $_POST['tienGiamGia'];
+                    insert_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia);
+                    $thongbao = "Thêm Thành công ";
+                }
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/addgiamgia.php';
+                break;
+            case 'xoagiamgia':
+                if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia'] > 0)) {
+                    delete_giamgia($_GET['idGiamGia']);
+                }
+                $listgiamgia = loadall_giamgia();
+                include 'giamgia/listgiamgia.php';
+                break;  
+            case 'updategiamgia':
+                if (isset($_GET['idGiamGia']) && ($_GET['idGiamGia']) > 0) {
+                    $chitietgiamgia = loadone_giamgia($_GET['idGiamGia']);
+                }
+                include 'giamgia/updategiamgia.php';
+                break;
+            case 'suagiamgia':
+                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $tenGiamGia = $_POST['tenGiamGia'];
+                    $soluong = $_POST['soluong'];
+                    $codeGiamGia = $_POST['codeGiamGia'];
+                    $tienGiamGia = $_POST['tienGiamGia'];
+                    $idGiamGia=$_POST['idGiamGia'];
+                    update_giamgia($tenGiamGia,$soluong,$codeGiamGia,$tienGiamGia,$idGiamGia);                       
+                    $thongbao = "Cập nhật thành công ";
+                }
+                $listgiamgia = loadall_giamgia();
+                include "giamgia/listgiamgia.php";
+                break;      
+
             case 'xoabienthe':
                 if (isset($_GET['IdGiayBienThe'])) {
                     xoa_bienthe($_GET['IdGiayBienThe']);
@@ -420,7 +426,6 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listmau = loadall_mausac();
 
                 break;
-
         }
 
     } else {

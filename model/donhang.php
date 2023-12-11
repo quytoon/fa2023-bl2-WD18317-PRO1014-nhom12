@@ -5,7 +5,7 @@ function loadall_donhang($idtk) {
     FROM donhang
     LEFT JOIN chitietdonhang ON donhang.IdDonHang = chitietdonhang.IdDonHang
     WHERE donhang.IdTaiKhoan = '$idtk'
-    GROUP BY donhang.IdDonHang ORDER BY donhang.NgayDatHang desc;";
+    GROUP BY donhang.IdDonHang ORDER BY donhang.IdDonHang desc;";
     $load_donhang = pdo_query($sql);
     return $load_donhang;
 }
@@ -32,9 +32,9 @@ function huy_donhang($IdDonHang) {
     $result = pdo_query($sql);
     return $result;
 }
-function insert_chitietdonhang($iddh, $idsp, $sl, $gia) {
-    $sql = "insert into chitietdonhang (IdDonHang,IdSanPham,SoLuong,Gia)
-    values ('$iddh','$idsp','$sl','$gia')";
+function insert_chitietdonhang($iddh, $idsp, $sl, $gia,$IdMauSac,$IdSizeGiay) {
+    $sql = "insert into chitietdonhang (IdDonHang,IdSanPham,SoLuong,Gia,IdMauSac,IdSizeGiay)
+    values ('$iddh','$idsp','$sl','$gia','$IdMauSac','$IdSizeGiay')";
     $result = pdo_query($sql);
     return $result;
 }

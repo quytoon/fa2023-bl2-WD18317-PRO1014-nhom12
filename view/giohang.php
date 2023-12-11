@@ -28,36 +28,31 @@
 								</tr>
 							</thead>
 							<tbody>
-
 								<?php
 								foreach($load_giohang as $key) {
 									extract($key);
 									$img = $img_path.$img;
 									echo '
 								<tr class="text-center">
-								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
+								<td class="product-remove"><a href="index.php?act=xoagiohang&idsp='.$IdSanPham.'&mau='.$IdMauSac.'&size='.$IdSizeGiay.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"><span class="ion-ios-close"></span></a></td>
 								<input type="hidden" name="idsp" value="'.$IdSanPham.'">
 								<td class="image-prod">
 									<div class="img" style="background-image:url('.$img.');"></div>
 								</td>
-
 								<td class="product-name">
-									<h3>'.$TenSanPham.'</h3>
-									<h6>'.$TenMauSac.'</h6>
-									<h6>'.$Size.'</h6>
+									<a href="index.php?act=chitietsanpham&idsp='.$IdSanPham.'"><h3>'.$TenSanPham.'</h3></a>
+									<h6>Màu: '.$TenMauSac.'</h6>
+									<h6>Size: '.$Size.'</h6>
 									
 								</td>
-
 								<td class="price">'.number_format($Gia, 0, '.', ',').' vnđ</td>
-
 								<td class="quantity">
 									<div class="row">
 										</div>
-										<div class="col"><input type="text" id="quantity" name="quantity"
+										<div class="col"><input type="text" id="quantity" name="quantity[' . $IdSanPham . '][' . $IdMauSac . '][' . $IdSizeGiay . ']"
 												class="form-control input-number" value="'.$SoLuongSp.'" min="1" max="100"></div>
 									</div>
 								</td>
-
 								<td class="total">'.number_format($tong_gia, 0, '.', ',').' vnđ</td>
 							</tr><!-- END TR-->
 								';
@@ -84,30 +79,36 @@
 						</div>
 					</form>
 				</div>
-				<p><a href="" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
-			</div>
+				<p><a href="index.php?act=giamgia" class="btn btn-primary py-3 px-4">Áp dụng</a></p>
+			</div>	
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Tổng tiền</h3>
 					<p class="d-flex">
 						<span>Tổng phụ</span>
 						<span>
-							<?= number_format($load_giohang['0']['tong_bill'], 0, '.', ',') ?> vnđ
+							<?php 
+							if(isset($load_giohang['0']['tong_bill'])){
+								echo number_format($load_giohang['0']['tong_bill'], 0, '.', ',')."VNĐ";
+							}
+							?> 
 						</span>
 					</p>
 					<p class="d-flex">
 						<span>Phí vận chuyển</span>
-						<span>$0.00</span>
+						<span>0.00</span>
 					</p>
 					<p class="d-flex">
 						<span>Giảm giá</span>
-						<span>$0.00</span>
 					</p>
 					<hr>
 					<p class="d-flex total-price">
 						<span>Tổng</span>
 						<span>
-							<?= number_format($load_giohang['0']['tong_bill'], 0, '.', ',') ?> vnđ
+							<?php
+							if(isset($load_giohang['0']['tong_bill'])){
+								echo number_format($load_giohang['0']['tong_bill'], 0, '.', ',')."VNĐ";
+							} ?>
 						</span>
 					</p>
 				</div>

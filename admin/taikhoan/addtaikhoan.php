@@ -5,7 +5,7 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Admin</li>
             </ol> --> 
-            /<a href="index.php?act=addtaikhoan">Thêm tài khoản</a></li>
+            /<a href="index.php?act=listtaikhoan">Quản lý tài khoản</a></li>/<a href="index.php?act=addtaikhoan">Thêm tài khoản</a></li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">

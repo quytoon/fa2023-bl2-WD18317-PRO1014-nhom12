@@ -55,7 +55,7 @@ if(is_file($hinh)) {
                     $hinh1 = '../upload/'.$key['urlAnh'];
                     $link = "index.php?act=xoaanhsp&IdSanPham=$IdSanPham&urlanh=".$key['urlAnh']."";
                     if(is_file($hinh1)) {
-                        $hinh1 = "<div class='a'><a href='$link' onclick='return confirm(Bạn có chắc chắn muốn xóa)'><i class='fa-solid fa-rectangle-xmark' style='position: absolute;'></i></a><img
+                        $hinh1 = "<div class='a'><a href='$link' onclick='return confirm('Bạn có chắc chắn muốn xóa');'><i class='fa-solid fa-rectangle-xmark' style='position: absolute;'></i></a><img
                                 src='$hinh1' height='80' width='80'></div>";
                     } else {
                         $hinh1 = 'no photo';
@@ -63,7 +63,6 @@ if(is_file($hinh)) {
                     echo $hinh1;
                 }
                 ?>
-                
             </div>
         </div>
         <div class="mb-3">

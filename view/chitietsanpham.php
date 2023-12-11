@@ -5,7 +5,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Trang chủ</a></span>/ <span
-                            class="mr-2"><a href="index.html">Cửa hàng</a></span>/ <span>Chi tiết sản phẩm</span></p>
+                        class="mr-2"><a href="index.html">Cửa hàng</a></span>/ <span>Chi tiết sản phẩm</span></p>
                 <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
             </div>
         </div>
@@ -61,64 +61,66 @@
                 </p>
                 <style>
                     .color-option {
-                        margin-right: 10px; /* Điều chỉnh khoảng cách giữa các ô input */
-                        display: inline-block; /* Để các ô input hiển thị trên cùng một dòng */
+                        margin-right: 10px;
+                        /* Điều chỉnh khoảng cách giữa các ô input */
+                        display: inline-block;
+                        /* Để các ô input hiển thị trên cùng một dòng */
                     }
                 </style>
                 <form action="index.php?act=themgiohang&idsp=<?= $IdSanPham ?>" method="post">
                     <div class="product__details__option">
                         <div class="product__details__option__color">
                             <span>Màu:</span>
-                            <?php foreach ($mausac as $value) : ?>
-                                <label for="<?php echo $value['IdMauSac'] ?>" class="color-option"
-                                       data-bs-toggle="tooltip">
+                            <?php foreach ($mausac as $key => $value): ?>
+                                <label for="<?php echo $value['IdMauSac'] ?>" class="color-option" data-bs-toggle="tooltip">
                                     <?php echo $value['TenMauSac'] ?>
                                     <input type="radio" id="<?php echo $value['IdMauSac'] ?>" name="IdMauSac"
-                                           value="<?php echo $value['IdMauSac'] ?>">
+                                        value="<?php echo $value['IdMauSac'] ?>" <?php echo ($key === 0) ? 'checked' : ''; ?>>
                                 </label>
                             <?php endforeach ?>
                         </div>
                         <div class="product__details__option__size">
                             <span>Size:</span>
-                            <?php foreach ($sizegiay as $value) : ?>
+                            <?php foreach ($sizegiay as $key => $value): ?>
                                 <label for="<?php echo $value['IdSizeGiay'] ?>" class="color-option"
-                                       data-bs-toggle="tooltip">
+                                    data-bs-toggle="tooltip">
                                     <?php echo $value['Size'] ?>
                                     <input type="radio" id="<?php echo $value['IdSizeGiay'] ?>" name="IdSizeGiay"
-                                           value="<?php echo $value['IdSizeGiay'] ?>">
+                                        value="<?php echo $value['IdSizeGiay'] ?>" <?php echo ($key === 0) ? 'checked' : ''; ?>>
                                 </label>
                             <?php endforeach ?>
+
                         </div>
                     </div>
                     <div class="w-100"></div>
                     <div class="input-group col-md-6 d-flex mb-3">
-        <span class="input-group-btn mr-2">
-            <input type="hidden" name="IdSanPham" value="
-                    <?php echo $sanpham['IdSanPham'] ?>"
-                   <input type="hidden" name="IdSanPham" value="
-                    <?php echo $tim_Idbt['IdGiayBienThe'] ?>"
-            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-                <i class="ion-ios-remove"></i>
-            </button>
-        </span>
+                        <span class="input-group-btn mr-2">
+                            <input type="hidden" name="IdSanPham" value="
+                    <?php echo $sanpham['IdSanPham'] ?>" <input type="hidden" name="IdSanPham" value="
+                    <?php echo $tim_Idbt['IdGiayBienThe'] ?>">
+                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                <i class="ion-ios-remove"></i>
+                            </button>
+                        </span>
                         <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1"
-                               min="1" max="100">
+                            min="1" max="100">
                         <span class="input-group-btn ml-2">
-            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                <i class="ion-ios-add"></i>
-            </button>
-        </span>
+                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                                <i class="ion-ios-add"></i>
+                            </button>
+                        </span>
                     </div>
                     <div class="w-100"></div>
                     <p>
-                        <button type="submit" class="btn btn-black py-3 px-5" name="themgiohang">Thêm vào giỏ hàng
+                        <button type="submit" class="btn btn-black py-2 px-5" name="themgiohang">Thêm vào giỏ hàng
                         </button>
                     </p>
-                </form>
-
-
             </div>
+            </form>
+
+
         </div>
+    </div>
     </div>
 </section>
 <section class="ftco-section">
@@ -129,21 +131,6 @@
                     <div class="card-body">
                         <h2>Đánh giá của bạn về sản phẩm</h2>
                         <div class="box_title">Bình luận</div>
-                        <div class="box_content">
-                            <table>
-                                <?php
-                                foreach ($binhluan as $bl) {
-                                    extract($bl);
-                                    echo '<tr>
-                                        <td>' . $TenTaiKhoan . ' :</td>
-                                        <td>' . $NoiDung . '</td>
-                                        <td>' . $DiemDanhGia . ' sao</td>
-                                        <td>' . date("d/m/Y", strtotime($NgayBinhLuan)) . '</td>
-                                    </tr>';
-                                }
-                                ?>
-                            </table>
-                        </div>
                         <div>
                             <form action="index.php?act=chitietsanpham&idsp=<?= $IdSanPham ?>" method="post">
                                 <input type="hidden" name="IdSanPham" value="<?= $IdSanPham ?>">
@@ -187,13 +174,18 @@
                         <div class="card-body row">
                             <div class="col-md-3" style="text-align: center;">
                                 <img src="<?= $img_path . $key['avatarUser']; ?>" alt="Avatar" class="avatar"
-                                     style="width: 100px; border-radius: 50%;">
-                                <h5 class="card-title"><?= $key['TenTaiKhoan']; ?></h5>
+                                    style="width: 100px; border-radius: 50%;">
+                                <h5 class="card-title">
+                                    <?= $key['TenTaiKhoan']; ?>
+                                </h5>
                             </div>
                             <div class="col-md-9">
-                                <p class="card-text"><?= $key['NoiDung']; ?></p>
+                                <p class="card-text">
+                                    <?= $key['NoiDung']; ?>
+                                </p>
                                 <div class="rating">
-                                    Đánh giá: <?= $key['DiemDanhGia']; ?> sao
+                                    Đánh giá:
+                                    <?= $key['DiemDanhGia']; ?> sao
                                 </div>
                             </div>
                         </div>
@@ -307,5 +299,3 @@
         });
     });
 </script>
-
-

@@ -21,7 +21,7 @@
 							<div class="form-group">
 								<label for="firstname">Họ và tên</label>
 								<?php extract($thongtinuser) ?>
-								<input type="text" class="form-control" placeholder="" value="<?= $HoTen ?>"
+								<input type="text" class="form-control" placeholder="" value="<?= $HoTen ?> "
 									name="hoten">
 								<input type="hidden" class="form-control" placeholder="" value="<?= $IdTaiKhoan ?>"
 									name="id">
@@ -91,30 +91,26 @@
 						<div class="cart-detail cart-total p-3 p-md-4">
 							<h3 class="billing-heading mb-4">Tổng hóa đơn</h3>
 							<p class="d-flex">
-								<span>Đơn hàng</span>
+								<b>Đơn hàng</b>
 							</p>
 
 							<?php
 							foreach($load_giohang as $key) {
 								extract($key);
 								echo '<p class="d-flex">
-										<span>'.$TenSanPham.' x'.$SoLuongSp.'</span>
+										<span>'.$TenSanPham.'<br> <b>Màu</b> '.$TenMauSac.' <b>Size</b> '.$Size.' x'.$SoLuongSp.'</span>
 										  <span>'.number_format($tong_gia).' vnđ</span>
 										  </p>';
 							}
 							?>
 
 							<p class="d-flex">
-								<span>Tổng đơn hàng</span>
+								<span><b>Tổng đơn hàng</b></span>
 								<?= '<span>'.number_format($load_giohang['0']['tong_bill']).' vnđ</span>' ?>
 							</p>
 							<p class="d-flex">
-								<span>Vận chuyển</span>
-								<span>$0.00</span>
-							</p>
-							<p class="d-flex">
-								<span>Giảm giá</span>
-								<span>$0.00</span>
+								<span><b>Giảm giá</b></span>
+								<span>0.00</span>
 							</p>
 							<hr>
 							<p class="d-flex total-price">
