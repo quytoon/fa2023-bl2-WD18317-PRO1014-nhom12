@@ -100,7 +100,17 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     foreach ($soluong as $k => $v) {
                         foreach ($v as $v1 => $v2) {
                             foreach ($v2 as $v3 => $v4) {
-                                update_giohang($v4, $k, $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $v1, $v3);
+                                if ($v4 > 0) {
+                                    update_giohang($v4, $k, $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $v1, $v3);
+                                } else if ($v4 == 0) {
+                                    $delete_giohang = delete_sp_giohang($k, $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $v3, $v1);
+                                    echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
+                                } else {
+                                    $thongbao = "Số lượng sản phẩm phải lớn hơn không";
+                                    echo "<script>";
+                                    echo "alert('$thongbao');";
+                                    echo "</script>";
+                                }
                             }
                         }
                     }
@@ -119,12 +129,33 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $IdMauSac = $_POST['IdMauSac'];
                     $IdSizeGiay = $_POST['IdSizeGiay'];
                     $SoLuong = $_POST["quantity"];
+                    $checkslsp = checkslsp($_GET['idsp'], $_POST['IdMauSac'], $_POST['IdSizeGiay']);
+                    $checkslsp_gh = checkslsp_gh($_SESSION['TenTaiKhoan']['IdTaiKhoan'], $_GET['idsp'], $_POST['IdMauSac'], $_POST['IdSizeGiay']);
+                    if (isset($checkslsp_gh) && $checkslsp_gh != "") {
+                        $slsp = $checkslsp['SoLuong'] - $checkslsp_gh['SoLuongSp'] - $_POST["quantity"];
+                    } else {
+                        $slsp = $checkslsp['SoLuong'] - $_POST["quantity"];
+                    }
                     foreach ($load_giohang as $key) {
-                        if ($_GET['idsp'] == $key['IdSanPham'] && $_POST['IdSizeGiay'] == $key['IdSizeGiay'] && $_POST['IdMauSac'] == $key['IdMauSac']) {
+                        if ($SoLuong <= 0) {
+                            $thongbao = "Số lượng sản phẩm phải lớn hơn 0 ";
+                            echo "<script>";
+                            echo "alert('$thongbao');";
+                            echo "window.location.href = 'index.php?act=chitietsanpham&idsp=" . $_GET['idsp'] . "';";
+                            echo "</script>";
+                        }
+                        if ($_GET['idsp'] == $key['IdSanPham'] && $_POST['IdSizeGiay'] == $key['IdSizeGiay'] && $_POST['IdMauSac'] == $key['IdMauSac'] && $slsp >= 0) {
                             $insert_soLuong = insert_soLuong_gioHang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $SoLuong, $IdSizeGiay, $IdMauSac);
                             $productExists = true;
                             echo "<meta http-equiv='refresh' content='0;url=index.php?act=giohang'>";
                             break;
+                        }
+                        if ($slsp < 0) {
+                            $thongbao = "Số lượng sản phẩm trong kho không đủ. Vui lòng chọn sản phẩm khác.";
+                            echo "<script>";
+                            echo "alert('$thongbao');";
+                            echo "window.location.href = 'index.php?act=chitietsanpham&idsp=" . $_GET['idsp'] . "';";
+                            echo "</script>";
                         }
                     }
                     if (!$productExists) {
@@ -132,7 +163,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             if (!$productExists) {
                                 $productExists = tim_sp_id($_GET['idsp'], $IdSizeGiay, $IdMauSac);
                                 if ($productExists) {
-                                    $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay, $SoLuong);
+                                    if ($slsp >= 0) {
+                                        $insert_giohang = insert_giohang($_GET['idsp'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $IdMauSac, $IdSizeGiay, $SoLuong);
+                                    }
                                 } else {
                                     // Sản phẩm không tồn tại trong cơ sở dữ liệu
                                     $thongbao = "Sản phẩm đã hết. Vui lòng chọn sản phẩm khác.";
@@ -264,8 +297,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 foreach ($load_giohang as $key) {
                     insert_chitietdonhang($load_donhang['0']['IdDonHang'], $key['IdSanPham'], $key['SoLuongSp'], $key['Gia'], $key['IdMauSac'], $key['IdSizeGiay']);
-                    update_luotmua_sp($key['SoLuongSp'],$key['IdSanPham']);
-                    update_luotmua_bienthe($key['SoLuongSp'],$key['IdSanPham'],  $key['IdMauSac'], $key['IdSizeGiay']);
+                    update_luotmua_sp($key['SoLuongSp'], $key['IdSanPham']);
+                    update_luotmua_bienthe($key['SoLuongSp'], $key['IdSanPham'], $key['IdMauSac'], $key['IdSizeGiay']);
                 }
                 foreach ($load_giohang as $key) {
                     delete_spdonhang($key['SoLuongSp'], $key['IdSanPham']);
