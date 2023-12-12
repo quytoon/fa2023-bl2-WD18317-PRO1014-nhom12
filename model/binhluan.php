@@ -40,4 +40,9 @@ function xoamem_bl($IdBinhLuan)
     $sql = "UPDATE `binhluan` SET `TrangThai` = 1 WHERE `binhluan`.`IdBinhLuan` = $IdBinhLuan";
     pdo_execute($sql);
 }
+function capnhat_bl()
+{
+    $sql = "UPDATE `binhluan` SET `TrangThai` = 0";
+    pdo_execute($sql);
+}
 ?>

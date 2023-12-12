@@ -15,28 +15,27 @@
 function loadall_giohang($IdTaiKhoan)
 {
     $sql = "SELECT
-        b.Gia * a.SoLuongSp AS tong_gia,
-        SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
-        SUM(a.SoLuongSp) OVER () AS tong_sl,
-        a.*,
-        b.*,
-        c.*,
-        ms.TenMauSac,
-        sg.Size
-    FROM
-        giohang AS a
-    JOIN
-        sanpham AS b ON a.IdSanPham = b.IdSanPham
-    JOIN
-        taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
-    LEFT JOIN
-        mausac AS ms ON a.IdMauSac = ms.IdMauSac
-    LEFT JOIN
-        sizegiay AS sg ON a.IdSizeGiay = sg.IdSizeGiay
-    WHERE
-        c.IdTaiKhoan = $IdTaiKhoan
-    GROUP BY
-        a.IdGioHang"; // Group by the primary key of giohang to avoid duplicate rows
+    b.Gia * a.SoLuongSp AS tong_gia,
+    SUM(b.Gia * a.SoLuongSp) OVER () AS tong_bill,
+    SUM(a.SoLuongSp) OVER () AS tong_sl,
+    a.*,
+    b.*,
+    c.*,
+    ms.TenMauSac,
+    sg.Size
+FROM
+    giohang AS a
+JOIN
+    sanpham AS b ON a.IdSanPham = b.IdSanPham
+JOIN
+    taikhoan AS c ON c.IdTaiKhoan = a.IdTaiKhoan
+LEFT JOIN
+    mausac AS ms ON a.IdMauSac = ms.IdMauSac
+LEFT JOIN
+    sizegiay AS sg ON a.IdSizeGiay = sg.IdSizeGiay
+WHERE
+    c.IdTaiKhoan = $IdTaiKhoan
+"; // Group by the primary key of giohang to avoid duplicate rows
 
     $result = pdo_query($sql);
     return $result;

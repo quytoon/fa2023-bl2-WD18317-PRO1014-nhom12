@@ -21,4 +21,9 @@ function checkSp($tensp) {
     $sp = pdo_query_one($sql);
     return $sp;
 }
+function checkSpBt($IdSanPham,$IdSizeGiay, $IdMauSac) {
+    $sql = "SELECT * FROM giay_bienThe WHERE IdSizeGiay = '$IdSizeGiay' AND IdMauSac = '$IdMauSac' AND IdSanPham = '$IdSanPham'";
+    $sp = pdo_query_one($sql);
+    return $sp;
+}
 ?>

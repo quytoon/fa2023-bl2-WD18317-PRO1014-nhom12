@@ -230,6 +230,11 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listsanpham = san_pham_all();
                 include 'sanpham/list.php';
                 break;
+            case 'capnhatsp':
+                capnhat_sp();
+                $listsp = sl_bienthe(0);
+                $listdanhmuc = loadall_danhmuc();
+                $listsanpham = san_pham_all();
             case 'xoasp':
                 if (isset($_GET['IdSanPham']) && ($_GET['IdSanPham'] > 0)) {
                     delete_sp_bl($_GET['IdSanPham']);
@@ -302,6 +307,11 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listbinhluan = loadall_binhluan_admin(0);
                 include 'binhluan/list.php';
                 break;
+            case 'capnhatbl':
+                capnhat_bl();
+                $listbinhluan = loadall_binhluan_admin(0);
+                include 'binhluan/list.php';
+                break;
             case 'xoaanhsp':
                 if (isset($_GET['IdSanPham']) && ($_GET['IdSanPham'] > 0)) {
                     xoa_anhsp($_GET['IdSanPham'], $_GET['urlanh']);
@@ -347,15 +357,27 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $SoLuong = $_POST['SoLuong'];
                     $IdSizeGiay = $_POST['IdSizeGiay'];
                     $IdMauSac = $_POST['IdMauSac'];
-                    insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong);
-                    $thongbao = "Them Thanh cong ";
 
+                    if (empty($IdSanPham) || empty($IdSizeGiay) || empty($IdMauSac) || empty($SoLuong)) {
+                        $thongbao = check_Validate("Vui lòng nhập đầy đủ thông tin");
+                    } else {
+                        $IdSizeGiay = trim($IdSizeGiay);
+                        $IdMauSac = trim($IdMauSac);
+                        $existingRecord = checkSpBt($IdSanPham, $IdSizeGiay, $IdMauSac);
+                        if ($existingRecord) {
+                            $thongbao = check_Validate("Size Và Màu đã tồn tại ");
+                        } else {
+                            insert_bienthe($IdMauSac, $IdSizeGiay, $IdSanPham, $SoLuong);
+                            $thongbao = "Them Thanh cong ";
+                        }
+                    }
                 }
                 $listsanpham = san_pham_all();
                 $listsize = loadall_size();
                 $listmau = loadall_mausac();
                 include "sanpham/addspbienthe.php";
                 break;
+
             case 'listspbienthe':
                 $listspbienthe = list_bienthe($_GET['IdSanPham']);
                 include 'sanpham/listspbienthe.php';

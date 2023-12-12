@@ -14,7 +14,7 @@
                         <th>TÊN SẢN PHẨM</th>
                         <th>ẢNH SẢN PHẨM</th>
                         <th>GIÁ SẢN PHẨM</th>
-                        <th>LƯỢT XEM SẢN PHẨM</th>
+                        <th>LƯỢT MUA SẢN PHẨM</th>
                         <th>So Luong</th>
                         <th>TUỲ CHỌN</th>
                     </tr>
@@ -40,7 +40,7 @@
             <td>' . $TenSanPham . '</td>
             <td>' . $hinh . '</td>
             <td>' . $Gia . '</td>
-            <td>' . $luotxem . '</td>
+            <td>' . $luotmua . '</td>
             <td>' . $SoLuong . ' </td>
             <td>
            <a href="' . $xemct . '"><button type="button" class="btn btn-primary">xem chi tiet </button></a>
@@ -55,6 +55,7 @@
 
                     </tbody>
                 </table>
+                <a href="index.php?act=capnhatsp" class="btn btn-dark">ReLoad</a>
             </div>
             <div class="card-footer">
                 <a href="index.php?act=addsp"> <input class="btn btn-primary my-1" type="button" value="NHẬP THÊM"></a>
