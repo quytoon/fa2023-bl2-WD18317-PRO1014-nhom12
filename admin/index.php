@@ -351,7 +351,6 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                     $thongbao = "Them Thanh cong ";
 
                 }
-
                 $listsanpham = san_pham_all();
                 $listsize = loadall_size();
                 $listmau = loadall_mausac();

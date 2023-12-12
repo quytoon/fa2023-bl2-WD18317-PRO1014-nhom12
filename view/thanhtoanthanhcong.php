@@ -20,14 +20,14 @@
 							</h5>
 							<ul class="fw-semibold">
 								<li>Mã đơn hàng: <span class="fw-light">
-										<?php echo $load_donhang['0']['IdDonHang'] ?>
+										<?php echo $_SESSION['post_data']['iddh'] ?>
 									</span></li>
 								<li>Họ tên: <span class="fw-light">
-										<?php echo $_SESSION['TenTaiKhoan']['TenTaiKhoan'] ?>
+										<?php echo $_SESSION['post_data']['hoten'] ?>
 									</span>
 								</li>
 								<li>Số điện thoại: <span class="fw-light">
-										<?php echo $_SESSION['TenTaiKhoan']['SoDienThoai'] ?>
+										<?php echo $_SESSION['post_data']['sdt'] ?>
 									</span></li>
 								<li>Địa chỉ giao: <span class="fw-light">
 										<?php echo $diachi ?>
@@ -40,7 +40,7 @@
 									<?php echo number_format($load_giohang['0']['tong_bill']) ?>vnđ</span>
 								</li>
 								<li>Phương thức thanh toán: <span class="fw-light">
-										<?php if ($_POST["optradio"]==2) {
+										<?php if ($_SESSION['post_data']['optradio']==2) {
 											echo "Thanh toán khi nhận hàng";
 										}else{
 											echo "Thanh toán online";

@@ -81,10 +81,15 @@ function demsoluong_giohang($IdSanPham)
     return $result;
 }
 
-function insert_donhang($ngay, $tien, $id, $sl, $diachi, $hoten, $sdt, $email)
+function insert_donhang($ngay, $tien, $id, $sl, $diachi, $hoten, $sdt, $email, $iddh)
 {
-    $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat,HoVaTen,SoDienThoai,Email) 
-    VALUES ('$ngay','$tien','$id','$sl','$diachi','$hoten','$sdt','$email')";
+    if ($iddh != "") {
+        $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat,HoVaTen,SoDienThoai,Email,IdDonHang) 
+    VALUES ('$ngay','$tien','$id','$sl','$diachi','$hoten','$sdt','$email','$iddh')";
+    } else {
+        $sql = "INSERT INTO donhang (NgayDatHang,TongTien,IdTaiKhoan,SoLuongSp,DiaChiDat,HoVaTen,SoDienThoai,Email) 
+        VALUES ('$ngay','$tien','$id','$sl','$diachi','$hoten','$sdt','$email')";
+    }
     $result = pdo_query($sql);
     return $result;
 }
