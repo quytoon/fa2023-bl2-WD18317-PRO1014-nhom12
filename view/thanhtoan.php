@@ -95,18 +95,18 @@
 							</p>
 
 							<?php
-							foreach($load_giohang as $key) {
+							foreach ($load_giohang as $key) {
 								extract($key);
 								echo '<p class="d-flex">
-										<span>'.$TenSanPham.'<br> <b>Màu</b> '.$TenMauSac.' <b>Size</b> '.$Size.' x'.$SoLuongSp.'</span>
-										  <span>'.number_format($tong_gia).' vnđ</span>
+										<span>' . $TenSanPham . '<br> <b>Màu</b> ' . $TenMauSac . ' <b>Size</b> ' . $Size . ' x' . $SoLuongSp . '</span>
+										  <span>' . number_format($tong_gia) . ' vnđ</span>
 										  </p>';
 							}
 							?>
 
 							<p class="d-flex">
 								<span><b>Tổng đơn hàng</b></span>
-								<?= '<span>'.number_format($load_giohang['0']['tong_bill']).' vnđ</span>' ?>
+								<?= '<span>' . number_format($load_giohang['0']['tong_bill']) . ' vnđ</span>' ?>
 							</p>
 							<p class="d-flex">
 								<span><b>Giảm giá</b></span>
@@ -116,7 +116,7 @@
 							<p class="d-flex total-price">
 								<span>Tổng tiền</span>
 								<span>
-									<?= number_format($load_giohang['0']['tong_bill']).' vnđ' ?>
+									<?= number_format($load_giohang['0']['tong_bill']) . ' vnđ' ?>
 								</span>
 							</p>
 						</div>
@@ -153,7 +153,7 @@
 	</div>
 </section> <!-- .section -->
 <script>
-	function loadtinhthanh(DiaChi) {
+	function loadtinhthanh() {
 		const apiDiaChi = "https://provinces.open-api.vn/api/?depth=3";
 
 		fetch(apiDiaChi)
@@ -167,19 +167,14 @@
 					let option = document.createElement("option");
 					option.value = `${item.name}`;
 					option.text = `${item.name}`;
-					if (item.name == DiaChi) {
-						option.selected = true;
-					};
 					thanhPhoSelect.add(option);
 				});
 
 				thanhPhoSelect.addEventListener("change", displayDistricts);
-
+				quanSelect.innerHTML = "<option value=''>Chọn quận</option>";
+				phuongSelect.innerHTML = "<option value=''>Chọn phường</option>";
 				function displayDistricts() {
 					// Clear Quận and Phường select
-					quanSelect.innerHTML = "<option value=''>Chọn quận</option>";
-					phuongSelect.innerHTML = "<option value=''>Chọn phường</option>";
-
 					// Get the selected Thành phố code
 					const selectedCityCode = thanhPhoSelect.value;
 
@@ -218,5 +213,6 @@
 			});
 	}
 
-	loadtinhthanh('<?php echo $DiaChi; ?>');
+	loadtinhthanh();
+
 </script>
