@@ -13,6 +13,7 @@ include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
 include '../model/donhang.php';
+include '../model/validate.php';
 if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 2 || $_SESSION['TenTaiKhoan']['role'] == 1)){
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
