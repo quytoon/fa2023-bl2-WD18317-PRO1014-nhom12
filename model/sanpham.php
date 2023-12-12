@@ -205,5 +205,14 @@ function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
     $sql = "SELECT IdGiayBienThe FROM giay_bienthe WHERE IdSanPham = ? AND IdSizeGiay = ? AND IdMauSac = ?";
     return pdo_query_one($sql, $IdSanPham, $IdSizeGiay, $IdMauSac);
 }
-
+function update_luotmua_sp($sl, $idsp)
+{
+    $sql = "UPDATE sanpham SET luotmua = luotmua + $sl WHERE IdSanPham = $idsp ";
+    pdo_execute($sql);
+}
+function update_luotmua_bienthe($sl, $idsp, $mau, $size)
+{
+    $sql = "UPDATE giay_bienthe SET luotmua = luotmua + $sl WHERE IdSanPham = $idsp AND IdMauSac = $mau and IdSizeGiay = $size ";
+    pdo_execute($sql);
+}
 ?>

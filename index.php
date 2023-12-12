@@ -259,11 +259,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $diachi = $_POST["thanhpho"] . ',' . $_POST["quanhuyen"] . ',' . $_POST["xa"] . ',' . $_POST["diachi"];
-                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi, $_POST['hoten'], $_POST['sdt'], $_POST['email'],"");
+                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi, $_POST['hoten'], $_POST['sdt'], $_POST['email'], "");
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 foreach ($load_giohang as $key) {
                     insert_chitietdonhang($load_donhang['0']['IdDonHang'], $key['IdSanPham'], $key['SoLuongSp'], $key['Gia'], $key['IdMauSac'], $key['IdSizeGiay']);
+                    update_luotmua_sp($key['SoLuongSp'],$key['IdSanPham']);
+                    update_luotmua_bienthe($key['SoLuongSp'],$key['IdSanPham'],  $key['IdMauSac'], $key['IdSizeGiay']);
                 }
                 foreach ($load_giohang as $key) {
                     delete_spdonhang($key['SoLuongSp'], $key['IdSanPham']);
@@ -289,6 +291,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
             foreach ($load_giohang as $key) {
                 insert_chitietdonhang($load_donhang['0']['IdDonHang'], $key['IdSanPham'], $key['SoLuongSp'], $key['Gia'], $key['IdMauSac'], $key['IdSizeGiay']);
+                update_luotmua_sp($key['IdSanPham'], $key['SoLuongSp']);
+                update_luotmua_bienthe($key['IdSanPham'], $key['SoLuongSp'], $key['IdMauSac'], $key['IdSizeGiay']);
             }
             foreach ($load_giohang as $key) {
                 delete_spdonhang($key['SoLuongSp'], $key['IdSanPham']);
