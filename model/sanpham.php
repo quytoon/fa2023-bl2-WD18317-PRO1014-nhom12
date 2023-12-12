@@ -214,6 +214,7 @@ function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
 function capnhat_sp()
 {
     $sql = "UPDATE `sanpham` SET `TrangThai` = 1";
+}
 function update_luotmua_sp($sl, $idsp)
 {
     $sql = "UPDATE sanpham SET luotmua = luotmua + $sl WHERE IdSanPham = $idsp ";

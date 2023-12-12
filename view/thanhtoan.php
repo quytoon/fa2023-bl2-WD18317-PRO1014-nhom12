@@ -40,7 +40,7 @@
 								<label for="country">Thành Phố</label>
 								<div class="select-wrap">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="thanhpho" id="thanhpho" class="form-control">
+									<select name="thanhpho" id="thanhpho" class="form-control" required>
 									</select>
 								</div>
 							</div>
@@ -50,7 +50,7 @@
 								<label for="country">Quận huyện</label>
 								<div class="select-wrap">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="quanhuyen" id="quanhuyen" class="form-control">
+									<select name="quanhuyen" id="quanhuyen" class="form-control" required>
 									</select>
 								</div>
 							</div>
@@ -60,7 +60,7 @@
 								<label for="country">Xã</label>
 								<div class="select-wrap">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="xa" id="xa" class="form-control">
+									<select name="xa" id="xa" class="form-control" required>
 									</select>
 								</div>
 							</div>
@@ -69,7 +69,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="streetaddress">Địa chỉ chi tiết</label>
-								<input type="text" class="form-control" placeholder="Số nhà" name="diachi">
+								<input type="text" class="form-control" placeholder="Số nhà" name="diachi" required>
 							</div>
 						</div>
 
