@@ -214,6 +214,14 @@ function tim_sp_id($IdSanPham, $IdSizeGiay, $IdMauSac)
 function capnhat_sp()
 {
     $sql = "UPDATE `sanpham` SET `TrangThai` = 1";
+function update_luotmua_sp($sl, $idsp)
+{
+    $sql = "UPDATE sanpham SET luotmua = luotmua + $sl WHERE IdSanPham = $idsp ";
+    pdo_execute($sql);
+}
+function update_luotmua_bienthe($sl, $idsp, $mau, $size)
+{
+    $sql = "UPDATE giay_bienthe SET luotmua = luotmua + $sl WHERE IdSanPham = $idsp AND IdMauSac = $mau and IdSizeGiay = $size ";
     pdo_execute($sql);
 }
 ?>

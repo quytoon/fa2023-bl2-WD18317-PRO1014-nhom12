@@ -66,9 +66,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "huydonhang":
             if (isset($_SESSION['TenTaiKhoan']) && $_SESSION['TenTaiKhoan'] != '') {
                 if (isset($_GET['IdDonHang']) && $_GET['IdDonHang'] > 0) {
-                    $huy_giohang = huy_donhang($_GET['IdDonHang']);
                     $load_donhang = loadall_donhang($_SESSION['TenTaiKhoan']['IdTaiKhoan']);
-                    include "view/donhang.php";
+                    $ttdh = checkstatus_dh($_GET['IdDonHang']);
+                    if ($ttdh['TrangThai'] == 3 || $ttdh['TrangThai'] == 2) {
+                        $thongbao = "Thao tác của bạn chưa được thực hiện do trạng thái đơn hàng đã thay đổi ";
+                        echo "<script>";
+                        echo "alert('$thongbao');";
+                        echo "</script>";
+                        include "view/donhang.php";
+                    } else {
+                        var_dump($ttdh['TrangThai']);
+                        $huy_giohang = huy_donhang($_GET['IdDonHang']);
+                        $donhang = load_chitietdonhang($_GET['IdDonHang']);
+                        foreach ($donhang as $key) {
+                            $update_slsp = update_slsp_huydh($key['sl'], $key['IdMauSac'], $key['IdSizeGiay'], $key['IdSanPham']);
+                        }
+                        include "view/donhang.php";
+                    }
                 } else {
                     include "view/home.php";
                 }
@@ -245,11 +259,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $diachi = $_POST["thanhpho"] . ',' . $_POST["quanhuyen"] . ',' . $_POST["xa"] . ',' . $_POST["diachi"];
-                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi,$_POST['hoten'],$_POST['sdt'],$_POST['email']);
+                insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi, $_POST['hoten'], $_POST['sdt'], $_POST['email'], "");
                 $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 foreach ($load_giohang as $key) {
                     insert_chitietdonhang($load_donhang['0']['IdDonHang'], $key['IdSanPham'], $key['SoLuongSp'], $key['Gia'], $key['IdMauSac'], $key['IdSizeGiay']);
+                    update_luotmua_sp($key['SoLuongSp'],$key['IdSanPham']);
+                    update_luotmua_bienthe($key['SoLuongSp'],$key['IdSanPham'],  $key['IdMauSac'], $key['IdSizeGiay']);
                 }
                 foreach ($load_giohang as $key) {
                     delete_spdonhang($key['SoLuongSp'], $key['IdSanPham']);
@@ -257,10 +273,33 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 $delete_giohang = xoagiohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
                 include "view/thanhtoanthanhcong.php";
+            } else if (isset($_POST["optradio"]) && $_POST["optradio"] == "1") {
+                $currentDate = date("Y-m-d");
+                $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+                $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+                $diachi = $_POST["thanhpho"] . ',' . $_POST["quanhuyen"] . ',' . $_POST["xa"] . ',' . $_POST["diachi"];
+                include "vnpay_php/vnpay_create_payment.php";
             }
-            if (isset($_POST["optradio"]) && $_POST["optradio"] == "1") {
-
+            break;
+        case "thanhtoanthanhcong":
+            $currentDate = date("Y-m-d");
+            $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+            $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+            $diachi = $_SESSION['post_data']['thanhpho'] . ',' . $_SESSION['post_data']['quanhuyen'] . ',' . $_SESSION['post_data']['xa'] . ',' . $_SESSION['post_data']['diachi'];
+            insert_donhang($currentDate, $load_giohang['0']['tong_bill'], $_SESSION['TenTaiKhoan']['IdTaiKhoan'], $load_giohang['0']['tong_sl'], $diachi, $_SESSION['post_data']['hoten'], $_SESSION['post_data']['sdt'], $_SESSION['post_data']['email'], $_SESSION['post_data']['iddh']);
+            $load_giohang = loadall_giohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+            $load_donhang = loadall_donhang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+            foreach ($load_giohang as $key) {
+                insert_chitietdonhang($load_donhang['0']['IdDonHang'], $key['IdSanPham'], $key['SoLuongSp'], $key['Gia'], $key['IdMauSac'], $key['IdSizeGiay']);
+                update_luotmua_sp($key['IdSanPham'], $key['SoLuongSp']);
+                update_luotmua_bienthe($key['IdSanPham'], $key['SoLuongSp'], $key['IdMauSac'], $key['IdSizeGiay']);
             }
+            foreach ($load_giohang as $key) {
+                delete_spdonhang($key['SoLuongSp'], $key['IdSanPham']);
+                delete_spbienthe($key['SoLuongSp'], $key['IdSanPham'], $key['IdMauSac'], $key['IdSizeGiay']);
+            }
+            $delete_giohang = xoagiohang(($_SESSION['TenTaiKhoan']['IdTaiKhoan']));
+            include "view/thanhtoanthanhcong.php";
             break;
         case "giamgiafree":
             $dsgiamgia = loadall_giamgia();

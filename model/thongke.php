@@ -24,7 +24,7 @@ function loadthongke_taikhoan()
 
 function loadthongke_donhang()
 {
-    $sql = "SELECT * from `donhang` as a join taikhoan as b on a.IdTaiKhoan = b.IdTaiKhoan ORDER BY `a`.`NgayDatHang` DESC;
+    $sql = "SELECT a.*,b.*,a.TrangThai as tt from donhang as a join taikhoan as b on a.IdTaiKhoan = b.IdTaiKhoan ORDER BY a.NgayDatHang DESC; 
     ";
     $listthongkedonhang = pdo_query($sql);
     return $listthongkedonhang;

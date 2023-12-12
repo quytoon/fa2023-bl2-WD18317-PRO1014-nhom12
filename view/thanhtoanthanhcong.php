@@ -19,38 +19,64 @@
 								đã mua hàng.
 							</h5>
 							<ul class="fw-semibold">
+								<?php 
+								if (isset($_SESSION['post_data']['optradio']) && $_SESSION['post_data']['optradio'] == 1) {
+									echo '
 								<li>Mã đơn hàng: <span class="fw-light">
-										<?php echo $load_donhang['0']['IdDonHang'] ?>
+										' . $_SESSION["post_data"]["iddh"] . ' 
 									</span></li>
 								<li>Họ tên: <span class="fw-light">
-										<?php echo $_SESSION['TenTaiKhoan']['TenTaiKhoan'] ?>
+								' . $_SESSION["post_data"]["hoten"] . ' 
 									</span>
 								</li>
 								<li>Số điện thoại: <span class="fw-light">
-										<?php echo $_SESSION['TenTaiKhoan']['SoDienThoai'] ?>
+								' . $_SESSION["post_data"]["sdt"] . '
 									</span></li>
 								<li>Địa chỉ giao: <span class="fw-light">
-										<?php echo $diachi ?>
+								' . $diachi . '
 									</span>
 								</li>
 								<li>Ngày đặt hàng: <span class="fw-light">
-										<?php echo $load_donhang['0']['NgayDatHang'] ?>
+								' . $load_donhang["0"]["NgayDatHang"] . '
 									</span></li>
 								<li>Tổng cộng: <span class="fw-light "></span>
-									<?php echo number_format($load_giohang['0']['tong_bill']) ?>vnđ</span>
+								' . number_format($load_giohang["0"]["tong_bill"]) . ' vnđ</span>
 								</li>
 								<li>Phương thức thanh toán: <span class="fw-light">
-										<?php if ($_POST["optradio"]==2) {
-											echo "Thanh toán khi nhận hàng";
-										}else{
-											echo "Thanh toán online";
-										} ?>
+											Thanh toán online				
+									</span>
+								</li>';
+								} else {
+									echo '
+								<li>Mã đơn hàng: <span class="fw-light">
+										' . $load_donhang['0']['IdDonHang'] . ' 
+									</span></li>
+								<li>Họ tên: <span class="fw-light">
+								' . $_POST['hoten'] . ' 
 									</span>
 								</li>
+								<li>Số điện thoại: <span class="fw-light">
+								' . $_POST['sdt'] . '
+									</span></li>
+								<li>Địa chỉ giao: <span class="fw-light">
+								' . $diachi . '
+									</span>
+								</li>
+								<li>Ngày đặt hàng: <span class="fw-light">
+								' . $load_donhang["0"]["NgayDatHang"] . '
+									</span></li>
+								<li>Tổng cộng: <span class="fw-light "></span>
+								' . number_format($load_giohang["0"]["tong_bill"]) . ' vnđ</span>
+								</li>
+								<li>Phương thức thanh toán: <span class="fw-light">
+											Thanh toán online				
+									</span>
+								</li>';
+								} ?>
 							</ul>
 							<div class="row mt-3">
-								<?php if(isset($_SESSION['TenTaiKhoan'])): ?>
-									<a href="index.php?act=donhang&idtk=<?php echo $_SESSION['TenTaiKhoan']?>"
+								<?php if (isset($_SESSION['TenTaiKhoan'])): ?>
+									<a href="index.php?act=chitietdonhang&IdDonHang=<?php echo $load_donhang['0']['IdDonHang'] ?>"
 										class="btn btn-outline-success px-2 py-1 justify-content-center">Xem đơn
 										hàng</a>
 									<a href="index.php"

@@ -11,7 +11,7 @@
                             <tr>
                                 <th>TÊN USER</th>
                                 <th>SỐ LƯỢNG</th>
-                                <th>NGÀY ĐẶ<Table></Table> HÀNG</th>
+                                <th>NGÀY ĐẶT HÀNG</th>
                                 <th>TỔNG TIỀN(VNĐ)</th>
                             </tr>
                         </thead>
