@@ -59,7 +59,7 @@
                     <td>' . $TenSanPham . '</td>
                     <td>' . $hinh . '</td>
                     <td>' . $Gia . '</td>
-                    <td>' . $luotxem . '</td>
+                    <td>' . $luotmua . '</td>
             <td>' . $SoLuong . ' </td>
 
                     <td>
