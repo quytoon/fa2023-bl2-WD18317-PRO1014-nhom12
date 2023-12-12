@@ -35,12 +35,14 @@
                                     $hinhpart = "../upload/" . $avatarUser;
                                     $suatk = "index.php?act=updatetaikhoan&IdTaiKhoan=".$IdTaiKhoan;
                                     $xoatk = "index.php?act=xoataikhoan&IdTaiKhoan=".$IdTaiKhoan;
+                                    $xoamemtk = "index.php?act=xoamemtaikhoan&IdTaiKhoan=".$IdTaiKhoan;
                                     // if(is_file($hinhpart)){
                                     //     $hinhpart = "<img src '" .$hinhpart. "'width='100px' height='100px'>";
                                     // }else{
                                     //     $hinhpart ="No file img!";
                                     // }       
-                                    echo '<tr>
+                                    if($TrangThai == 0){
+                                        echo '<tr>
                                     <td>'.$IdTaiKhoan.'</td>
                                     <td>'.$TenTaiKhoan.'</td>
                                     <td>'.$MatKhau.'</td>
@@ -63,14 +65,12 @@
                                     //     </td>';
                                     // }
                                     
-                                        echo'<td>
+                                       echo'<td>
                                             <a href="' . $suatk . '"><input type="button" value="Sửa" class="btn btn-primary my-1"></a>
-                                            <a href="' . $xoatk . '"><input type="button" value="Xóa" class="btn btn-primary my-1" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a></td>
+                                            <a href="' . $xoatk . '"><input type="button" value="Xóa" class="btn btn-primary my-1" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a>
+                                            <a href="' . $xoamemtk . '"><input type="button" value="Xóa mềm" class="btn btn-primary my-1" onclick="return confirm(\'Bạn có chắc chắn muốn xóa\')"></a>
                                         </td>';  
-                                  
-                                     
-                                    
-                                                 
+                                    }                    
                                 }
                             ?>
                         </tbody>

@@ -117,8 +117,11 @@ function update_trangthai($TrangThai, $luachon) {
     $sql = "UPDATE donhang set TrangThai = $TrangThai where IdDonHang = $luachon";
     pdo_execute($sql);
 }
-
-
+function xoamemtaikhoan($IdTaiKhoan)
+{
+    $sql = "UPDATE `taikhoan` set `TrangThai` = 1 where `taikhoan`.`IdTaiKhoan` = $IdTaiKhoan";
+    pdo_execute($sql);
+}
 function loadall_thongtinuser($id) {
     $sql = "SELECT * FROM taikhoan WHERE IdTaiKhoan = $id";
     $taikhoan = pdo_query_one($sql);
