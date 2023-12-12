@@ -72,9 +72,6 @@
                         <a class="nav-link" href="index.php?act=listdonhang">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Đơn hàng
                         </a>
-                        <a class="nav-link" href="index.php?act=listgiamgia">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Giảm giá
-                        </a>
                         <div class="sb-sidenav-menu-heading">Thống kê</div>
                         <a class="nav-link" href="index.php?act=thongkedanhmuc">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

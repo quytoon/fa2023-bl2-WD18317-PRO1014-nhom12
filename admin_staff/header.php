@@ -56,16 +56,15 @@
                             Trang chủ
                         </a>
                         <div class="sb-sidenav-menu-heading">Quản lý</div>
-                        <a class="nav-link" href="index.php?act=listdanhmuc">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Danh mục
-                        </a>
                         <a class="nav-link" href="index.php?act=lissp">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Sản Phẩm 
                         </a>
                         <a class="nav-link" href="index.php?act=dsbl">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Bình luận
                         </a>
-                        
+                        <a class="nav-link" href="index.php?act=listdonhang">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Đơn hàng
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

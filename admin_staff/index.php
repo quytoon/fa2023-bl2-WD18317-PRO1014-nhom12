@@ -12,6 +12,7 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
+include '../model/donhang.php';
 if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 2 || $_SESSION['TenTaiKhoan']['role'] == 1)){
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -264,7 +265,35 @@ if (isset($_GET['act'])) {
             }    
             $listbinhluan = loadall_binhluan_admin(0);
             include 'binhluan/list.php';
-            break;        
+            break;   
+        case 'listdonhang':
+            $listdonhang = loadthongke_donhang();
+            include "donhang/listdonhang.php";
+            break;  
+        case 'chitietdonhang':
+            if (isset($_GET['IdChiTietDonHang']) && ($_GET['IdChiTietDonHang'])) {
+                $load_donhang = loadall_dh_sp_tk($_GET['IdChiTietDonHang']);
+                include 'donhang/chitiet.php';
+            }
+            break;
+        case 'updatetrangthai':
+            if (isset($_POST['capnhat'])) {
+                $ttdh = checkstatus_dh($_GET['IdDonHang']);
+                $listdonhang = loadthongke_donhang();
+                if ($ttdh["TrangThai"] == 4) {
+                    $thongbao = "Thao tác của bạn chưa được thực hiện do trạng thái đơn hàng đã thay đổi ";
+                    echo "<script>";
+                    echo "alert('$thongbao');";
+                    echo "</script>";
+                    include "donhang/listdonhang.php";
+                } else {
+                    $luachon = $_POST['luachon'];
+                    $id = $_GET['IdDonHang'];
+                    $update = update_trangthai($luachon, $id);
+                    include "donhang/listdonhang.php";
+                }
+            }
+            break;       
     }
 
 } else {
