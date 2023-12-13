@@ -146,6 +146,13 @@ if (isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 1)) 
                 $listtaikhoan = loadall_taikhoan();
                 include "taikhoan/listtaikhoan.php";
                 break;
+            case 'xoamemtaikhoan':
+                if (isset($_GET['IdTaiKhoan'])) {
+                    xoamemtaikhoan($_GET['IdTaiKhoan']);
+                }
+                $listtaikhoan = loadall_taikhoan();
+                include "taikhoan/listtaikhoan.php";
+                break;
             case 'thongketaikhoan':
                 $listthongketaikhoan = loadthongke_taikhoan();
                 include "thongke/thongketaikhoan.php";

@@ -20,7 +20,7 @@
                     <?php
                     foreach ($listbinhluan as $bl) {
                         extract($bl);
-                        $suabl = "index.php?act=suabl&IdBinhLuan=" . $IdBinhLuan;
+                       
                         $xoamembl = "index.php?act=xoamembl&IdBinhLuan=" . $IdBinhLuan;
                        if($TrangThai == 0){
                         echo '<tr>
@@ -31,8 +31,8 @@
                         <td>' . $NgayBinhLuan . '</td>
                         <td>' . $DiemDanhGia . '</td>
                         <td>
-                            <a href="' . $suabl . '"><button type="button" class="btn btn-primary">Sửa</button></a>
-                            <a href="' . $xoamembl . '"><button type="button" class="btn btn-danger">Xóa</button></a>
+                           
+                            <a href="' . $xoamembl . '"><button type="button" class="btn btn-danger" onclick="return confirm(\'Bạn có chắc chắn muốn ẩn đi bình luận này?\')">Xóa</button></a>
                         </td>
                     </tr>';
                        }

@@ -12,6 +12,8 @@ include '../model/giohang.php';
 include '../global.php';
 include '../model/sanpham.php';
 include '../model/binhluan.php';
+include '../model/donhang.php';
+include '../model/validate.php';
 if(isset($_SESSION['TenTaiKhoan']) && ($_SESSION['TenTaiKhoan']['role'] == 2 || $_SESSION['TenTaiKhoan']['role'] == 1)){
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -183,11 +185,28 @@ if (isset($_GET['act'])) {
                 $soluong = $_POST['soluong'];
                 $trangthai = $_POST['trangthai'];
                 $anhsp = $_FILES['anhsp']['name'];
-                $target_dir = '../upload/';
-                $target_file = $target_dir . basename($_FILES['anhsp']['name']);
-                move_uploaded_file($_FILES['anhsp']['tmp_name'], $target_file);
-                them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai);
-                $thongbao = 'them thanh cong';
+                if (empty($tensp) || empty($giasp) || empty($mota) || empty($soluong) || empty($trangthai)) {
+                    $thongbao = check_Validate('Vui lòng điền đầy đủ thông tin!');
+                } else if (checkSp($tensp)) {
+                    $thongbao = check_Validate("Tên sản phẩm đã tồn tại!");
+                } elseif (!is_numeric($giasp) || $giasp < 0) {
+                    $thongbao = check_Validate('Giá sản phẩm không hợp lệ!');
+                } elseif (!is_numeric($soluong) || $soluong < 0) {
+                    $thongbao = check_Validate('Số lượng sản phẩm không hợp lệ!');
+                } else {
+                    $target_dir = '../upload/';
+                    $target_file = $target_dir . basename($_FILES['anhsp']['name']);
+                    if ($_FILES['anhsp']['size'] > 5 * 1024 * 1024) {
+                        $thongbao = check_Validate('Kích thước ảnh quá lớn, vui lòng chọn ảnh khác!');
+                    } elseif (move_uploaded_file($_FILES['anhsp']['tmp_name'], $target_file)) {
+                        // Thêm sản phẩm sau khi kiểm tra hết các điều kiện
+                        them_sanpham($tensp, $giasp, $anhsp, $mota, $iddm, $soluong, $trangthai);
+                        $thongbao = 'Thêm thành công';
+                    } else {
+                        $thongbao = check_Validate('Upload ảnh không thành công');
+                    }
+
+                }
             }
 
             $listdanhmuc = loadall_danhmuc_admin();
@@ -264,7 +283,35 @@ if (isset($_GET['act'])) {
             }    
             $listbinhluan = loadall_binhluan_admin(0);
             include 'binhluan/list.php';
-            break;        
+            break;   
+        case 'listdonhang':
+            $listdonhang = loadthongke_donhang();
+            include "donhang/listdonhang.php";
+            break;  
+        case 'chitietdonhang':
+            if (isset($_GET['IdChiTietDonHang']) && ($_GET['IdChiTietDonHang'])) {
+                $load_donhang = loadall_dh_sp_tk($_GET['IdChiTietDonHang']);
+                include 'donhang/chitiet.php';
+            }
+            break;
+        case 'updatetrangthai':
+            if (isset($_POST['capnhat'])) {
+                $ttdh = checkstatus_dh($_GET['IdDonHang']);
+                $listdonhang = loadthongke_donhang();
+                if ($ttdh["TrangThai"] == 4) {
+                    $thongbao = "Thao tác của bạn chưa được thực hiện do trạng thái đơn hàng đã thay đổi ";
+                    echo "<script>";
+                    echo "alert('$thongbao');";
+                    echo "</script>";
+                    include "donhang/listdonhang.php";
+                } else {
+                    $luachon = $_POST['luachon'];
+                    $id = $_GET['IdDonHang'];
+                    $update = update_trangthai($luachon, $id);
+                    include "donhang/listdonhang.php";
+                }
+            }
+            break;       
     }
 
 } else {
