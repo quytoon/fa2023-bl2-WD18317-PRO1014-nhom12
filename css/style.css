@@ -5399,7 +5399,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
- 
+
 }
 
 .card-footer:last-child {
@@ -11602,12 +11602,12 @@ h5,
 }
 
 .ftco-navbar-light .navbar-brand {
-  color: #82ae46;
+  color: #000000;
 }
 
 .ftco-navbar-light .navbar-brand:hover,
 .ftco-navbar-light .navbar-brand:focus {
-  color: #000000;
+  color: #FF0000;
 }
 
 @media (max-width: 991.98px) {
@@ -11758,12 +11758,12 @@ h5,
 }
 
 .ftco-navbar-light.scrolled .nav-item.active>a {
-  color: #82ae46 !important;
+  color: #FF0000 !important;
 }
 
 .ftco-navbar-light.scrolled .nav-item.cta>a {
   color: #fff !important;
-  background: #82ae46;
+  background: #000000;
   border: none !important;
 }
 
@@ -12410,7 +12410,7 @@ h5,
 }
 
 .deal-of-the-day h3 a {
-  color: #82ae46;
+  color: #FF0000;
 }
 
 .deal-of-the-day .price {
@@ -12434,7 +12434,7 @@ h5,
   font-size: 40px;
   font-weight: 500;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
-  color: #82ae46;
+  color: #000000;
 }
 
 @media (max-width: 991.98px) {
@@ -12473,6 +12473,7 @@ h5,
   background: black;
   color: #fff;
 }
+
 .product-category li a:hover {
   background: black;
   color: #fff;
@@ -13008,7 +13009,7 @@ h5,
   padding-left: 15px;
   padding-right: 15px;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.4) !important;
+  color: black !important;
   font-size: 14px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -13017,22 +13018,18 @@ h5,
 
 .billing-form .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .billing-form .form-control:focus,
@@ -13416,6 +13413,7 @@ textarea.form-control {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  margin-bottom: 50px;
 }
 
 .ftco-services .services {
@@ -13490,7 +13488,7 @@ textarea.form-control {
 
 .ftco-services .services:hover .icon,
 .ftco-services .services:focus .icon {
-  background: #82ae46;
+  background: #000000;
 }
 
 .ftco-services .services:hover .icon span,
@@ -13505,7 +13503,7 @@ textarea.form-control {
 }
 
 .ftco-category .category-wrap .text {
-  background: #82ae46;
+  background: #000000;
 }
 
 .ftco-category .category-wrap .text h2 {
@@ -13526,7 +13524,7 @@ textarea.form-control {
 }
 
 .ftco-category .category-wrap-2 .text h2 {
-  color: #82ae46;
+  color: #FF0000;
   font-family: "Lora", Georgia, serif;
   font-style: italic;
   font-size: 24px;
@@ -14410,14 +14408,13 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
+
 .color-btn {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
   border: none;
   margin: 5px;
   cursor: pointer;
 }
+
 .color-btn.selected {
   border: 2px solid black;
 }
